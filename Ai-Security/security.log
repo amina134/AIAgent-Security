@@ -1,0 +1,431 @@
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /api/login Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /api/login Threats: ['SQL Injection']
+Security Analysis - IP: 127.0.0.1 Path: /api/comment Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /api/comment Threats: ['XSS']
+Security Analysis - IP: 127.0.0.1 Path: /api/execute Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /api/execute Threats: ['Command Injection']
+Security Analysis - IP: 127.0.0.1 Path: /api/download Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /api/download Threats: ['Path Traversal']
+Security Analysis - IP: 127.0.0.1 Path: /api/products Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /api/login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /api/data Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /api/data Threats: ['SQL Injection', 'SQL Injection']
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /api/admin Risk: 0.7348842620849609
+Requête bloquée - IP: 127.0.0.1 Path: /api/admin Threats: ['Suspicious Pattern']
+Security Analysis - IP: 127.0.0.1 Path: /api/products Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /vulnerable-login Threats: ['SQL Injection']
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /regular-login Threats: ['SQL Injection']
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /dashboard Threats: ['XSS']
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /account Threats: ['IDOR']
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /account Threats: ['IDOR']
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /account Threats: ['IDOR']
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /account Threats: ['IDOR']
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /vulnerable-login Threats: ['SQL Injection']
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /vulnerable-login Threats: ['SQL Injection']
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /vulnerable-login Threats: ['SQL Injection']
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.7
+Requête bloquée - IP: 127.0.0.1 Path: /account Threats: ['IDOR']
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.7
+Requête bloquée - IP: 127.0.0.1 Path: /account Threats: ['IDOR']
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /dashboard Threats: ['XSS']
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /favicon.ico Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /favicon.ico Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /favicon.ico Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /favicon.ico Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /ssrf Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /fetch-url Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /fetch-url Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /internal/mock Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /fetch-url Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /fetch-url Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /admin Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /fetch-url Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /fetch-url Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /admin Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /fetch-url Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /admin Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Erreur dans l'analyse de sécurité: 'WSGIRequest' object has no attribute 'get'
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /vulnerable-login Threats: ['SQL Injection']
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /dashboard Threats: ['XSS']
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /favicon.ico Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /vulnerable-login Threats: ['SQL Injection']
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /dashboard Threats: ['XSS']
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.7
+Requête bloquée - IP: 127.0.0.1 Path: /account Threats: ['IDOR']
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Chargement du modÃ¨le all-MiniLM-L6-v2...
+Agent de sÃ©curitÃ© MiniLM initialisÃ© avec succÃ¨s
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.9
+RequÃªte bloquÃ©e - IP: 127.0.0.1 Path: /vulnerable-login Threats: ['SQL Injection']
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.9
+RequÃªte bloquÃ©e - IP: 127.0.0.1 Path: /dashboard Threats: ['XSS']
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /transfer Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.7
+RequÃªte bloquÃ©e - IP: 127.0.0.1 Path: /account Threats: ['IDOR']
+Security Analysis - IP: 127.0.0.1 Path: /account Risk: 0.7
+RequÃªte bloquÃ©e - IP: 127.0.0.1 Path: /account Threats: ['IDOR']
+Chargement du modÃ¨le all-MiniLM-L6-v2...
+Agent de sÃ©curitÃ© MiniLM initialisÃ© avec succÃ¨s
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /dashboard Risk: 0.9
+RequÃªte bloquÃ©e - IP: 127.0.0.1 Path: /dashboard Threats: ['XSS']
+Chargement du modÃ¨le all-MiniLM-L6-v2...
+Agent de sÃ©curitÃ© MiniLM initialisÃ© avec succÃ¨s
+Chargement du modÃ¨le all-MiniLM-L6-v2...
+Agent de sÃ©curitÃ© MiniLM initialisÃ© avec succÃ¨s
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.9
+RequÃªte bloquÃ©e - IP: 127.0.0.1 Path: /vulnerable-login Threats: ['SQL Injection']
