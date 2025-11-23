@@ -49,17 +49,19 @@
 <div class="container">
     <h2>🔐 Bank Login</h2>
 
-    <!-- ⚠️ NO CSRF TOKEN ON PURPOSE -->
-    <form method="POST">
-        <label>Username</label>
-        <input type="text" name="username" placeholder="Enter username">
 
-        <label>Password</label>
-        <input type="password" name="password" placeholder="Enter password">
+   <form method="POST">
+    {% csrf_token %}
 
-        <button type="submit">Login</button>
-    </form>
+    <label>Username</label>
+    <input type="text" name="username" placeholder="Enter username">
 
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Enter password">
+
+    <button type="submit">Login</button>
+</form>
+ 
     <div class="hint">
         <strong>SQL Injection Test:</strong><br>
         Username: <code>' OR '1'='1</code><br>

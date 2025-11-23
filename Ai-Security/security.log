@@ -429,3 +429,246 @@ Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
 Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.0
 Security Analysis - IP: 127.0.0.1 Path: /vulnerable-login Risk: 0.9
 Requête bloquée - IP: 127.0.0.1 Path: /vulnerable-login Threats: ['SQL Injection']
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.0
+Security Analysis - IP: 127.0.0.1 Path: /regular-login Risk: 0.9
+Requête bloquée - IP: 127.0.0.1 Path: /regular-login Threats: ['SQL Injection']
+Security Analysis - IP: 127.0.0.1 Path: / Risk: 0.0
+Chargement du modèle all-MiniLM-L6-v2...
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Requête malveillante bloquée: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_XSS'}
+Requête malveillante bloquée: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_XSS'}
+Requête malveillante bloquée: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_XSS'}
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+Requête malveillante bloquée: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_XSS'}
+Requête malveillante bloquée: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_XSS'}
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+AI Security Agent initialized successfully
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_XSS'}
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_XSS'}
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_XSS'}
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_XSS'}
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_XSS'}
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+AI Security Agent initialized successfully
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.8, 'recommendation': 'BLOCK_XSS'}
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.8, 'recommendation': 'BLOCK_XSS'}
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.8, 'recommendation': 'BLOCK_XSS'}
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+AI Security Agent initialized successfully
+Security threats detected for GET /vulnerable-login: [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}]
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.8, 'recommendation': 'BLOCK_XSS'}
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+AI Security Agent initialized successfully
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+AI Security Agent initialized successfully
+Security threats detected for GET /vulnerable-login: [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}]
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.8, 'recommendation': 'BLOCK_XSS'}
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+AI Security Agent initialized successfully
+Security threats detected for GET /vulnerable-login: [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}]
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.8, 'recommendation': 'BLOCK_XSS'}
+Security threats detected for GET /regular-login: [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}]
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.8, 'recommendation': 'BLOCK_XSS'}
+Security threats detected for GET /regular-login: [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}]
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.8, 'recommendation': 'BLOCK_XSS'}
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+AI Security Agent initialized successfully
+Security threats detected for GET /vulnerable-login: [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}]
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.8, 'recommendation': 'BLOCK_XSS'}
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+AI Security Agent initialized successfully
+Security threats detected for GET /regular-login: [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}]
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'Cookie=csrftoken=JMHpudCIBvgPPb0IEI1uJoug0T89MrBe; sessionid=1l17pgidl2d3svu0v5pt0sybpv2gci6z', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.8, 'pattern': '(on\\w+\\s*=\\s*[^>]*)'}], 'overall_risk_score': 0.8, 'recommendation': 'BLOCK_XSS'}
+Loading model all-MiniLM-L6-v2 ...
+MiniLM security agent initialized.
+AI Security Agent initialized successfully
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+AI Security Agent initialized successfully
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.9, 'pattern': '(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+'}], 'overall_risk_score': 0.9, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Chargement du modèle all-MiniLM-L6-v2...
+Agent de sécurité MiniLM initialisé avec succès
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'http://127.0.0.1:8000/', 'type': 'SSRF', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(http://|https://|ftp://|file://|gopher://)?(localhost|127\\.0\\.0\\.1|0\\.0\\.0\\.0)', 'matched_text': 'http://127.0.0.1'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SSRF'}
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'http://127.0.0.1:8000/', 'type': 'SSRF', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(http://|https://|ftp://|file://|gopher://)?(localhost|127\\.0\\.0\\.1|0\\.0\\.0\\.0)', 'matched_text': 'http://127.0.0.1'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SSRF'}
+Loading model all-MiniLM-L6-v2...
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'http://127.0.0.1:8000/', 'type': 'SSRF', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(http://|https://|ftp://|file://|gopher://)?(localhost|127\\.0\\.0\\.1|0\\.0\\.0\\.0)', 'matched_text': 'http://127.0.0.1'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SSRF'}
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'http://127.0.0.1:8000/', 'type': 'SSRF', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(http://|https://|ftp://|file://|gopher://)?(localhost|127\\.0\\.0\\.1|0\\.0\\.0\\.0)', 'matched_text': 'http://127.0.0.1'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SSRF'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'http://127.0.0.1:8000/', 'type': 'SSRF', 'detection_method': 'ai_similarity', 'confidence': 0.71, 'similarity_score': 0.71}], 'overall_risk_score': 71.0, 'recommendation': 'BLOCK_SSRF'}
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': 'http://127.0.0.1:8000/', 'type': 'SSRF', 'detection_method': 'ai_similarity', 'confidence': 0.71, 'similarity_score': 0.71}], 'overall_risk_score': 71.0, 'recommendation': 'BLOCK_SSRF'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Malicious request blocked: {'is_malicious': True, 'threats_detected': [{'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Error in AI security middleware: 'MiniLMSecurityAgent' object has no attribute '_extract_ids'
+Error in AI security middleware: 'MiniLMSecurityAgent' object has no attribute '_extract_ids'
+Error in AI security middleware: 'MiniLMSecurityAgent' object has no attribute '_extract_ids'
+Error in AI security middleware: 'MiniLMSecurityAgent' object has no attribute '_extract_ids'
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}, {'text': 'Unauthorized access attempt to resource ID=3', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}, {'text': 'Unauthorized access attempt to resource ID=3', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}, {'text': 'Unauthorized access attempt to resource ID=3', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}, {'text': 'Unauthorized access attempt to resource ID=3', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}, {'text': 'Unauthorized access attempt to resource ID=3', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+AI Middleware error: 'str' object has no attribute 'user_id'
+AI Middleware error: 'str' object has no attribute 'user_id'
+AI Middleware error: 'str' object has no attribute 'user_id'
+AI Middleware error: 'str' object has no attribute 'user_id'
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=3', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=3', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Loading model all-MiniLM-L6-v2...
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'error': 'CSRF violation', 'blocked': True, 'threats': [{'text': 'State-changing request missing CSRF header while CSRF cookie present', 'type': 'CSRF', 'detection_method': 'csrf_missing_header', 'confidence': 0.95}]}
+Blocked malicious request: {'error': 'CSRF violation', 'blocked': True, 'threats': [{'text': 'State-changing request missing CSRF header while CSRF cookie present', 'type': 'CSRF', 'detection_method': 'csrf_missing_header', 'confidence': 0.95}]}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'error': 'CSRF violation', 'blocked': True, 'threats': [{'text': 'State-changing request missing CSRF header', 'type': 'CSRF', 'detection_method': 'csrf_missing_header', 'confidence': 0.93}]}
+Blocked malicious request: {'error': 'CSRF violation', 'blocked': True, 'threats': [{'text': 'State-changing request missing CSRF header', 'type': 'CSRF', 'detection_method': 'csrf_missing_header', 'confidence': 0.93}]}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully

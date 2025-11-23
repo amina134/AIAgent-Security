@@ -136,84 +136,64 @@ def dashboard(request):
 # -----------------------------
 # Vulnerability 3: CSRF
 # -----------------------------
-@csrf_exempt
+
 def transfer_money(request):
     if not request.user.is_authenticated:
         return redirect("/regular-login")
 
+    # ❗❗ VULNERABLE GET-BASED TRANSFER
+    
+    if request.method == "GET" and "to_account" in request.GET:
+        to_account = request.GET.get("to_account")
+        amount = request.GET.get("amount")
+        return _process_transfer(request, to_account, amount, source="GET (VULNERABLE)")
+
+    # ✔ SAFE USER TRANSFER USING POST
     if request.method == "POST":
         to_account = request.POST.get("to_account")
         amount = request.POST.get("amount")
-        
-        try:
-            from_account = BankAccount.objects.get(user=request.user)
-            to_account_obj = BankAccount.objects.get(account_number=to_account)
-            
-            # FIX: Convert amount to Decimal instead of float
-            from decimal import Decimal
-            transfer_amount = Decimal(amount)  # Convert to Decimal
-            
-            if from_account.balance >= transfer_amount:
-                # FIX: Use Decimal arithmetic
-                from_account.balance -= transfer_amount
-                to_account_obj.balance += transfer_amount
-                from_account.save()
-                to_account_obj.save()
+        return _process_transfer(request, to_account, amount, source="POST (SAFE USER)")
 
-                Transaction.objects.create(
-                    from_account=from_account,
-                    to_account=to_account_obj,
-                    amount=transfer_amount,  # Use Decimal here too
-                    transaction_type="TRANSFER",
-                    description=f"Transfer to {to_account}",
-                )
-
-                return HttpResponse(f'''
-                <h3> Transfer Successful!</h3>
-                <p>Transferred ${transfer_amount} to account {to_account}</p>
-                <p>Your new balance: <strong>${from_account.balance}</strong></p>
-                <a href="/transfer">Make another transfer</a> | <a href="/dashboard">Dashboard</a>
-                ''')
-            else:
-                return HttpResponse(f'''
-                <h3>Insufficient Funds!</h3>
-                <p>Your balance: ${from_account.balance}</p>
-                <p>Attempted transfer: ${transfer_amount}</p>
-                <a href="/transfer">Try again</a>
-                ''')
-
-        except BankAccount.DoesNotExist:
-            return HttpResponse("Account not found!")
-        except ValueError:
-            return HttpResponse("Invalid amount format!")
-        except Exception as e:
-            return HttpResponse(f"Error: {str(e)}")
-
-    # GET request - show transfer form
-    current_user = request.user.username if request.user.is_authenticated else "Unknown"
-    return HttpResponse(f'''
-    <h2>Transfer Money (CSRF Vulnerable)</h2>
-    <p>Logged in as: <strong>{current_user}</strong></p>
-    
-    <form method="POST" action="/transfer">
-        <!-- NO CSRF TOKEN - intentionally vulnerable -->
-        To Account: <input type="text" name="to_account" placeholder="ACC000002" required><br><br>
-        Amount: $<input type="number" name="amount" step="0.01" min="0.01" required><br><br>
-        <button type="submit">Transfer Money</button>
+    # SHOW FORM
+    return HttpResponse("""
+    <h2>Transfer Money (CSRF Vulnerable Demo)</h2>
+    <form method="POST">
+        <!-- NO CSRF token -->
+        To Account: <input type="text" name="to_account" required><br>
+        Amount: <input type="number" name="amount" step="0.01" required><br>
+        <button type="submit">Transfer</button>
     </form>
+    """)
+# process transfer 
+def _process_transfer(request, to_account, amount, source):
+    try:
+        from_account = BankAccount.objects.get(user=request.user)
+        to_account_obj = BankAccount.objects.get(account_number=to_account)
 
-    <div style="margin-top: 30px; background: #ffe6e6; padding: 15px;">
-        <h3>🚨 CSRF Attack Demo:</h3>
-        <p>Test accounts:</p>
-        <ul>
-            <li><strong>ranim</strong>: ACC000001 </li>
-            <li><strong>ghada</strong>: ACC000002 </li>
-            <li><strong>amina</strong>: ACC000003 </li>
-        </ul>
-        
-       
-    <p><a href="/dashboard">← Back to Dashboard</a></p>
-    ''')
+        from decimal import Decimal
+        amount_dec = Decimal(amount)
+
+        if from_account.balance >= amount_dec:
+            from_account.balance -= amount_dec
+            to_account_obj.balance += amount_dec
+            from_account.save()
+            to_account_obj.save()
+
+            Transaction.objects.create(
+                from_account=from_account,
+                to_account=to_account_obj,
+                amount=amount_dec,
+                transaction_type="TRANSFER",
+                description=f"Transfer ({source})"
+            )
+
+            return HttpResponse(f"<h3>Transfer Successful ({source})</h3>")
+
+        else:
+            return HttpResponse("Insufficient funds")
+    except Exception as e:
+        return HttpResponse(f"Error: {str(e)}")
+
 # -----------------------------
 # Vulnerability 4: IDOR
 # -----------------------------
