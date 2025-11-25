@@ -54,12 +54,18 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware', 
+
+    # CSRF peut rester avant ou après selon ton design
+    'django.middleware.csrf.CsrfViewMiddleware',
+
+    # AUTHENTIFICATION D’ABORD
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+
+    # PUIS TON AI SECURITY
+     'banking_env.middleware.AISecurityMiddleware',
+
     'django.contrib.messages.middleware.MessageMiddleware',
-    'banking_env.middleware.AISecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #we are going to add our security middleware
 ]
 SESSION_COOKIE_HTTPONLY = False  # Makes session hijacking easier
 SECURE_BROWSER_XSS_FILTER = False

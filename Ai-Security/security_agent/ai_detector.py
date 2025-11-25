@@ -5,9 +5,12 @@ from django.conf import settings
 import logging
 import json
 import re
+from .utils import rebuild_faiss_index
 from typing import Dict, List, Any
-
+from .utils import decode_obfuscated_text
+from .models import SuspiciousPayload
 logger = logging.getLogger(__name__)
+from .models import SuspiciousPayload
 
 class MiniLMSecurityAgent:
     """
@@ -21,7 +24,7 @@ class MiniLMSecurityAgent:
         self.model = None
         self.threat_patterns_index = None
         self.threat_threshold = 0.70
-        
+        self.threat_patterns_index = rebuild_faiss_index()
         # Known attack patterns for AI similarity matching
         self.known_threats = self._get_threat_patterns()
         
@@ -218,16 +221,23 @@ class MiniLMSecurityAgent:
         for text in request_texts:
             if not text or len(text.strip()) < 2:
                 continue
+            #  Decode obfuscated variants (Base64, URL, Hex)
+            decoded_variants = decode_obfuscated_text(text)
+            for variant in decoded_variants:
+                if not variant or len(variant.strip()) < 2:
+                    continue
+    
+    
+                # Step 1: Fast regex detection (SQLi, XSS, etc.)
+                regex_threats = self._check_regex_patterns(variant)
+                threats_detected.extend(regex_threats)
 
-            # Step 1: Fast regex detection (SQLi, XSS, etc.)
-            regex_threats = self._check_regex_patterns(text)
-            threats_detected.extend(regex_threats)
-
-            # Step 2: AI similarity (MiniLM + FAISS)
-            if not regex_threats:
-                ai_threats = self._check_ai_similarity(text)
-                threats_detected.extend(ai_threats)
-
+                # Step 2: AI similarity (MiniLM + FAISS)
+                if not regex_threats:
+                    ai_threats = self._check_ai_similarity(variant)
+                    threats_detected.extend(ai_threats)
+                if ai_threats and not regex_threats:
+                    store_new_malicious_payload(variant, threat_type=ai_threats[0]['type'])
         # Remove duplicates
         unique_threats = self._deduplicate_threats(threats_detected)
 
@@ -238,12 +248,6 @@ class MiniLMSecurityAgent:
             "overall_risk_score": self._calculate_overall_risk(unique_threats),
             "recommendation": self._generate_recommendation(unique_threats)
         }
-
-
-
-    
-
-
 
 
     def _check_regex_patterns(self, text: str) -> List[Dict]:

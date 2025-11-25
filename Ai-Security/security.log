@@ -672,3 +672,128 @@ AI Security Agent initialized successfully
 Loading model all-MiniLM-L6-v2...
 Security Agent initialized successfully
 AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'username=" OR 1=1 #', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': '" OR 1=1'}, {'text': '" OR 1=1 #', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': '" OR 1=1'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'username=" OR 1=1 ', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': '" OR 1=1'}, {'text': '" OR 1=1 ', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': '" OR 1=1'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["<ScRiPt>alert(\'hack\')</ScRiPt>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<ScRiPt>alert('hack')</ScRiPt>"}, {'text': '["<ScRiPt>alert(\'hack\')</ScRiPt>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<ScRiPt>alert('hack')</ScRiPt>"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["<ScRiPt>alert(\'hack\')</ScRiPt>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<ScRiPt>alert('hack')</ScRiPt>"}, {'text': '["<ScRiPt>alert(\'hack\')</ScRiPt>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<ScRiPt>alert('hack')</ScRiPt>"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "search=['<img src=x onerror=alert(2)>']", 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(on\\w+\\s*=\\s*[\'\\"]?[^\'\\"]*[\'\\"]?)', 'matched_text': "onerror=alert(2)>'"}, {'text': "['<img src=x onerror=alert(2)>']", 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(on\\w+\\s*=\\s*[\'\\"]?[^\'\\"]*[\'\\"]?)', 'matched_text': "onerror=alert(2)>'"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "search=['<script>this</script>']", 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': '<script>this</script>'}, {'text': "['<script>this</script>']", 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': '<script>this</script>'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["1\')/**/OR/**/(\'1\'=\'1 \' OR SLEEP(3)-- 1\'; WAITFOR DELAY \'0:0:5\'--"]', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '/*'}, {'text': '["1\')/**/OR/**/(\'1\'=\'1 \' OR SLEEP(3)-- 1\'; WAITFOR DELAY \'0:0:5\'--"]', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '/*'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading model all-MiniLM-L6-v2...
+AI Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+AI Security Agent initialized successfully
+AI Security Agent initialized successfully
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}, {'text': '["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}, {'text': '["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+Loading model all-MiniLM-L6-v2...
+AI Security Agent initialized successfully
+AI Security Agent initialized successfully
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+AI Middleware error: 'MiniLMSecurityAgent' object has no attribute 'detect_csrf_attack'
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=3', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}, {'text': '["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Failed to initialize AI Security Agent: name 'rebuild_faiss_index' is not defined
+Failed to initialize AI Security Agent: name 'rebuild_faiss_index' is not defined
+Failed to initialize AI Security Agent: name 'rebuild_faiss_index' is not defined
+Failed to initialize AI Security Agent: name 'rebuild_faiss_index' is not defined
+Failed to initialize AI Security Agent: no such column: security_agent_suspiciouspayload.confirmed
+Failed to initialize AI Security Agent: name 'rebuild_faiss_index' is not defined
+Failed to initialize AI Security Agent: no such column: security_agent_suspiciouspayload.confirmed
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "user=1' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}, {'text': '["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "search=['/?x=<script>alert(1)</script>']", 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': '<script>alert(1)</script>'}, {'text': "['/?x=<script>alert(1)</script>']", 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': '<script>alert(1)</script>'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "<script>alert('XSS')</script>", 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "<script>alert('XSS')</script>", 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "user=1' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "user=1' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=1' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "1' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+AI Middleware error: name 'store_new_malicious_payload' is not defined
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully

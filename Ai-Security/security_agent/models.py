@@ -10,3 +10,11 @@ class SecurityAlert(models.Model):
 
     def __str__(self):
         return f"{self.timestamp} {self.path} score={self.risk_score}"
+
+#store suspicious requests so now we  can review them
+class SuspiciousPayload(models.Model):
+    raw_text = models.TextField()
+    threat_type = models.CharField(max_length=200, default="Unknown")
+    vector = models.TextField()
+    confirmed = models.BooleanField(default=False)  # <- this is required
+    created_at = models.DateTimeField(auto_now_add=True)
