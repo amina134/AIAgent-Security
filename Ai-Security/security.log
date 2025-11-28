@@ -797,3 +797,168 @@ AI Middleware error: name 'store_new_malicious_payload' is not defined
 Loading model all-MiniLM-L6-v2...
 Security Agent initialized successfully
 AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}, {'text': '["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=admin')/**/OR/**/'Z'='Z", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '/*'}, {'text': "admin')/**/OR/**/'Z'='Z", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '/*'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=admin')/**/OR/**/'Z'='Z", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '/*'}, {'text': "admin')/**/OR/**/'Z'='Z", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '/*'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=admin')/**/OR/**/'Z'='Z", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '/*'}, {'text': "admin')/**/OR/**/'Z'='Z", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '/*'}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Error in AI similarity check: SuspiciousPayload() got unexpected keyword arguments: 'detection_method', 'confidence', 'status', 'promoted'
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': 'password=', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity', 'confidence': 3.4028234663852886e+38, 'similarity_score': 3.4028234663852886e+38, 'status': 'malicious'}], 'overall_risk_score': 3.4028234663852886e+40, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': '/vulnerable-login', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity', 'confidence': 3.4028234663852886e+38, 'similarity_score': 3.4028234663852886e+38, 'status': 'malicious'}, {'text': "username=' OR 'x'='x", 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity', 'confidence': 3.4028234663852886e+38, 'similarity_score': 3.4028234663852886e+38, 'status': 'malicious'}, {'text': "' OR 'x'='x", 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity', 'confidence': 3.4028234663852886e+38, 'similarity_score': 3.4028234663852886e+38, 'status': 'malicious'}, {'text': 'password=', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity', 'confidence': 3.4028234663852886e+38, 'similarity_score': 3.4028234663852886e+38, 'status': 'malicious'}], 'overall_risk_score': 3.4028234663852886e+40, 'recommendation': 'BLOCK_SUSPICIOUS'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Failed to initialize AI Security Agent: no such table: security_agent_suspiciouspayload
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}, {'text': '["<script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+Loading model all-MiniLM-L6-v2...
+Security Agent initialized successfully
+AI Security Agent initialized successfully
+Loading SentenceTransformer model...
+Model and FAISS indexes initialized.
+AI Security Agent initialized successfully
+Loading SentenceTransformer model...
+Model and FAISS indexes initialized.
+Loading SentenceTransformer model...
+Model and FAISS indexes initialized.
+Loading SentenceTransformer model...
+Model and FAISS indexes initialized.
+AI Security Agent initialized successfully
+Loading SentenceTransformer model...
+Model and FAISS indexes initialized.
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "username=' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.64, 'similarity_score': 0.64}, {'text': "' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(\'|\\"|`)\\s*(OR|AND)\\s+[\'\\"`]?[0-9]+[\'\\"`]?\\s*=\\s*[\'\\"`]?[0-9]+', 'matched_text': "' OR '1'='1"}, {'text': "' OR '1'='1' --", 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.97, 'similarity_score': 0.97}], 'overall_risk_score': 97.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username=' OR 'x'='x", 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.79, 'similarity_score': 0.79}, {'text': "' OR 'x'='x", 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 1.0, 'similarity_score': 1.0}], 'overall_risk_score': 100.0, 'recommendation': 'BLOCK_SUSPICIOUS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=[" <script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}, {'text': 'search=[" <script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'ai_similarity_stored', 'confidence': 0.76, 'similarity_score': 0.76}, {'text': '[" <script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<script>alert('XSS')</script>"}, {'text': '[" <script>alert(\'XSS\')</script>"]', 'type': 'XSS', 'detection_method': 'ai_similarity_stored', 'confidence': 0.89, 'similarity_score': 0.89}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=2', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'blocked': True, 'error': 'IDOR violation detected', 'threats': [{'text': 'Unauthorized access attempt to resource ID=3', 'type': 'IDOR', 'detection_method': 'idor_check', 'confidence': 0.95}]}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["<scrıpt>alert(\'x\')</scrıpt>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<scrıpt>alert('x')</scrıpt>"}, {'text': 'search=["<scrıpt>alert(\'x\')</scrıpt>"]', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.71, 'similarity_score': 0.71}, {'text': '["<scrıpt>alert(\'x\')</scrıpt>"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': "<scrıpt>alert('x')</scrıpt>"}, {'text': '["<scrıpt>alert(\'x\')</scrıpt>"]', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.86, 'similarity_score': 0.86}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "search=['<scr&#x69;pt>alert(1)</scr&#x69;pt>']", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '#'}, {'text': "search=['<scr&#x69;pt>alert(1)</scr&#x69;pt>']", 'type': 'Command Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.82, 'similarity_score': 0.82}, {'text': "['<scr&#x69;pt>alert(1)</scr&#x69;pt>']", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '#'}, {'text': "['<scr&#x69;pt>alert(1)</scr&#x69;pt>']", 'type': 'Command Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.88, 'similarity_score': 0.88}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["javascript:eval(atob(\'YWxlcnQoMSk=\'))"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(javascript:)', 'matched_text': 'javascript:'}, {'text': 'search=["javascript:eval(atob(\'YWxlcnQoMSk=\'))"]', 'type': 'XSS', 'detection_method': 'ai_similarity_stored', 'confidence': 0.74, 'similarity_score': 0.74}, {'text': '["javascript:eval(atob(\'YWxlcnQoMSk=\'))"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(javascript:)', 'matched_text': 'javascript:'}, {'text': '["javascript:eval(atob(\'YWxlcnQoMSk=\'))"]', 'type': 'XSS', 'detection_method': 'ai_similarity_stored', 'confidence': 0.88, 'similarity_score': 0.88}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=[\'<a href="#" oncl&#x69;ck="alert(1)">click</a>\']', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '#'}, {'text': 'search=[\'<a href="#" oncl&#x69;ck="alert(1)">click</a>\']', 'type': 'Command Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.75, 'similarity_score': 0.75}, {'text': '[\'<a href="#" oncl&#x69;ck="alert(1)">click</a>\']', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '#'}, {'text': '[\'<a href="#" oncl&#x69;ck="alert(1)">click</a>\']', 'type': 'Command Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.94, 'similarity_score': 0.94}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "search=['<svg><script>alert`x`</script></svg>']", 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': '<script>alert`x`</script>'}, {'text': "search=['<svg><script>alert`x`</script></svg>']", 'type': 'Command Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(`[^`]*`)', 'matched_text': '`x`'}, {'text': "search=['<svg><script>alert`x`</script></svg>']", 'type': 'XSS', 'detection_method': 'ai_similarity_stored', 'confidence': 0.84, 'similarity_score': 0.84}, {'text': "['<svg><script>alert`x`</script></svg>']", 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(<script[^>]*>.*?</script>)', 'matched_text': '<script>alert`x`</script>'}, {'text': "['<svg><script>alert`x`</script></svg>']", 'type': 'Command Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(`[^`]*`)', 'matched_text': '`x`'}, {'text': "['<svg><script>alert`x`</script></svg>']", 'type': 'XSS', 'detection_method': 'ai_similarity_stored', 'confidence': 0.95, 'similarity_score': 0.95}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_COMMAND_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "search=['/?x=%3Cscript%3Ealert(1)%3C%2Fscript%3E']", 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.65, 'similarity_score': 0.65}, {'text': "['/?x=%3Cscript%3Ealert(1)%3C%2Fscript%3E']", 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.93, 'similarity_score': 0.93}], 'overall_risk_score': 93.0, 'recommendation': 'BLOCK_SUSPICIOUS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'username=1/**/OR/**/1/**/=/**/1', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '/*'}, {'text': 'username=1/**/OR/**/1/**/=/**/1', 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.68, 'similarity_score': 0.68}, {'text': '1/**/OR/**/1/**/=/**/1', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '/*'}, {'text': '1/**/OR/**/1/**/=/**/1', 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.82, 'similarity_score': 0.82}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading SentenceTransformer model...
+Model and FAISS indexes initialized.
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'username=1/**/OR/**/1/**/=/**/1', 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 1.0, 'similarity_score': 1.0}, {'text': '1/**/OR/**/1/**/=/**/1', 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 1.0, 'similarity_score': 1.0}], 'overall_risk_score': 100.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'username=1/**/OR/**/1/**/=/**/1', 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 1.0, 'similarity_score': 1.0}, {'text': '1/**/OR/**/1/**/=/**/1', 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 1.0, 'similarity_score': 1.0}], 'overall_risk_score': 100.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Loading SentenceTransformer model...
+Model and FAISS indexes initialized.
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["javascript:eval(atob(\'YWxlcnQoMSk=\'))"]', 'type': 'XSS', 'detection_method': 'ai_similarity_stored', 'confidence': 1.0, 'similarity_score': 1.0}, {'text': '["javascript:eval(atob(\'YWxlcnQoMSk=\'))"]', 'type': 'XSS', 'detection_method': 'ai_similarity_stored', 'confidence': 1.0, 'similarity_score': 1.0}], 'overall_risk_score': 100.0, 'recommendation': 'BLOCK_XSS'}
+Loading SentenceTransformer model...
+Model and FAISS indexes initialized.
+AI Security Agent initialized successfully
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'search=["javascript:eval(atob(\'YWxlcnQoMSk=\'))"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(javascript:)', 'matched_text': 'javascript:'}, {'text': 'search=["javascript:eval(atob(\'YWxlcnQoMSk=\'))"]', 'type': 'XSS', 'detection_method': 'ai_similarity_stored', 'confidence': 1.0, 'similarity_score': 1.0}, {'text': '["javascript:eval(atob(\'YWxlcnQoMSk=\'))"]', 'type': 'XSS', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(javascript:)', 'matched_text': 'javascript:'}, {'text': '["javascript:eval(atob(\'YWxlcnQoMSk=\'))"]', 'type': 'XSS', 'detection_method': 'ai_similarity_stored', 'confidence': 1.0, 'similarity_score': 1.0}], 'overall_risk_score': 100.0, 'recommendation': 'BLOCK_XSS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'username=%27%20OR%201=1--', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '--'}, {'text': 'username=%27%20OR%201=1--', 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.72, 'similarity_score': 0.72}, {'text': '%27%20OR%201=1--', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '--'}, {'text': '%27%20OR%201=1--', 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.8, 'similarity_score': 0.8}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'username=0x27 OR 1=1--', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '--'}, {'text': 'username=0x27 OR 1=1--', 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.8, 'similarity_score': 0.8}, {'text': '0x27 OR 1=1--', 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '--'}, {'text': '0x27 OR 1=1--', 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.74, 'similarity_score': 0.74}], 'overall_risk_score': 95.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': "username='; EXEC xp_cmdshell('dir'); --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '--'}, {'text': "username='; EXEC xp_cmdshell('dir'); --", 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.88, 'similarity_score': 0.88}, {'text': "'; EXEC xp_cmdshell('dir'); --", 'type': 'SQL Injection', 'detection_method': 'regex', 'confidence': 0.95, 'pattern': '(?i)(--|\\#|/\\*|\\*/)', 'matched_text': '--'}, {'text': "'; EXEC xp_cmdshell('dir'); --", 'type': 'SQL Injection', 'detection_method': 'ai_similarity_stored', 'confidence': 0.99, 'similarity_score': 0.99}], 'overall_risk_score': 99.0, 'recommendation': 'BLOCK_SQL_INJECTION'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'username=MSDwnZKq8J2RhSAx77ydMQ==', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.63, 'similarity_score': 0.63}, {'text': 'MSDwnZKq8J2RhSAx77ydMQ==', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.81, 'similarity_score': 0.81}], 'overall_risk_score': 81.0, 'recommendation': 'BLOCK_SUSPICIOUS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'OhZRO2K6kkWLKDsFg75NPqW8rdeUnBYtj0Kx8CYr5Yjz3mJvW5jqPuqybGYm4tAF', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.6, 'similarity_score': 0.6}, {'text': 'username=3120f09d92aaf09d91852031efbc9d31', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.79, 'similarity_score': 0.79}, {'text': '3120f09d92aaf09d91852031efbc9d31', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.67, 'similarity_score': 0.67}], 'overall_risk_score': 79.0, 'recommendation': 'BLOCK_SUSPICIOUS'}
+Blocked malicious request: {'is_malicious': True, 'blocked': True, 'threats_detected': [{'text': 'csrfmiddlewaretoken=OhZRO2K6kkWLKDsFg75NPqW8rdeUnBYtj0Kx8CYr5Yjz3mJvW5jqPuqybGYm4tAF', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.62, 'similarity_score': 0.62}, {'text': 'OhZRO2K6kkWLKDsFg75NPqW8rdeUnBYtj0Kx8CYr5Yjz3mJvW5jqPuqybGYm4tAF', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 1.0, 'similarity_score': 1.0}, {'text': 'username=amF2YXNjcmlwdDpldmFsKGF0b2IoJ1lXeGxjblFvTVNrPScpKQo=', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.75, 'similarity_score': 0.75}, {'text': 'amF2YXNjcmlwdDpldmFsKGF0b2IoJ1lXeGxjblFvTVNrPScpKQo=', 'type': 'Suspicious Pattern', 'detection_method': 'ai_similarity_stored', 'confidence': 0.76, 'similarity_score': 0.76}], 'overall_risk_score': 100.0, 'recommendation': 'BLOCK_SUSPICIOUS'}

