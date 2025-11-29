@@ -5,6 +5,9 @@ import numpy as np
 from django.conf import settings
 
 DATA_DIR = os.path.join(str(settings.BASE_DIR), "security_data")
+
+TEXTS_PATH = os.path.join(DATA_DIR, "texts.json")
+EMB_PATH = os.path.join(DATA_DIR, "embeddings.npy")
 os.makedirs(DATA_DIR, exist_ok=True)
 
 def save_suspicious_payload(raw_text: str, embedding: np.ndarray, metadata: dict = None):
@@ -31,3 +34,25 @@ def save_suspicious_payload(raw_text: str, embedding: np.ndarray, metadata: dict
             np.save(emb_path, arr)
     except Exception as e:
         print(f"Error saving embedding: {e}")
+
+
+
+
+def load_all_payloads():
+    """
+    Loads all stored suspicious payload texts from suspicious_payloads.jsonl.
+    Returns a list of raw text strings.
+    """
+    file_path = os.path.join(DATA_DIR, "suspicious_payloads.jsonl")
+    if not os.path.exists(file_path):
+        return []
+
+    texts = []
+    with open(file_path, "r", encoding="utf-8") as f:
+        for line in f:
+            try:
+                record = json.loads(line)
+                texts.append(record.get("text", ""))
+            except:
+                continue
+    return texts

@@ -5,7 +5,7 @@ import json
 import logging
 from pathlib import Path
 from typing import Dict, List, Any, Tuple
-
+from tools.storage import load_all_payloads
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
@@ -43,13 +43,13 @@ class MiniLMSecurityAgent:
     def __init__(self):
         self.model_name = MODEL_NAME
         self.model: SentenceTransformer | None = None
-
+        self.payloads = load_all_payloads() 
         # FAISS indexes
         # - threat_patterns_index: IndexFlatIP on normalized known threat patterns
         # - embeddings_index: IndexFlatIP on normalized stored embeddings (self-learned)
         self.threat_patterns_index = None
         self.embeddings_index = None
-
+   
         # metadata
         self.known_threats: List[str] = []
         self.cluster_meta: Dict = {}
@@ -106,7 +106,7 @@ class MiniLMSecurityAgent:
         self._init_model_and_indexes()
         # load cluster meta if present (optional)
         self._load_cluster_meta()
-
+   
     # -------------------------
     # Initialization / helpers
     # -------------------------
@@ -464,3 +464,28 @@ class MiniLMSecurityAgent:
             if p.isdigit():
                 ids.append(int(p))
         return ids
+    
+
+
+
+    def debug_similarity(self, text, k=5):
+        """Debug method to see similarity against known threat patterns"""
+        if self.model is None or self.threat_patterns_index is None:
+            return []
+        
+        embedding = self.model.encode([text]).astype(np.float32)
+        faiss.normalize_L2(embedding)
+        D, I = self.threat_patterns_index.search(embedding, k=k)
+        
+        results = []
+        for rank, (dist, idx) in enumerate(zip(D[0], I[0]), start=1):
+            if 0 <= idx < len(self.known_threats):
+                payload_text = self.known_threats[idx]
+            else:
+                payload_text = "(index out of bounds)"
+            results.append({
+                "rank": rank,
+                "distance": dist,
+                "payload": payload_text
+            })
+        return results
