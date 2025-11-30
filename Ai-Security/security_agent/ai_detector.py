@@ -27,8 +27,8 @@ EMB_INDEX_PATH = SECURITY_DIR / "embeddings_index.faiss"
 # Config
 MODEL_NAME = "all-MiniLM-L6-v2"
 EMB_DIM = 384               # dimensionality for MiniLM
-THREAT_SIM_THRESHOLD = 0.70 # similarity threshold vs known threat patterns
-STORED_SIM_THRESHOLD = 0.60 # similarity threshold vs stored suspicious embeddings
+THREAT_SIM_THRESHOLD = 0.85 # similarity threshold vs known threat patterns
+STORED_SIM_THRESHOLD = 0.75 # similarity threshold vs stored suspicious embeddings
 SAVE_ON_DETECT = True       # whether to call save_suspicious_payload when detection occurs
 
 
@@ -163,29 +163,16 @@ class MiniLMSecurityAgent:
 
     def _get_threat_patterns(self) -> List[str]:
         """Return list of string threat patterns for the known-threat index."""
-        return [
-            # SQL Injection variations
-            "SELECT * FROM users WHERE username = 'admin' OR '1'='1'",
-            "admin' OR 1=1--",
-            "'; DROP TABLE users; --",
-            "UNION SELECT username, password FROM users",
-            "' UNION SELECT NULL, NULL--",
-            "1' AND '1'='1",
-            # XSS
-            "<script>alert('XSS')</script>",
-            "<img src=x onerror=alert(1)>",
-            "javascript:alert('XSS')",
-            "<svg onload=alert(1)>",
-            "<iframe src=javascript:alert(1)>",
-            # Traversal / command / ssrf
-            "../../../etc/passwd",
-            "..\\..\\..\\windows\\system32\\drivers\\etc\\hosts",
-            "; ls -la",
-            "| cat /etc/passwd",
-            "&& whoami",
-            "http://169.254.169.254/latest/meta-data/",
-            "file:///etc/passwd",
-        ]
+        # Use your comprehensive payload lists
+        all_threats = []
+        
+        # Add your SQL injection payloads
+        all_threats.extend(self.payloads)
+        
+       
+        # Remove duplicates and limit to reasonable size
+        unique_threats = list(set(all_threats))
+        return unique_threats[:1000]  # Limit to first 1000 if needed
     # --------------------------------------------------------
     #  CSRF DETECTION LOGIC
     # --------------------------------------------------------
@@ -203,6 +190,10 @@ class MiniLMSecurityAgent:
     # -------------------------
     def is_suspicious(self, text: str) -> bool:
         """Return True if text is detected as suspicious by regex or AI similarity."""
+        # 0) Skip safe patterns entirely
+        if self.is_safe_pattern(text):
+            return False
+
         # 1) quick regex check
         if self._check_regex_patterns(text):
             return True
@@ -227,7 +218,7 @@ class MiniLMSecurityAgent:
         user_id = request_data.get("user_context", {}).get("user_id")
         ids = self._extract_ids(request_data)
 
-        # IDOR check
+        # IDOR check (keep existing)
         idor_threats = []
         for found_id in ids:
             if user_id is None:
@@ -258,23 +249,26 @@ class MiniLMSecurityAgent:
             if not text or len(text.strip()) < 2:
                 continue
 
+            
+            # if self.is_safe_pattern(text):
+            #     continue  
+
             # 1) Regex
             regex_threats = self._check_regex_patterns(text)
             if regex_threats:
                 threats_detected.extend(regex_threats)
+                continue  # If regex caught it, don't proceed to AI
 
             # 2) Known-threat similarity
-            sim_score = 0.0
-            if not regex_threats:
-                sim_score = self._calculate_threat_similarity(text)
-                if sim_score >= self.threat_threshold:
-                    threats_detected.append({
-                        "text": text[:200],
-                        "type": self._classify_threat_type(text),
-                        "detection_method": "ai_similarity_known",
-                        "confidence": round(sim_score, 2),
-                        "similarity_score": round(sim_score, 2)
-                    })
+            sim_score = self._calculate_threat_similarity(text)
+            if sim_score >= self.threat_threshold:
+                threats_detected.append({
+                    "text": text[:200],
+                    "type": self._classify_threat_type(text),
+                    "detection_method": "ai_similarity_known",
+                    "confidence": round(sim_score, 2),
+                    "similarity_score": round(sim_score, 2)
+                })
 
             # 3) Stored-embeddings similarity (self-learned)
             stored_sim = self._calculate_stored_similarity(text)
@@ -317,7 +311,6 @@ class MiniLMSecurityAgent:
             "overall_risk_score": overall_risk,
             "recommendation": self._generate_recommendation(unique_threats)
         }
-
     # -------------------------
     # Similarity helpers
     # -------------------------
@@ -489,3 +482,127 @@ class MiniLMSecurityAgent:
                 "payload": payload_text
             })
         return results
+    
+
+
+
+    # // for verfication of the faiss index if he is working on all my payloads 
+    def get_threat_patterns_count(self):
+        """Return the number of threat patterns in the FAISS index"""
+        if self.threat_patterns_index is None:
+            return 0
+        return self.threat_patterns_index.ntotal
+
+    def get_known_threats_sample(self, count=10):
+        """Return a sample of known threats for verification"""
+        return self.known_threats[:count]
+
+    def verify_faiss_index(self):
+        """Verify that FAISS index contains all expected payloads"""
+        print(f"FAISS index size: {self.get_threat_patterns_count()}")
+        print(f"Known threats count: {len(self.known_threats)}")
+        print(f"Stored payloads count: {len(self.payloads)}")
+        
+        # Check if they match
+        if self.get_threat_patterns_count() == len(self.known_threats):
+            print("✅ FAISS index matches known threats count")
+        else:
+            print("❌ FAISS index size doesn't match known threats count")
+        
+        # Show some samples
+        print("\nSample of known threats in FAISS index:")
+        for i, threat in enumerate(self.get_known_threats_sample(5)):
+            print(f"  {i+1}. {threat[:100]}...")
+    def is_safe_pattern(self, text: str) -> bool:
+        """Check if text matches safe patterns that should never be blocked or stored"""
+        if not text or len(text.strip()) < 2:
+            return True
+        
+        # Common password/token patterns (should never be blocked)
+        # Random-looking strings (like your example: dZNTCQwW0nppgCcIGVwp5FMBqR6quGcMAqlFcg4PaCOL31jCywUNt3f6os3O5gC7)
+        if re.match(r'^[a-zA-Z0-9]{20,100}$', text):  # Random tokens, secure passwords
+            return True
+            
+        # Base64-like tokens
+        if re.match(r'^[a-zA-Z0-9+/=]{20,500}$', text):
+            return True
+            
+        # Hex hashes (MD5, SHA, etc.)
+        if re.match(r'^[a-f0-9]{32,64}$', text):
+            return True
+        
+        # Common safe password values (prevent false positives)
+        safe_passwords = [
+            'password', 'password123', 'admin', 'user', 'test', 
+            'login', 'auth', 'secret', '123456', 'qwerty', 'letmein',
+            'welcome', 'abc123', 'password1', '12345678', '123456789',
+            'hello', 'hello123', 'pass', 'pass123'
+        ]
+        if text.lower() in safe_passwords:
+            return True
+            
+        # Email patterns
+        if re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', text):
+            return True
+            
+        # Username patterns
+        if re.match(r'^[a-zA-Z0-9._-]{3,50}$', text):
+            return True
+            
+        return False
+    
+
+
+    # for testing 
+    def test_safe_patterns(self):
+        """Test that safe patterns are not detected as suspicious"""
+        safe_examples = [
+            "dZNTCQwW0nppgCcIGVwp5FMBqR6quGcMAqlFcg4PaCOL31jCywUNt3f6os3O5gC7",  # Your example
+            "password123",
+            "user@example.com",
+            "normal_username",
+            "abc123",
+            "hello123"
+        ]
+        
+        print("🔒 Testing safe patterns detection...")
+        all_passed = True
+        
+        for safe_text in safe_examples:
+            is_safe = self.is_safe_pattern(safe_text)
+            is_suspicious = self.is_suspicious(safe_text)
+            
+            if is_safe and not is_suspicious:
+                print(f"✅ Correctly allowed: {safe_text}")
+            else:
+                print(f"❌ False positive detected: {safe_text}")
+                print(f"   is_safe_pattern(): {is_safe}")
+                print(f"   is_suspicious(): {is_suspicious}")
+                all_passed = False
+        
+        # Also test some actual threats to ensure they're still caught
+        threat_examples = [
+            "SELECT * FROM users",  # SQL injection
+            "<script>alert('xss')</script>",  # XSS
+            "../../etc/passwd",  # Path traversal
+        ]
+        
+        print("\n🔍 Testing that real threats are still detected...")
+        for threat_text in threat_examples:
+            is_safe = self.is_safe_pattern(threat_text)
+            is_suspicious = self.is_suspicious(threat_text)
+            
+            if not is_safe and is_suspicious:
+                print(f"✅ Correctly blocked: {threat_text}")
+            else:
+                print(f"❌ False negative: {threat_text}")
+                print(f"   is_safe_pattern(): {is_safe}")
+                print(f"   is_suspicious(): {is_suspicious}")
+                all_passed = False
+        
+        if all_passed:
+            print("\n🎉 All tests passed! Safe patterns are allowed, threats are blocked.")
+        else:
+            print("\n⚠️  Some tests failed. Review the safe pattern detection.")
+        
+        return all_passed
