@@ -4,18 +4,23 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+
 from .models import BankAccount, Transaction, UserProfile, VulnerableUser
 import sqlite3
 import time
-import requests
 import os
 import json
 
+
+# -----------------------------
+# Home
+# -----------------------------
 def home(request):
     return render(request, "banking_env/home.html")
 
+
 # -----------------------------
-# Working SQL Injection with VulnerableUser table
+# Vulnerability 1: SQL Injection (VulnerableUser table)
 # -----------------------------
 def vulnerable_sql_login(request):
     if request.method == 'POST':
@@ -25,7 +30,7 @@ def vulnerable_sql_login(request):
         conn = sqlite3.connect('db.sqlite3')
         cursor = conn.cursor()
 
-        # VULNERABLE: Query the VulnerableUser table with plain text passwords
+        # ❗ VULNERABLE SQL QUERY
         query = f"SELECT id, username, password FROM banking_env_vulnerableuser WHERE username='{username}' AND password='{password}'"
         print("EXECUTED:", query)
 
@@ -34,104 +39,60 @@ def vulnerable_sql_login(request):
         conn.close()
 
         if user_data:
-            # For demo - just show success message
             return HttpResponse(f'''
-            <h2>✅ SQL Injection Successful!</h2>
-            <p>Welcome <strong>{user_data[1]}</strong>!</p>
-            <p>Password in database: <code>{user_data[2]}</code></p>
-            <p><em>SQL Injection vulnerability successfully exploited</em></p>
-            <p><a href="/vulnerable-login">← Try another payload</a> | <a href="/">Home</a></p>
+                <h2>✅ SQL Injection Successful!</h2>
+                <p>Welcome <strong>{user_data[1]}</strong>!</p>
+                <p>Password in DB: <code>{user_data[2]}</code></p>
+                <p><em>SQL Injection vulnerability exploited</em></p>
+                <p><a href="/vulnerable-login">Try again</a> | <a href="/">Home</a></p>
             ''')
         else:
-            return HttpResponse(f'''
-            <h2>❌ Login Failed</h2>
-            <p>No user found. Try SQL injection payloads below.</p>
-            <p><a href="/vulnerable-login">← Try again</a></p>
+            return HttpResponse('''
+                <h2>❌ Login Failed</h2>
+                <p>No user found. Try SQL injection payloads.</p>
+                <p><a href="/vulnerable-login">Try again</a></p>
             ''')
 
     return HttpResponse('''
-    <h2>🔐 SQL Injection Test (Vulnerable Users)</h2>
-    <form method="POST">
-        Username: <input type="text" name="username" required style="width: 300px; padding: 8px;"><br><br>
-        Password: <input type="password" name="password" style="width: 300px; padding: 8px;"><br><br>
-        <button type="submit" style="padding: 10px 20px;">Login</button>
-    </form>
-    
-    <div style="margin-top: 30px; background: #f5f5f5; padding: 20px; border-radius: 5px;">
-        <h3>🧪 Test Payloads:</h3>
-        
-        <div style="background: #fff3cd; padding: 15px; margin: 10px 0; border-radius: 5px;">
-            <strong>SQL Injection Bypass:</strong><br>
-            Username: <code>' OR '1'='1' -- </code><br>
-            Password: <em>(leave empty)</em>
-        </div>
-        
-        <div style="background: #d4edda; padding: 15px; margin: 10px 0; border-radius: 5px;">
-            <strong>Normal Login:</strong><br>
-            Username: <code>vranim</code><br>
-            Password: <code>password123</code>
-        </div>
-        
-        <div style="background: #d4edda; padding: 15px; margin: 10px 0; border-radius: 5px;">
-            <strong>Other Users:</strong><br>
-            Username: <code>vghada</code> or <code>vamina</code><br>
-            Password: <code>password123</code>
-        </div>
-    </div>
-    
-    <p><a href="/">← Back to Home</a></p>
+        <h2>🔐 SQL Injection Test</h2>
+        <form method="POST">
+            Username: <input type="text" name="username"><br><br>
+            Password: <input type="password" name="password"><br><br>
+            <button type="submit">Login</button>
+        </form>
     ''')
 
+
 # -----------------------------
-# Regular Django Login (for other vulnerabilities)
+# Regular Login (safe)
 # -----------------------------
 def regular_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+
         user = authenticate(request, username=username, password=password)
-        
-        if user is not None:
+
+        if user:
             login(request, user)
-            return redirect('/dashboard')
+            return redirect('dashboard')
         else:
-            return HttpResponse("Invalid credentials - use: ranim/password123, ghada/password123, amina/password123")
+            return HttpResponse("Invalid credentials")
 
     return render(request, 'banking_env/login.html')
+
 
 # -----------------------------
 # Vulnerability 2: Reflected XSS
 # -----------------------------
 def dashboard(request):
     if not request.user.is_authenticated:
-        return redirect("/regular-login")
+        return redirect("/login")
 
     search = request.GET.get("search", "")
-    # REFLECTED XSS: unsanitized echo of the query parameter
-    return HttpResponse(f'''
-    <h2>Banking Dashboard</h2>
-    <p>Welcome, {request.user.username}!</p>
-    <p><a href="/logout" style="color: red;">🚪 Logout</a></p>
 
-    <form>
-        <input type="text" name="search" value="{search}" placeholder="Search transactions">
-        <button type="submit">Search</button>
-    </form>
+    return render(request, "banking_env/dashboard.html", {"search": search})
 
-    <p>Search results for: {search}</p>
-
-    <div>
-        <h3>Quick Actions:</h3>
-        <a href="/transfer">💸 Transfer Money</a> |
-        <a href="/account">👤 View Account</a> |
-        <a href="/">🏠 Home</a>
-    </div>
-    
-    <div style="margin-top: 30px; background: #fff3cd; padding: 15px;">
-        <h3>XSS Test:</h3>
-        <p>Try this in search: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code></p>
-    </div>
-    ''')
 
 # -----------------------------
 # Vulnerability 3: CSRF
@@ -142,7 +103,6 @@ def transfer_money(request):
         return redirect("/regular-login")
 
     # ❗❗ VULNERABLE GET-BASED TRANSFER
-    
     if request.method == "GET" and "to_account" in request.GET:
         to_account = request.GET.get("to_account")
         amount = request.GET.get("amount")
@@ -154,17 +114,10 @@ def transfer_money(request):
         amount = request.POST.get("amount")
         return _process_transfer(request, to_account, amount, source="POST (SAFE USER)")
 
-    # SHOW FORM
-    return HttpResponse("""
-    <h2>Transfer Money (CSRF Vulnerable Demo)</h2>
-    <form method="POST">
-        <!-- NO CSRF token -->
-        To Account: <input type="text" name="to_account" required><br>
-        Amount: <input type="number" name="amount" step="0.01" required><br>
-        <button type="submit">Transfer</button>
-    </form>
-    """)
-# process transfer 
+    # SHOW FORM using separate HTML
+    return render(request, "banking_env/transfer.html")
+
+
 def _process_transfer(request, to_account, amount, source):
     try:
         from_account = BankAccount.objects.get(user=request.user)
@@ -186,13 +139,13 @@ def _process_transfer(request, to_account, amount, source):
                 transaction_type="TRANSFER",
                 description=f"Transfer ({source})"
             )
-
             return HttpResponse(f"<h3>Transfer Successful ({source})</h3>")
 
-        else:
-            return HttpResponse("Insufficient funds")
+        return HttpResponse("Insufficient funds")
+
     except Exception as e:
-        return HttpResponse(f"Error: {str(e)}")
+        return HttpResponse(f"Error: {e}")
+
 
 # -----------------------------
 # Vulnerability 4: IDOR
@@ -201,100 +154,26 @@ def account_info(request):
     if not request.user.is_authenticated:
         return redirect("/regular-login")
 
-    account_id = request.GET.get("account_id", "")
-    if account_id:
+    acc_id = request.GET.get("account_id")
+    account = None  # initialize to avoid UnboundLocalError
+
+    if acc_id:
         try:
-            account = BankAccount.objects.get(id=account_id)
-            return HttpResponse(f'''
-            <h2>👤 Account Information</h2>
-            <p><strong>Account Owner:</strong> {account.user.username}</p>
-            <p><strong>Account Number:</strong> {account.account_number}</p>
-            <p><strong>Balance:</strong> ${account.balance}</p>
-            <p><em>🚨 IDOR Vulnerability: You can view any account by changing account_id parameter</em></p>
-            <a href="/account">← Back to my account</a>
-            ''')
+            account = BankAccount.objects.get(id=acc_id)
+            return render(request, "banking_env/account_info.html", {
+                "account": account
+            })
         except BankAccount.DoesNotExist:
             return HttpResponse("Account not found")
 
-    # Show current user's account
-    try:
-        account = BankAccount.objects.get(user=request.user)
-        return HttpResponse(f'''
-        <h2>👤 My Account</h2>
-        <p><strong>Account Number:</strong> {account.account_number}</p>
-        <p><strong>Balance:</strong> ${account.balance}</p>
+    # Show your own account
+    my_account = BankAccount.objects.get(user=request.user)
+    return render(request, "banking_env/account.html", {
+        "my_account": my_account,
 
-        <div style="background: #fff3cd; padding: 15px; margin: 20px 0;">
-            <h3>🔓 IDOR Vulnerability Test:</h3>
-            <p>Try viewing other users' accounts by changing the account_id:</p>
-            <form>
-                Account ID: <input type="number" name="account_id" placeholder="1, 2, 3..." required>
-                <button type="submit">View Account</button>
-            </form>
-            <p><em>Try: account_id=1 (ranim), account_id=2 (ghada), account_id=3 (amina)</em></p>
-        </div>
-        
-        <p><a href="/dashboard">← Back to Dashboard</a></p>
-        ''')
-    except BankAccount.DoesNotExist:
-        return HttpResponse("No account found")
-# -----------------------------
-# Vulnerability 5: SSRF
-# -----------------------------
-# ----------------------------
-#   INTERNAL MOCK ENDPOINT
-# ----------------------------
-def internal_mock(request):
-    return JsonResponse({
-        "secret": "SUCCESS_INTERNAL_ENDPOINT",
-        "status": "ok"
     })
 
-# ----------------------------
-#   SSRF VULNERABLE ENDPOINT
-# ----------------------------
-def fetch_url(request):
-    url = request.GET.get("url")
-
-    if not url:
-        return HttpResponse("""
-            <h2>SSRF Demo</h2>
-            <p>Enter a URL:</p>
-            <form method='GET'>
-                <input name='url' style='width:300px'>
-                <button>Fetch</button>
-            </form>
-        """)
-
-    try:
-        r = requests.get(url, timeout=3)
-        content = r.text[:2000]  # limiter pour éviter les gros dumps
-
-        return HttpResponse(f"""
-            <h2>Fetched URL Content</h2>
-            <p><strong>URL:</strong> {url}</p>
-            <p><strong>Status:</strong> {r.status_code}</p>
-
-            <h3>Content Preview:</h3>
-            <pre style="background:#eee;padding:10px;">{content}</pre>
-
-            <p><a href="/fetch-url">Back</a></p>
-        """)
-    except Exception as e:
-        return HttpResponse(f"<p>Error: {e}</p>")
-
-def ssrf_page(request):
-    return HttpResponse("""
-        <h2>🧨 SSRF Test Interface</h2>
-        <p>Enter any URL. The server will fetch it (vulnerable behavior).</p>
-        
-        <form method='GET' action='/fetch-url'>
-            <input type='text' name='url' placeholder='http://127.0.0.1:8000/internal/mock' style='width:400px;'>
-            <button type='submit'>Tester SSRF</button>
-        </form>
-
-        <p><a href='/'>← Retour Home</a></p>
-    """)
+    
 
 # -----------------------------
 # Logout

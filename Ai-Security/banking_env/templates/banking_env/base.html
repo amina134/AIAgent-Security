@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecureBank Demo</title>
+
+    <!-- Modern clean font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+
+    <style>
+        body {
+            margin-right: 60px;
+            padding: 0;
+            font-family: "Inter", sans-serif;
+            background: #f4f6fb;
+        }
+
+        /* Top App Bar - glass effect */
+        .app-bar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            border-bottom: 1px solid #e3e7ee;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            z-index: 100;
+        }
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-right:0 
+        }
+
+        .logo {
+            height: 36px;
+            border-radius: 6px;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2a2f45;
+            letter-spacing: -0.5px;
+        }
+        .right{
+            margin-right: 10px!important;
+  
+        }
+
+        .right a {
+            margin-left: 15px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            color: #4a5568;
+            transition: 0.2s;
+        }
+
+        .right a:hover {
+            color: #2463eb;
+            transform: translateY(-2px);
+        }
+
+        .right .logout {
+            color: #e53e3e !important;
+            font-weight: 600;
+        }
+
+        .content {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top App Bar -->
+    <header class="app-bar">
+        <div class="left">
+            <img src="{% static 'css/logo.png' %}" class="logo">
+            <span class="title">SecureBank</span>
+        </div>
+
+        <nav class="right">
+            <a href="{% url 'home' %}">Home</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                <a href="{% url 'account' %}">Account</a>
+                <a href="{% url 'transfer' %}">Transfer</a>
+                <a href="{% url 'logout' %}" class="logout">Logout</a>
+            {% else %}
+                <a href="{% url 'regular_login' %}">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <!-- Page Content -->
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>

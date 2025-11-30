@@ -1,0 +1,25 @@
+{% load static %}
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="page-title">🔍 Search Transactions</h1>
+
+<form class="form-card" method="GET">
+    <input type="text" name="q" placeholder="Search anything...">
+    <button class="btn-primary" type="submit">Search</button>
+</form>
+
+{% if request.GET.q %}
+<div class="card">
+    <h3>Search Results:</h3>
+    <!-- Vulnerable output -->
+    <p>{{ request.GET.q|safe }}</p>
+</div>
+{% endif %}
+
+<div class="hint">
+    <strong>XSS Test:</strong>
+    <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code>
+</div>
+
+{% endblock %}

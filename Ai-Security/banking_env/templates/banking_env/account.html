@@ -1,0 +1,106 @@
+{% extends "banking_env/base.html" %}
+{% block content %}
+
+<style>
+/* Global Styles */
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: #f4f6f8;
+    color: #2c3e50;
+}
+
+/* Centered container */
+.centered-page {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Headings */
+h2 {
+    font-size: 28px;
+    color: #1f2937;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 22px;
+    color: #1f2937;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/* Paragraphs */
+p {
+    font-size: 18px;
+    color: #4b5563;
+    margin: 8px 0;
+    background-color: #f1f5f9;
+    padding: 12px 15px;
+    border-radius: 6px;
+}
+
+/* Form */
+form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input Fields */
+input[type="number"] {
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="number"]:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+    outline: none;
+}
+
+/* Buttons */
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #1e40af;
+    transform: translateY(-2px);
+}
+</style>
+
+<div class="centered-page">
+    <h2>🏦 Account Information</h2>
+
+    <h2>My Account</h2>
+    <p>Account Number: {{ my_account.account_number }}</p>
+    <p>Balance: {{ my_account.balance }}dt</p>
+
+    <h3>Test IDOR:</h3>
+    <form>
+        <input type="number" name="account_id" placeholder="1,2,3...">
+        <button>View</button>
+    </form>
+</div>
+
+{% endblock %}

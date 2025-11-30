@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: #f7f9fc;
+    color: #222;
+}
+
+/* App Bar */
+.app-bar {
+    background: #1a73e8;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+
+
+.app-bar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+    font-size: 14px;
+}
+
+.app-bar a.logout {
+    color: #ffd0d0;
+}
+
+/* Layout */
+.content {
+    padding: 40px;
+}
+
+.centered-page {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+/* Cards */
+.cards-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    width: 260px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #1a73e8;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn.full {
+    width: 100%;
+}
+
+.btn.danger {
+    background: #d93025;
+}
+
+/* Auth Pages */
+.auth-page {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.auth-box {
+    background: white;
+    padding: 35px;
+    width: 360px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #bbb;
+}
+
+.error {
+    background: #ffd4d4;
+    padding: 10px;
+    border-radius: 6px;
+    color: #900;
+}

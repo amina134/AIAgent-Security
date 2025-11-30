@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecureBank - Account Info</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            color: #1f2937;
+        }
+
+        a {
+            text-decoration: none;
+            color: #2563eb;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #1e40af;
+        }
+
+        /* Container */
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 30px 40px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Heading */
+        h2 {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* Account Info Card */
+        .account-card {
+            background-color: #f9fafb;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .account-card p {
+            font-size: 18px;
+            margin: 10px 0;
+            padding: 8px 12px;
+            background-color: #eef2f7;
+            border-radius: 6px;
+        }
+
+        .alert {
+            background-color: #fff4e5;
+            border-left: 5px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #b45309;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #2563eb;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #1e40af;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Account Info</h2>
+
+    <div class="account-card">
+        <p><strong>User:</strong>{{ account.user.username}}</p>
+        <p><strong>Account Number:</strong> {{account.account_number}}</p>
+        <p><strong>Balance:</strong> ${{ account.balance }}</p>
+    </div>
+
+    <div class="alert">
+         IDOR: You can view ANY account by changing account_id!
+    </div>
+
+    <a href="/account" class="back-btn">← Back</a>
+</div>
+
+</body>
+</html>

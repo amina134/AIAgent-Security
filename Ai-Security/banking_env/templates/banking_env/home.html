@@ -1,106 +1,120 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>🏦 Vulnerable Bank - Testing Environment</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .vuln-card { background: #fff; border: 2px solid #e0e0e0; border-radius: 8px; padding: 20px; margin: 15px 0; }
-        .vuln-card h3 { margin-top: 0; color: #d32f2f; }
-        .test-btn { background: #1976d2; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; margin: 5px; }
-        .test-btn:hover { background: #1565c0; }
-        .sql-btn { background: #dc3545; }
-        .sql-btn:hover { background: #c82333; }
-        code { background: #f1f1f1; padding: 2px 6px; border-radius: 3px; }
-        .credentials { margin-top: 30px; padding: 15px; background: #e3f2fd; border-radius: 5px; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🏦 Vulnerable Banking System</h1>
-        <p><strong style="color: red;">⚠️ WARNING: This system contains intentional vulnerabilities for testing purposes</strong></p>
-        
-        <div class="vuln-card">
-            <h3>🔐 Vulnerability 1: SQL Injection</h3>
-            <p>Bypass authentication using SQL injection in the vulnerable login form</p>
-            <a href="/vulnerable-login" class="test-btn sql-btn">Test SQL Injection</a>
-            <a href="/regular-login" class="test-btn">Regular Login</a>
-            <p><strong>Test Payload:</strong> <code>' OR '1'='1' -- </code> (as username, no password)</p>
-            <p><em>Uses vulnerable users table with plain text passwords</em></p>
-        </div>
-        
-        <div class="vuln-card">
-            <h3>🚩 Vulnerability 2: XSS (Cross-Site Scripting)</h3>
-            <p>Inject malicious scripts via the dashboard search</p>
-            <a href="/regular-login" class="test-btn">Login First</a>
-            <p><strong>Test Payload:</strong> <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code></p>
-            <p><em>Reflected XSS in search results</em></p>
-        </div>
-        
-        <div class="vuln-card">
-            <h3>🔄 Vulnerability 3: CSRF (Cross-Site Request Forgery)</h3>
-            <p>Execute unauthorized money transfers without user consent</p>
-            <a href="/regular-login" class="test-btn">Login First</a>
-            <p><strong>Test:</strong> Create the CSRF attack HTML file shown in transfer page</p>
-            <p><em>No CSRF protection on transfer endpoint</em></p>
-        </div>
-        
-        <div class="vuln-card">
-            <h3>👁️ Vulnerability 4: IDOR (Insecure Direct Object Reference)</h3>
-            <p>Access other users' account information by changing URL parameters</p>
-            <a href="/regular-login" class="test-btn">Login First</a>
-            <p><strong>Test:</strong> Change account_id parameter to view other accounts</p>
-            <p><em>No authorization checks on account access</em></p>
-        </div>
-        
-        <!-- SSRF -->
-            <div class="card">
-                <h3><span class="badge ssrf">SSRF</span> Server-Side Request Forgery</h3>
-                <p>
-                    L’attaque SSRF permet de forcer le serveur à visiter une URL interne
-                    en la passant via un paramètre <code>?url=</code>.
-                    L’utilisateur n’y a normalement pas accès.
-                </p>
+{% extends "banking_env/base.html" %}
+{% load static %}
 
-                <p><strong>Exemple d’URL interne sensible :</strong></p>
-                <code>http://127.0.0.1:8000/internal/mock</code>
+{% block content %}
 
-                <p>
-                    En cliquant sur le bouton ci‑dessous :<br>
-                    Vous serez redirigé vers une interface pour tester l’attaque SSRF.
-                </p>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #e3eeff, #f7faff);
+        font-family: "Poppins", sans-serif;
+    }
 
-                <!-- IMPORTANT : cohérence avec les autres vulnérabilités -->
-                <a href="/ssrf" class="btn btn-primary">
-                    Login → Tester l’attaque SSRF
-                </a>
-            </div>
-        
-        <div class="credentials">
-            <h3>🧪 Test Credentials:</h3>
-            <p><strong>For SQL Injection (Vulnerable Users):</strong></p>
-            <ul>
-                <li>Username: <code>vranim</code>, Password: <code>password123</code></li>
-                <li>Username: <code>vghada</code>, Password: <code>password123</code></li>
-                <li>Username: <code>vamina</code>, Password: <code>password123</code></li>
-            </ul>
-            
-            <p><strong>For Other Vulnerabilities (Regular Users):</strong></p>
-            <ul>
-                <li>Username: <code>ranim</code>, Password: <code>password123</code></li>
-                <li>Username: <code>ghada</code>, Password: <code>password123</code></li>
-                <li>Username: <code>amina</code>, Password: <code>password123</code></li>
-            </ul>
-            
-            <p><strong>SQL Injection Bypass:</strong> Username: <code>' OR '1'='1' -- </code> (no password needed)</p>
+    .centered-page {
+        max-width: 900px;
+        margin: 70px auto;
+        text-align: center;
+        padding: 20px;
+        animation: fadeIn 0.7s ease-in-out;
+    }
+
+    h1 {
+        font-size: 42px;
+        font-weight: 700;
+        color: #2b2d42;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    }
+
+    .subtitle {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 40px;
+    }
+
+    /* Card Container */
+    .cards-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    /* Card Style */
+    .card {
+        width: 300px;
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 18px;
+        box-shadow: 8px 8px 20px rgba(0,0,0,0.08), -5px -5px 20px rgba(255,255,255,0.9);
+        transition: transform 0.3s, box-shadow 0.3s;
+        animation: slideUp 0.6s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 14px 14px 28px rgba(0,0,0,0.14);
+    }
+
+    .card h3 {
+        font-size: 22px;
+        margin-bottom: 12px;
+        color: #333;
+    }
+
+    .card p {
+        color: #666;
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    /* Button */
+    .btn {
+        display: inline-block;
+        padding: 12px 22px;
+        background: #4a77f7;
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 15px;
+        transition: 0.3s ease;
+        box-shadow: 3px 3px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn:hover {
+        background: #335eea;
+        transform: translateY(-3px);
+        box-shadow: 6px 6px 18px rgba(0,0,0,0.2);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(25px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+</style>
+
+<div class="centered-page">
+    <h1> Welcome to SecureBank</h1>
+    <p class="subtitle">A mini banking app used for demonstrating vulnerabilities + AI Security Agent.</p>
+
+    <div class="cards-container">
+
+        <div class="card">
+            <h3> Regular Login</h3>
+            <p>Login to test XSS, CSRF, IDOR.</p>
+            <a href="{% url 'regular_login' %}" class="btn">Go to Login</a>
         </div>
 
-        <div style="margin-top: 20px; text-align: center;">
-            <p><strong>Quick Start:</strong> 
-                <a href="/vulnerable-login" class="test-btn sql-btn">Test SQL Injection</a>
-                <a href="/regular-login" class="test-btn">Test Other Vulnerabilities</a>
-            </p>
-        </div>
     </div>
-</body>
-</html>
+</div>
+
+{% endblock %}
