@@ -1,13 +1,13 @@
 body {
     margin: 0;
     font-family: "Inter", sans-serif;
-    background: #f7f9fc;
+    background: #ffffff!important;
     color: #222;
 }
 
 /* App Bar */
 .app-bar {
-    background: #1a73e8;
+  
     padding: 15px 25px;
     display: flex;
     justify-content: space-between;

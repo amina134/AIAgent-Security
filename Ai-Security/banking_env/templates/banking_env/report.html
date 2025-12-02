@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Threat Report</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    .threat-card {
+        border-left: 5px solid #e74c3c;
+        background-color: #fff0f0;
+        padding: 15px 20px;
+        margin: 15px 0;
+        border-radius: 8px;
+    }
+    .threat-card h2 {
+        margin: 0 0 10px;
+        font-size: 1.2em;
+        color: #c0392b;
+    }
+    .threat-card p {
+        margin: 5px 0;
+        color: #555;
+    }
+    .threat-card span {
+        font-weight: bold;
+        color: #333;
+    }
+    .safe {
+        border-left-color: #27ae60;
+        background-color: #f0fff5;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Security Threat Report</h1>
+    <div id="threats-container"></div>
+</div>
+
+<script>
+    // Sample JSON from your AI agent
+    const report = {
+        "is_malicious": true,
+        "blocked": true,
+        "threats_detected": [
+            {
+                "text": "SELECT * FROM users",
+                "type": "SQL Injection",
+                "detection_method": "ai_similarity_known",
+                "confidence": 0.95,
+                "similarity_score": 0.92
+            },
+            {
+               
+                "type": "XSS",
+                "detection_method": "regex",
+                "confidence": 0.95
+            }
+        ],
+        "overall_risk_score": 95,
+        "recommendation": "BLOCK_SQL_INJECTION"
+    };
+
+    const container = document.getElementById('threats-container');
+
+    if (report.threats_detected.length === 0) {
+        container.innerHTML = '<p>No threats detected. ✅ Safe request.</p>';
+    } else {
+        report.threats_detected.forEach(threat => {
+            const card = document.createElement('div');
+            card.className = 'threat-card';
+            card.innerHTML = `
+                <h2>${threat.type}</h2>
+                <p><span>Text:</span> ${threat.text}</p>
+                <p><span>Detection Method:</span> ${threat.detection_method}</p>
+                <p><span>Confidence:</span> ${threat.confidence}</p>
+                ${threat.similarity_score ? `<p><span>Similarity Score:</span> ${threat.similarity_score}</p>` : ''}
+            `;
+            container.appendChild(card);
+        });
+
+        // Overall Risk
+        const riskCard = document.createElement('div');
+        riskCard.className = 'threat-card';
+        riskCard.innerHTML = `<h2>Overall Risk Score</h2><p>${report.overall_risk_score}%</p><p><span>Recommendation:</span> ${report.recommendation}</p>`;
+        container.appendChild(riskCard);
+    }
+</script>
+</body>
+</html>

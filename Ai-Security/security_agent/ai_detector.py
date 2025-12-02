@@ -21,7 +21,7 @@ SECURITY_DIR = BASE_DIR / "security_data"
 EMB_PATH = SECURITY_DIR / "embeddings.npy"
 CLUSTER_META_PATH = SECURITY_DIR / "cluster_meta.json"
 CENTROIDS_PATH = SECURITY_DIR / "cluster_centroids.npy"
-# (optional) persisted index path if you want to store on disk
+#  persisted index path if you want to store on disk
 EMB_INDEX_PATH = SECURITY_DIR / "embeddings_index.faiss"
 
 # Config
@@ -249,55 +249,56 @@ class MiniLMSecurityAgent:
             if not text or len(text.strip()) < 2:
                 continue
 
+            # Decode the text first for better detection
+            decoded_text = self._decode_potential_threat(text)
             
-            # if self.is_safe_pattern(text):
-            #     continue  
+            # Check if it's a safe pattern (use decoded text)
+            if self.is_safe_pattern(decoded_text):
+                continue  # Skip safe patterns entirely
 
-            # 1) Regex
-            regex_threats = self._check_regex_patterns(text)
+            # 1) Regex check on decoded text
+            regex_threats = self._check_regex_patterns(decoded_text)
             if regex_threats:
+                # Use original text for display, but decoded for detection
+                for threat in regex_threats:
+                    threat['text'] = text[:200]  # Keep original for display
                 threats_detected.extend(regex_threats)
+                
+                # Save if it's a real threat
+                if SAVE_ON_DETECT and self._is_real_threat(decoded_text):
+                    self._save_threat_payload(decoded_text, text)
+                
                 continue  # If regex caught it, don't proceed to AI
 
-            # 2) Known-threat similarity
-            sim_score = self._calculate_threat_similarity(text)
+            # 2) Known-threat similarity (use decoded text for better matching)
+            sim_score = self._calculate_threat_similarity(decoded_text)
             if sim_score >= self.threat_threshold:
                 threats_detected.append({
-                    "text": text[:200],
-                    "type": self._classify_threat_type(text),
+                    "text": text[:200],  # Display original
+                    "type": self._classify_threat_type(decoded_text),  # Classify decoded
                     "detection_method": "ai_similarity_known",
                     "confidence": round(sim_score, 2),
                     "similarity_score": round(sim_score, 2)
                 })
+                
+                # Save if it's a real threat
+                if SAVE_ON_DETECT and self._is_real_threat(decoded_text):
+                    self._save_threat_payload(decoded_text, text)
 
-            # 3) Stored-embeddings similarity (self-learned)
-            stored_sim = self._calculate_stored_similarity(text)
+            # 3) Stored-embeddings similarity (use decoded text)
+            stored_sim = self._calculate_stored_similarity(decoded_text)
             if stored_sim >= self.stored_threshold:
                 threats_detected.append({
-                    "text": text[:200],
-                    "type": self._classify_threat_type(text),
+                    "text": text[:200],  # Display original
+                    "type": self._classify_threat_type(decoded_text),  # Classify decoded
                     "detection_method": "ai_similarity_stored",
                     "confidence": round(stored_sim, 2),
                     "similarity_score": round(stored_sim, 2)
                 })
-
-            # 4) Save suspicious payload if any detection
-            if (regex_threats or sim_score >= self.threat_threshold or stored_sim >= self.stored_threshold) and SAVE_ON_DETECT:
-                try:
-                    if self.model is not None:
-                        emb = self.model.encode([text], convert_to_numpy=True).astype(np.float32)
-                        save_suspicious_payload(text, emb)
-                        # Also add to in-memory embeddings_index for immediate effect
-                        try:
-                            vec = emb.copy()
-                            faiss.normalize_L2(vec)
-                            if self.embeddings_index is None:
-                                self.embeddings_index = faiss.IndexFlatIP(EMB_DIM)
-                            self.embeddings_index.add(vec)
-                        except Exception as e:
-                            logger.debug("Could not add to in-memory embeddings_index: %s", e)
-                except Exception as e:
-                    logger.debug("Failed saving suspicious payload: %s", e)
+                
+                # Save if it's a real threat
+                if SAVE_ON_DETECT and self._is_real_threat(decoded_text):
+                    self._save_threat_payload(decoded_text, text)
 
         unique_threats = self._deduplicate_threats(threats_detected)
 
@@ -311,6 +312,178 @@ class MiniLMSecurityAgent:
             "overall_risk_score": overall_risk,
             "recommendation": self._generate_recommendation(unique_threats)
         }
+
+
+    def _save_threat_payload(self, decoded_text: str, original_text: str = None):
+        """Save threat payload with deduplication checks"""
+        try:
+            if self.model is not None:
+                # Use decoded text for embedding (better representation)
+                emb = self.model.encode([decoded_text], convert_to_numpy=True).astype(np.float32)
+                
+                # Check if this is a duplicate before saving
+                if not self._is_duplicate_embedding(emb):
+                    # Save the decoded version for better future detection
+                    save_suspicious_payload(decoded_text, emb)
+                    
+                    # Also add to in-memory embeddings_index
+                    self._add_to_embeddings_index(emb)
+                    
+                    logger.debug(f"Saved new threat payload: {decoded_text[:50]}...")
+                else:
+                    logger.debug(f"Skipped duplicate payload: {decoded_text[:50]}...")
+        except Exception as e:
+            logger.debug(f"Failed saving threat payload: {e}")
+
+
+    def _decode_potential_threat(self, text: str) -> str:
+        """Decode potential encoded threats (base64, URL, etc.)"""
+        import base64
+        import urllib.parse
+        import html
+        
+        decoded = text
+        
+        # Try URL decoding first
+        try:
+            # Decode multiple times to handle nested encoding
+            for _ in range(3):
+                old_decoded = decoded
+                decoded = urllib.parse.unquote(decoded)
+                if decoded == old_decoded:
+                    break
+        except:
+            pass
+        
+        # Try base64 decoding
+        try:
+            # Remove padding and whitespace for checking
+            clean_text = decoded.replace('\n', '').replace('\r', '').replace(' ', '')
+            
+            # Check if it looks like base64 (proper length and charset)
+            if (len(clean_text) % 4 == 0 and 
+                re.match(r'^[A-Za-z0-9+/]+={0,2}$', clean_text) and
+                len(clean_text) > 20):  # Reasonable minimum length for base64 payloads
+                
+                decoded_bytes = base64.b64decode(clean_text)
+                # Try to decode as UTF-8, but fall back to latin-1 if it fails
+                try:
+                    decoded_str = decoded_bytes.decode('utf-8')
+                except UnicodeDecodeError:
+                    decoded_str = decoded_bytes.decode('latin-1')
+                
+                # Only use if it decoded to something meaningful
+                if len(decoded_str) > 5 and any(c.isalpha() for c in decoded_str):
+                    decoded = decoded_str
+        except:
+            pass
+        
+        # Try HTML entity decoding
+        decoded = html.unescape(decoded)
+        
+        return decoded
+
+
+    def _is_real_threat(self, text: str) -> bool:
+        """Check if text is actually a threat pattern (not a false positive)"""
+        # Check if it's obviously safe
+        if self.is_safe_pattern(text):
+            return False
+        
+        # Decode any remaining encodings
+        decoded = self._decode_potential_threat(text)
+        
+        # Check for actual threat patterns in decoded text
+        decoded_lower = decoded.lower()
+        
+        # Threat indicators
+        threat_indicators = [
+            r'<script[^>]*>',  # Script tags
+            r'javascript:',  # JavaScript protocol
+            r'on\w+\s*=',  # Event handlers
+            r'alert\s*\(',  # Alert calls
+            r'SELECT\s+.*\s+FROM',  # SQL SELECT
+            r'UNION\s+.*\s+SELECT',  # SQL UNION
+            r'INSERT\s+INTO',  # SQL INSERT
+            r'UPDATE\s+.*\s+SET',  # SQL UPDATE
+            r'DELETE\s+FROM',  # SQL DELETE
+            r'DROP\s+TABLE',  # SQL DROP
+            r'\.\./',  # Path traversal
+            r'\.\.\\',  # Path traversal (Windows)
+            r'etc/passwd',  # Path traversal target
+            r';ls|;rm|;cat|;whoami',  # Command injection
+            r'\|\s*\w+',  # Pipe commands
+            r'\$\(',
+            r'`[^`]*`',  # Backticks
+            r'<\s*(iframe|embed|object)',  # Embedded objects
+            r'<\s*svg',  # SVG with scripts
+            r'eval\s*\(',  # eval() function
+            r'document\.',  # Document object access
+            r'window\.',  # Window object access
+            r'fetch\s*\(',  # Fetch API
+            r'XMLHttpRequest',  # XHR
+            r'<\s*form',  # Form tags (potential CSRF)
+        ]
+        
+        for pattern in threat_indicators:
+            if re.search(pattern, decoded, re.IGNORECASE):
+                return True
+        
+        # Check for suspicious character sequences
+        suspicious_sequences = [
+            '--',  # SQL comment
+            '/*',  # SQL comment start
+            '*/',  # SQL comment end
+            '#',  # SQL comment
+            '||',  # SQL concatenation
+            '&&',  # Command chaining
+        ]
+        
+        for seq in suspicious_sequences:
+            if seq in decoded:
+                return True
+        
+        return False
+
+
+    def _is_duplicate_embedding(self, new_emb: np.ndarray, threshold: float = 0.95) -> bool:
+        """Check if embedding is too similar to existing ones"""
+        if self.embeddings_index is None or self.embeddings_index.ntotal == 0:
+            return False
+        
+        try:
+            # Normalize the new embedding
+            new_emb_normalized = new_emb.copy().astype(np.float32)
+            faiss.normalize_L2(new_emb_normalized)
+            
+            # Search for similar embeddings
+            k = min(5, self.embeddings_index.ntotal)
+            distances, _ = self.embeddings_index.search(new_emb_normalized, k)
+            
+            # Check if any are too similar
+            if distances.size > 0 and distances[0].size > 0:
+                max_similarity = float(np.max(distances[0]))
+                return max_similarity >= threshold
+            
+        except Exception as e:
+            logger.debug(f"Error checking duplicate embedding: {e}")
+        
+        return False
+
+
+    def _add_to_embeddings_index(self, emb: np.ndarray):
+        """Safely add embedding to index with deduplication"""
+        try:
+            vec = emb.copy().astype(np.float32)
+            faiss.normalize_L2(vec)
+            
+            # Check for duplicates before adding
+            if not self._is_duplicate_embedding(vec):
+                if self.embeddings_index is None:
+                    self.embeddings_index = faiss.IndexFlatIP(EMB_DIM)
+                self.embeddings_index.add(vec)
+        except Exception as e:
+            logger.debug(f"Could not add to embeddings_index: {e}")
     # -------------------------
     # Similarity helpers
     # -------------------------
@@ -518,39 +691,52 @@ class MiniLMSecurityAgent:
         if not text or len(text.strip()) < 2:
             return True
         
-        # Common password/token patterns (should never be blocked)
-        # Random-looking strings (like your example: dZNTCQwW0nppgCcIGVwp5FMBqR6quGcMAqlFcg4PaCOL31jCywUNt3f6os3O5gC7)
-        if re.match(r'^[a-zA-Z0-9]{20,100}$', text):  # Random tokens, secure passwords
-            return True
-            
-        # Base64-like tokens
-        if re.match(r'^[a-zA-Z0-9+/=]{20,500}$', text):
-            return True
-            
-        # Hex hashes (MD5, SHA, etc.)
-        if re.match(r'^[a-f0-9]{32,64}$', text):
-            return True
+        text_lower = text.lower()
         
-        # Common safe password values (prevent false positives)
+        # Common safe password values
         safe_passwords = [
             'password', 'password123', 'admin', 'user', 'test', 
             'login', 'auth', 'secret', '123456', 'qwerty', 'letmein',
             'welcome', 'abc123', 'password1', '12345678', '123456789',
-            'hello', 'hello123', 'pass', 'pass123'
+            'hello', 'hello123', 'pass', 'pass123', 'guest', 'root',
+            'administrator', 'test123', 'testing', 'demo'
         ]
-        if text.lower() in safe_passwords:
+        
+        # Check if it's just a safe password
+        if text in safe_passwords or text_lower in [p.lower() for p in safe_passwords]:
             return True
-            
-        # Email patterns
-        if re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', text):
+        
+        # Check for simple key=value patterns (username=admin, password=123)
+        if re.match(r'^\w+=\w+$', text) and len(text) < 100:
+            key, value = text.split('=', 1)
+            if value.lower() in [p.lower() for p in safe_passwords]:
+                return True
+        
+        # Check if it's a common parameter name with simple value
+        common_params = ['username', 'password', 'email', 'name', 'first_name', 
+                        'last_name', 'phone', 'address', 'city', 'country']
+        
+        if '=' in text:
+            parts = text.split('=', 1)
+            if len(parts) == 2:
+                key, value = parts
+                if key.lower() in common_params and len(value) < 50:
+                    # Check if value is simple (alphanumeric, no special chars)
+                    if re.match(r'^[a-zA-Z0-9@.\-_]+$', value):
+                        return True
+        
+        # Very simple alphanumeric strings
+        if re.match(r'^[a-zA-Z0-9._\-@]+$', text) and len(text) < 50:
+            # But NOT if it contains threat keywords
+            threat_keywords = ['script', 'select', 'union', 'drop', 'delete', 
+                            'insert', 'update', 'alert', 'javascript', 'onload',
+                            'onerror', 'onclick', 'iframe', 'object', 'embed']
+            for keyword in threat_keywords:
+                if keyword in text_lower:
+                    return False
             return True
-            
-        # Username patterns
-        if re.match(r'^[a-zA-Z0-9._-]{3,50}$', text):
-            return True
-            
+        
         return False
-    
 
 
     # for testing 
@@ -606,3 +792,9 @@ class MiniLMSecurityAgent:
             print("\n⚠️  Some tests failed. Review the safe pattern detection.")
         
         return all_passed
+    
+
+
+
+    # /// affichage joli
+    
