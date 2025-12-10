@@ -1,48 +1,59 @@
- AI Security Agent for Intelligent Threat Detection and Blocking
+# AI Security Agent for Web Application Threat Detection
 
-Credits: ChaoukiBayoudhi
+This project implements an **AI-powered security agent** designed to detect, block, and learn from malicious payloads in web application requests. The agent combines **rule-based detection** and **machine learning embeddings** to identify attacks such as SQL Injection, XSS, Path Traversal, Command Injection, SSRF, and more.
 
-An unsupervised machine learning–based security system designed for real-time detection and blocking of malicious payloads.
-The system uses vector embeddings, clustering, and FAISS similarity search, and continuously learns from previously unseen threats, improving detection accuracy over time.
+---
 
- Key Features
+## **Project Features**
 
-Real-time detection and blocking of malicious payloads
+- Detects multiple types of web attacks using **regex patterns**.
+- Uses **MiniLM embeddings** to calculate semantic similarity with known threat patterns.
+- Performs **FAISS vector similarity search** for efficient threat detection and auto-learning.
+- Supports **self-learning** by storing new suspicious payloads and updating the FAISS index.
+- Includes **decision & blocking layer** to determine if a request should be blocked.
+- Detects **CSRF attempts** and prevents IDOR vulnerabilities.
 
-Automatic embedding generation from raw payloads using MiniLM
+---
 
-Unsupervised clustering (MiniBatch K-Means) to detect unknown attack patterns
+## **Detection Layers**
 
-FAISS vector similarity search for high-speed threat matching and classification
+### **1. Regex Layer**
+- Uses predefined regex patterns to catch well-known attack signatures.
+- Immediate and high-confidence detection (score ~0.95 for regex matches).
+- Examples: SQL keywords, `<script>` tags, path traversal sequences.
 
-Dynamic risk scoring per cluster
+### **2. MiniLM Embeddings Layer**
+- Converts request texts into **vector embeddings** using `all-MiniLM-L6-v2`.
+- Captures semantic similarity between the request and known attack patterns.
+- Outputs a **confidence score between 0 and 1** (0 = safe, 1 = very similar to a threat).
 
-Continuous self-learning with newly detected threats
+### **3. FAISS Vector Similarity Search Layer**
+- Performs **fast nearest-neighbor search** on embeddings.
+- Checks similarity against:
+  - Known threat patterns.
+  - Previously stored suspicious payloads (self-learned).
+- Enables **approximate matching** for obfuscated or slightly modified attacks.
 
-Fully integrated with a Django backend for real-time decision-making
+### **4. Auto-Learning Layer**
+- Stores newly detected suspicious payloads.
+- Generates embeddings and adds them to the FAISS index.
+- Continuously improves the agent’s ability to detect future attacks.
 
- How It Works (Pipeline)
+### **5. Decision & Blocking Layer**
+- Aggregates detection results from regex and embeddings layers.
+- Calculates an **overall risk score**.
+- Applies **thresholds** to determine:
+  - Safe request → allow
+  - Suspicious request → alert / monitor
+  - Highly suspicious → block request
 
-New payloads are collected by the system
+---
 
-Payloads are converted into vector embeddings
+## **Usage**
 
-Embeddings are grouped using K-Means clustering
+1. **Initialize the Agent**
 
-Cluster centroids are indexed in FAISS
+```python
+from security_agent.ai_detector import MiniLMSecurityAgent
 
-Incoming payloads are matched against the FAISS index for real-time detection
-
-New unknown payloads are added for continuous learning
-
- Tech Stack
-
-Backend: Django, Django REST Framework
-
-Machine Learning: Scikit-learn (MiniBatch K-Means), MiniLM (Embeddings)
-
-Vector Search: FAISS
-
-Data Processing: NumPy
-
-Language: Python
+agent = MiniLMSecurityAgent()
