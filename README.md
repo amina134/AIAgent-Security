@@ -1,4 +1,6 @@
- AI Security Agent for Intelligent Threat Detection and Blocking
+AI Security Agent for Intelligent Threat Detection and Blocking
+
+Credits: https://github.com/ChaoukiBayoudhi
 
 An unsupervised machine learning–based security system for real-time cyber-attack detection and blocking, using vector embeddings, clustering, and FAISS similarity search.
 The system continuously learns from previously unseen payloads and improves its detection accuracy over time.
@@ -15,7 +17,7 @@ FAISS vector similarity search for ultra-fast threat matching
 
 Dynamic risk scoring per cluster
 
-Continuous self-learning from new threats
+Continuous self-learning from newly detected threats
 
 Fully integrated with a Django backend
 
@@ -31,7 +33,7 @@ Cluster centroids are indexed in FAISS
 
 Incoming payloads are matched against FAISS for real-time detection
 
-New unknown payloads are added for continuous learning
+New unknown payloads are stored for continuous learning
 
 🛠️ Tech Stack
 
