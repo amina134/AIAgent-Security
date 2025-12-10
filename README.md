@@ -1,27 +1,27 @@
-AI Security Agent for Intelligent Threat Detection and Blocking
+ AI Security Agent for Intelligent Threat Detection and Blocking
 
-Credits: https://github.com/ChaoukiBayoudhi
+Credits: ChaoukiBayoudhi
 
-An unsupervised machine learning–based security system for real-time cyber-attack detection and blocking, using vector embeddings, clustering, and FAISS similarity search.
-The system continuously learns from previously unseen payloads and improves its detection accuracy over time.
+An unsupervised machine learning–based security system designed for real-time detection and blocking of malicious payloads.
+The system uses vector embeddings, clustering, and FAISS similarity search, and continuously learns from previously unseen threats, improving detection accuracy over time.
 
-🚀 Key Features
+ Key Features
 
 Real-time detection and blocking of malicious payloads
 
-Automatic embedding generation from raw payloads
+Automatic embedding generation from raw payloads using MiniLM
 
-Unsupervised clustering (MiniBatch K-Means) to discover unknown attack patterns
+Unsupervised clustering (MiniBatch K-Means) to detect unknown attack patterns
 
-FAISS vector similarity search for ultra-fast threat matching
+FAISS vector similarity search for high-speed threat matching and classification
 
 Dynamic risk scoring per cluster
 
-Continuous self-learning from newly detected threats
+Continuous self-learning with newly detected threats
 
-Fully integrated with a Django backend
+Fully integrated with a Django backend for real-time decision-making
 
-🧠 How It Works (Pipeline)
+ How It Works (Pipeline)
 
 New payloads are collected by the system
 
@@ -31,19 +31,17 @@ Embeddings are grouped using K-Means clustering
 
 Cluster centroids are indexed in FAISS
 
-Incoming payloads are matched against FAISS for real-time detection
+Incoming payloads are matched against the FAISS index for real-time detection
 
-New unknown payloads are stored for continuous learning
+New unknown payloads are added for continuous learning
 
-🛠️ Tech Stack
+ Tech Stack
 
 Backend: Django, Django REST Framework
 
-Machine Learning: Scikit-learn (MiniBatch K-Means)
+Machine Learning: Scikit-learn (MiniBatch K-Means), MiniLM (Embeddings)
 
 Vector Search: FAISS
-
-NLP / Embeddings: Sentence Transformers / MiniLM
 
 Data Processing: NumPy
 
