@@ -51,9 +51,35 @@ This project implements an **AI-powered security agent** designed to detect, blo
 
 ## **Usage**
 
-1. **Initialize the Agent**
+## **Setup & Running the Project**
 
-```python
-from security_agent.ai_detector import MiniLMSecurityAgent
+### 1. Create / Activate the Environment
 
-agent = MiniLMSecurityAgent()
+We use **Pipenv** to manage dependencies and virtual environments.
+
+```bash
+# Install pipenv if not already installed
+pip install pipenv
+
+# Create a virtual environment and install dependencies from Pipfile
+pipenv install
+
+# Activate the virtual environment
+pipenv shell
+Once inside the shell, your terminal is using the isolated Python environment.
+
+2. Run the Django Server
+# Make sure you are in the project root
+python manage.py migrate        # Apply database migrations
+python manage.py runserver      # Start the development server
+
+
+Open your browser at:
+
+http://127.0.0.1:8000/
+
+
+Your AI Security Agent project will now be running locally.
+
+3. Exit the Environment
+exit  
