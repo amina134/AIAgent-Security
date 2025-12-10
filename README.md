@@ -51,9 +51,9 @@ This project implements an **AI-powered security agent** designed to detect, blo
 
 ## **Usage**
 
-## **Setup & Running the Project**
+### **Setup & Running the Project**
 
-### 1. Create / Activate the Environment
+#### 1. Create / Activate the Environment
 
 We use **Pipenv** to manage dependencies and virtual environments.
 
@@ -61,25 +61,19 @@ We use **Pipenv** to manage dependencies and virtual environments.
 # Install pipenv if not already installed
 pip install pipenv
 
-# Create a virtual environment and install dependencies from Pipfile
+# Create a virtual environment and install dependencies
 pipenv install
 
 # Activate the virtual environment
 pipenv shell
-Once inside the shell, your terminal is using the isolated Python environment.
 
-2. Run the Django Server
-# Make sure you are in the project root
-python manage.py migrate        # Apply database migrations
-python manage.py runserver      # Start the development server
+#### 2.Run the Django Server
+# Apply database migrations
+python manage.py migrate
 
+# Start the development server
+python manage.py runserver
 
-Open your browser at:
+Open your browser and go to:
 
 http://127.0.0.1:8000/
-
-
-Your AI Security Agent project will now be running locally.
-
-3. Exit the Environment
-exit  
